@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
+/// <summary>
+/// Enum that represents ingredients to choose
+/// </summary>
 public enum Ingredient
 {
     BunTop,
@@ -17,10 +20,13 @@ public enum Ingredient
     BunBottom,
 }
 
-public class Recipe
+/// <summary>
+/// Class that represents a recipe with a list of ingredients
+/// </summary>
+public class Recipe : IEquatable<Recipe>
 {
     #region Private Variables
-    
+
     private static int maxTotalIngredientCount = 7;
     private static Dictionary<Ingredient, int> maxIngredientCount = new Dictionary<Ingredient, int>
     {
@@ -34,35 +40,51 @@ public class Recipe
         { Ingredient.Beef, 2 },
         { Ingredient.BunBottom, 1 },
     };
-    
+
     #endregion
-    
+
     #region Constructor
+
     public Recipe(List<Ingredient> ingredients)
     {
         this.Ingredients = ingredients;
     }
+
     #endregion
-    
+
     #region Public Members
-    
+
+    /// <summary>
+    /// List of ingredients
+    /// </summary>
     public List<Ingredient> Ingredients;
 
+    /// <summary>
+    /// Maximum amount of each ingredient
+    /// </summary>
     public Dictionary<Ingredient, int> MaxIngredientCount
     {
         get => maxIngredientCount;
         set => maxIngredientCount = value;
     }
 
+    /// <summary>
+    /// Maximum amount of total ingredients in the recipe
+    /// </summary>
     public int MaxTotalIngredientCount
     {
         get => maxTotalIngredientCount;
         set => maxTotalIngredientCount = value;
     }
+
     #endregion
-    
+
 #region Public Methods
 
+    /// <summary>
+    /// Generates a recipe with random ingredients with top bun and bottom bun in the right place
+    /// </summary>
+    /// <returns>Recipe object</returns>
     public static Recipe GenerateRecipe()
     {
         List<Ingredient> ingredients = new List<Ingredient>();
@@ -82,10 +104,39 @@ public class Recipe
                     ingredients.Add((Ingredient)i);
                 }
             }
-            
+
         }
         return new Recipe(ingredients);
     }
+
+    /// <summary>
+    /// Compare two recipes by their amount and order of ingredients
+    /// </summary>
+    /// <param name="other">Other Recipe object</param>
+    /// <returns>Boolean value if Recipe objects are the same</returns>
+    public bool Equals(Recipe other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+
+        if (this.Ingredients.Count != other.Ingredients.Count)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < this.Ingredients.Count; i++)
+        {
+            if (this.Ingredients[i] != other.Ingredients[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     #endregion
 }
 
@@ -101,6 +152,6 @@ public class Order : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
