@@ -77,7 +77,10 @@ public class Recipe
             }
             if ((ingredients.Count + count) < (maxTotalIngredientCount - 1) || (i == (int)Ingredient.BunBottom) || (i == (int)Ingredient.BunTop))
             {
-                ingredients.Add((Ingredient)i);
+                for (int j = 0; j < count; j++)
+                {
+                    ingredients.Add((Ingredient)i);
+                }
             }
             
         }
