@@ -7,21 +7,21 @@ using Random = System.Random;
 public enum Ingredient
 {
     BunTop,
-    BunBottom,
-    Salad,
-    Beef,
-    Carrot,
-    Cheese,
+    Onion,
     Tomato,
+    Carrot,
+    Salad,
     Steak,
-    Onion
+    Beef,
+    Cheese,
+    BunBottom,
 }
 
 public class Recipe
 {
     #region Private Variables
     
-    private static int maxTotalIngredientCount = 10;
+    private static int maxTotalIngredientCount = 7;
     private static Dictionary<Ingredient, int> maxIngredientCount = new Dictionary<Ingredient, int>
     {
         { Ingredient.BunTop, 1 },
