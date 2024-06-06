@@ -17,8 +17,17 @@ public class GameManager : MonoBehaviour
 
     public int m_CurrentLevel;
 
-    int m_StartClients;
-    int m_CurrentClients;
+    public int m_StartCustomer;
+    public int m_CurrentCustomer;
+    public int m_DailyMaxCustomer = 3;
+
+    public int m_CurrentWaitingCustomer;
+
+    public List<CustomerController> m_CustomersList = new List<CustomerController>();
+
+
+    // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
+    private bool isSceneLoaded = false;
 
     private void Awake()
     {
@@ -36,7 +45,44 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         //ToDo: Später lade Perma HP, ...
-        ChangeScene("GameScene");
+        //ChangeScene("GameScene");
+
+        StartCoroutine(LoadSceneAsync("CharacterSpawn"));
+        //GameScene
+    }
+
+    IEnumerator LoadSceneAsync(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(2); //Billig test erstmal
+
+        isSceneLoaded = true;
+        OnSceneLoaded();
+    }
+
+    void OnSceneLoaded()
+    {
+        if (isSceneLoaded)
+        {
+            Debug.Log("Szene vollständig geladen!");
+
+            CustomerSpawnPoint customerSpawn = FindObjectOfType<CustomerSpawnPoint>();
+            
+            if (customerSpawn != null)
+            {
+                if (m_CurrentLevel == 0)
+                    customerSpawn.StarGame();
+                else
+                    customerSpawn.ContinueGame(m_CurrentLevel);
+            }
+            isSceneLoaded = false;
+        }
     }
 
     public void ContinueGame(int level)
@@ -47,8 +93,10 @@ public class GameManager : MonoBehaviour
     void DayEnd()
     {
         m_CurrentLevel += 1;
-        m_CurrentClients += m_StartClients; //ToDo: Hier Upgrade integrieren für mehr Kunden
+        m_DailyMaxCustomer += m_StartCustomer; //ToDo: Hier Upgrade integrieren für mehr Kunden
     }
+
+
 
     void ChangeScene(string value)
     {
