@@ -67,6 +67,14 @@ namespace AngryChief.Cook
                 }
             }
         }
+        
+        public void ClearOrder()
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
 
         void Start()
         {

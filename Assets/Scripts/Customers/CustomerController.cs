@@ -61,7 +61,7 @@ namespace AngryChief.Customer
                 yield return null;
             }
 
-            // Warte bis der Agent tatsächlich am Ziel angekommen ist
+            // Warte bis der Agent tatsï¿½chlich am Ziel angekommen ist
             while (m_Agent.pathPending || m_Agent.remainingDistance > m_Agent.stoppingDistance || m_Agent.velocity.sqrMagnitude > 0f)
             {
                 yield return null;
@@ -89,6 +89,7 @@ namespace AngryChief.Customer
         public void FinishOrder()
         {
             GameManager.Instance.m_CustomersList.Remove(this);
+            m_ShowOrder.ClearOrder();
             foreach (var customer in GameManager.Instance.m_CustomersList)
             {
                 customer.m_Target.position = m_Target.position + new Vector3(0, 0, +1f);
