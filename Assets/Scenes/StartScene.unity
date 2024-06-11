@@ -3918,11 +3918,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4b4326f990d824c9415a716995adb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Life: 0
-  m_Ammunition: 0
+  m_Life: 1
+  m_Ammunition: 1
   m_Money: 0
   m_Diamands: 0
   m_CurrentLevel: 0
+  m_StartCustomer: 0
+  m_CurrentCustomer: 0
+  m_DailyMaxCustomer: 3
+  m_CurrentWaitingCustomer: 0
+  m_Customer: {fileID: 2875192408404953740, guid: a950d0c54b8aa3e45afc39958e73c2c6, type: 3}
 --- !u!4 &776859447
 Transform:
   m_ObjectHideFlags: 0
