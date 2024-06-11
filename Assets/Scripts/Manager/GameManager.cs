@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoadScene(string value)
+    {
+        StartCoroutine(LoadSceneAsync(value));
+    }
+
     public void StartGame()
     {
         //ToDo: Später lade Perma HP, ...
