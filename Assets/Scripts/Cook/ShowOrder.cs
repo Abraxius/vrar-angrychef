@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace AngryChief.Cook
 {
     public class ShowOrder : MonoBehaviour
     {
+        private float m_yPos = 0.0f;
+        
         public GameObject bunTop;
         public GameObject onion;
         public GameObject tomato;
@@ -67,10 +70,18 @@ namespace AngryChief.Cook
             }
         }
 
+        void Start()
+        {
+            m_yPos = transform.position.y;
+        }
         // Update is called once per frame
         void Update()
         {
-            transform.Rotate(new Vector3(0, 0.1f, 0));
+            transform.Rotate(new Vector3(0, 0.05f, 0));
+            var tempPos = transform.position;
+            
+            tempPos.y = m_yPos + Mathf.Sin(Time.time) * 0.1f;
+            transform.position = tempPos;
         }
     }
 
