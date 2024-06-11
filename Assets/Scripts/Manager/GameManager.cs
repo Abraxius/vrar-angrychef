@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using AngryChief.Customer;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         //ToDo: Später lade Perma HP, ...
         //ChangeScene("GameScene");
 
-        StartCoroutine(LoadSceneAsync("CharacterSpawn"));
+        StartCoroutine(LoadSceneAsync("GameScene"));
         //GameScene
     }
 
