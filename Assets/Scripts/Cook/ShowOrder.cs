@@ -1,7 +1,5 @@
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace AngryChief.Cook
@@ -75,13 +73,19 @@ namespace AngryChief.Cook
             m_yPos = transform.position.y;
         }
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
-            transform.Rotate(new Vector3(0, 0.05f, 0));
+            
             var tempPos = transform.position;
             
             tempPos.y = m_yPos + Mathf.Sin(Time.time) * 0.1f;
             transform.position = tempPos;
+            transform.Rotate(new Vector3(0, 1f, 0));
+        }
+
+        void Update()
+        {
+            
         }
     }
 
