@@ -91,7 +91,7 @@ namespace AngryChief.Customer
             GameManager.Instance.m_CustomersList.Remove(this);
             foreach (var customer in GameManager.Instance.m_CustomersList)
             {
-                customer.m_Target.position = m_Target.position + new Vector3(0, 0, +1f);
+                customer.m_Target.position = m_Target.position + new Vector3(0, 0, +2f);
                 customer.StartWalk();
             }
 
