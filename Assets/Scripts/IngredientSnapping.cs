@@ -34,8 +34,7 @@ public class IngredientSnapping : MonoBehaviour
         rb.useGravity = false;
         rb.isKinematic = true;
 
-        print(snapPosition.position);
-        print((snappedIngredients.Count * 1.1f));
         SnappableObject.transform.position = snapPosition.position + new Vector3(0, (0.1f + ((snappedIngredients.Count - 1) * 0.25f)), 0);
+        SnappableObject.transform.rotation = Quaternion.identity;
     }
 }
