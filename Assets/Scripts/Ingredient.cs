@@ -10,8 +10,15 @@ public class IngredientState
 
 public class Ingredient : MonoBehaviour
 {
+    // Set states and possibilities for further processing
+    public bool fryable = false;
+    public bool cuttable = false;
     public List<IngredientState> ingredientStates = new List<IngredientState>();
     private IngredientState currentState;
+
+    // For Snapping System
+    [HideInInspector]
+    public bool isSnapped = false;
 
     void Start()
     {

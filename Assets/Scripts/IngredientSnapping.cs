@@ -2,28 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IngredientsSnapping : MonoBehaviour
+public class IngredientSnapping : MonoBehaviour
 {
     [HideInInspector]
     public bool snapped = false;
     public List<Ingredient> snappedIngredients = new List<Ingredient>();
-    [SerializeField] private bool stackable = false;
+    public bool stackable = false;
+    [SerializeField] private Transform snapPosition;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Snappable")
         {
-            if ((snappedIngredients.Count == 0) || (snappedIngredients.Count >= 1 && stackable == true))
+            if ((snappedIngredients.Count == 0 && !other.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Count >= 1 && stackable == true && !other.gameObject.GetComponent<Ingredient>().isSnapped))
             {
                 SnapObject(other.gameObject);
             }
         }
     }
 
-    private void SnapObject(GameObject SnappableObject)
+    protected void SnapObject(GameObject SnappableObject)
     {
         print("Snapped");
         snapped = true;
+        SnappableObject.GetComponent<Ingredient>().isSnapped = true;
         SnappableObject.transform.SetParent(gameObject.transform);
         snappedIngredients.Add(SnappableObject.GetComponent<Ingredient>());
 
@@ -31,5 +33,9 @@ public class IngredientsSnapping : MonoBehaviour
         Rigidbody rb = SnappableObject.GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.isKinematic = true;
+
+        print(snapPosition.position);
+        print((snappedIngredients.Count * 1.1f));
+        SnappableObject.transform.position = snapPosition.position + new Vector3(0, (0.1f + ((snappedIngredients.Count - 1) * 0.25f)), 0);
     }
 }

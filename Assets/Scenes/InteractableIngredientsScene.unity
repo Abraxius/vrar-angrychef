@@ -521,6 +521,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fc941833c9e88ce4dbd28fed15046878, type: 3}
   m_PrefabInstance: {fileID: 536605404}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &157339030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157339031}
+  m_Layer: 0
+  m_Name: SnapPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &157339031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157339030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000015454312, y: 0.7071068, z: -0.000000015454312, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 543450653015528635}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &186589265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a20471bb9a84a7428776239b0881316, type: 3}
@@ -1982,7 +2013,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1316329047}
   m_Father: {fileID: 543450651768634488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &560069975
@@ -2000,6 +2032,7 @@ MonoBehaviour:
   snapped: 0
   snappedIngredients: []
   stackable: 0
+  snapPosition: {fileID: 1316329047}
 --- !u!65 &560069976
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2260,6 +2293,7 @@ MonoBehaviour:
   snapped: 0
   snappedIngredients: []
   stackable: 0
+  snapPosition: {fileID: 0}
 --- !u!65 &626465714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2332,7 +2366,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 952605231}
   m_Father: {fileID: 543450652600576836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &633239740
@@ -2350,6 +2385,7 @@ MonoBehaviour:
   snapped: 0
   snappedIngredients: []
   stackable: 1
+  snapPosition: {fileID: 952605231}
 --- !u!1001 &633924027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3151,6 +3187,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca0ec33da67f35d4e9afec17e94abdb0, type: 3}
   m_PrefabInstance: {fileID: 949942418}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &952605230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952605231}
+  m_Layer: 0
+  m_Name: SnapPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &952605231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952605230}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 633239739}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &987130089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4665,6 +4732,7 @@ GameObject:
   - component: {fileID: 1278987734}
   - component: {fileID: 1278987733}
   - component: {fileID: 1278987732}
+  - component: {fileID: 1278987738}
   - component: {fileID: 1278987731}
   - component: {fileID: 1278987737}
   - component: {fileID: 1278987736}
@@ -4964,6 +5032,22 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &1278987738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278987730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ab8c1ff5a275e4c84266e8f32ead90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fryable: 0
+  cuttable: 0
+  ingredientStates: []
+  isSnapped: 0
 --- !u!1001 &1282601036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5160,6 +5244,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 81f488c57f9e87f41a47b86773f2fe54, type: 3}
   m_PrefabInstance: {fileID: 1306618086}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1316329046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1316329047}
+  m_Layer: 0
+  m_Name: SnapPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1316329047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316329046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560069974}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1327488236 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 19ac4eed19ed6644fbad334d48346b33, type: 3}
@@ -7775,6 +7890,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 543450651768634488}
+  - {fileID: 157339031}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &543450653685403099
@@ -7922,6 +8038,7 @@ GameObject:
   - component: {fileID: 543450652231694655}
   - component: {fileID: 3469287838161729178}
   - component: {fileID: 1711813854434329168}
+  - component: {fileID: 3469287838161729183}
   - component: {fileID: 3469287838161729179}
   - component: {fileID: 3469287838161729180}
   - component: {fileID: 3469287838161729182}
@@ -8645,7 +8762,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 0.5, z: 1}
-  m_Center: {x: 0, y: 1.6, z: 0}
+  m_Center: {x: 0, y: 1.6, z: 0.09}
 --- !u!114 &3469287836866239264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8661,6 +8778,7 @@ MonoBehaviour:
   snapped: 0
   snappedIngredients: []
   stackable: 0
+  snapPosition: {fileID: 157339031}
   cookTime: 5
   burnTime: 10
 --- !u!33 &3469287837534274174
@@ -9165,6 +9283,22 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &3469287838161729183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148509254533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ab8c1ff5a275e4c84266e8f32ead90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fryable: 0
+  cuttable: 0
+  ingredientStates: []
+  isSnapped: 0
 --- !u!33 &3469287838323845071
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10168,6 +10302,7 @@ MonoBehaviour:
   snapped: 0
   snappedIngredients: []
   stackable: 0
+  snapPosition: {fileID: 0}
 --- !u!1 &8500047156548580063
 GameObject:
   m_ObjectHideFlags: 0
@@ -10239,6 +10374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ab8c1ff5a275e4c84266e8f32ead90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fryable: 1
+  cuttable: 0
   ingredientStates:
   - stateName: uncooked
     stateObject: {fileID: 8500047156548580063}
@@ -10246,6 +10383,7 @@ MonoBehaviour:
     stateObject: {fileID: 4861194874358857552}
   - stateName: burned
     stateObject: {fileID: 3292987380776558924}
+  isSnapped: 0
 --- !u!114 &9041448751240880321
 MonoBehaviour:
   m_ObjectHideFlags: 0
