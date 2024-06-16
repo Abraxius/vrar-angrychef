@@ -56,4 +56,23 @@ public class Ingredient : MonoBehaviour
     {
         return currentState != null ? currentState.stateName : null;
     }
+
+    // Get height of ingredient
+    public float GetHeight()
+    {
+        Collider collider = GetComponent<Collider>();
+        if (collider != null)
+        {
+            return collider.bounds.size.y;
+        }
+
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            return renderer.bounds.size.y;
+        }
+
+        // Return default height if no collider or renderer is found
+        return 1.0f;
+    }
 }
