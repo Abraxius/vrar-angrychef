@@ -131,24 +131,17 @@ namespace AngryChief.Customer
             }
 
             StartCoroutine(WalkToSeat());
-            GameManager.Instance.m_CustomersList.Remove(this);
-            GameManager.Instance.m_CurrentWaitingCustomer -= 1;
             
-            //Start movement from waiting customers
-            foreach (var customer in GameManager.Instance.m_CustomersList)
-            {
-                //customer.m_Target.position = m_Target.position + new Vector3(0, 0, +2f);
-                //customer.m_OldWaitingPosition = customer.m_WaitingPosition;
-                customer.m_WaitingPosition -= 1;
-                
-                customer.m_Position = customer.m_Target.position + new Vector3(0, 0, -customer.m_WaitingPosition * 1.5f);
-                Debug.Log(" Individuelle Warteposition " + customer.m_WaitingPosition  +" Neue Position: " + customer.m_Position);
-                customer.StartWalk();
-            }
-
-
+            NextCustomer();
         }
 
+        public void Die()
+        {
+            Debug.Log("Gestorben");
+
+            NextCustomer();
+        }
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<Collider>().tag == "Seat")
@@ -156,6 +149,32 @@ namespace AngryChief.Customer
                 Debug.Log("SITZ ERREICHT BOOOM");
                 //m_Animator.SetBool("Sit", true);
             }
+            
+            if (other.GetComponent<Collider>().tag == "Bullet")
+            {
+                Die();
+            }
+        }
+
+        void NextCustomer()
+        {
+            GameManager.Instance.m_CustomersList.Remove(this);
+            GameManager.Instance.m_CurrentWaitingCustomer -= 1;
+        
+            //Start movement from waiting customers
+            foreach (var customer in GameManager.Instance.m_CustomersList)
+            {
+                //customer.m_Target.position = m_Target.position + new Vector3(0, 0, +2f);
+                //customer.m_OldWaitingPosition = customer.m_WaitingPosition;
+                if (customer.m_WaitingPosition == 0)
+                    break;
+                
+                customer.m_WaitingPosition -= 1;
+                
+                customer.m_Position = customer.m_Target.position + new Vector3(0, 0, -customer.m_WaitingPosition * 1.5f);
+                Debug.Log(" Individuelle Warteposition " + customer.m_WaitingPosition  +" Neue Position: " + customer.m_Position);
+                customer.StartWalk();
+            }     
         }
     }
 
