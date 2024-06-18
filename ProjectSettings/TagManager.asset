@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
+  - Anchor
+  - Seat
   layers:
   - Default
   - TransparentFX

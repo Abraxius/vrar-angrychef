@@ -4,10 +4,24 @@ using UnityEngine;
 
 namespace AngryChief.Customer
 {
+    public class Seat
+    {
+        public Transform m_Transform;
+        public bool m_Busy;
+        
+        public Seat(Transform transform, bool busy)
+        {
+            m_Transform = transform;
+            m_Busy = busy;
+        }
+    }
+    
     public class CustomerSpawnPoint : MonoBehaviour
     {
+        public List<Seat> m_SeatList = new List<Seat>();
         [SerializeField] GameObject m_CashDeskPosition;
         [SerializeField] GameObject m_Customer;
+        
         int m_CurrentCustomer = 0;
         int m_DailyMaxCustomer;
 
@@ -34,25 +48,24 @@ namespace AngryChief.Customer
 
             GameObject tmp = GameObject.Instantiate(m_Customer, transform.position, transform.rotation);
 
+            CustomerController customer = tmp.GetComponent<CustomerController>();
+            customer.m_Target = m_CashDeskPosition.transform;
+            
             if (GameManager.Instance.m_CurrentWaitingCustomer == 0)
             {
-                m_CashDeskPosition.transform.position += new Vector3(0, 0, 0);
+                customer.m_Position = m_CashDeskPosition.transform.position;
             }
             else
             {
-                m_CashDeskPosition.transform.position += new Vector3(0, 0, -GameManager.Instance.m_CurrentWaitingCustomer - 1f);
+                customer.m_Position = customer.m_Target.position + new Vector3(0, 0, -GameManager.Instance.m_CurrentWaitingCustomer * 1.5f);
             }
 
-
-            CustomerController customer = tmp.GetComponent<CustomerController>();
-            customer.m_Target = m_CashDeskPosition.transform;
+            customer.m_CustomerSpawnManager = this;
             customer.WalkToCashDesk();
             customer.m_WaitingPosition = m_CurrentCustomer;
             customer.m_OldWaitingPosition = m_CurrentCustomer;
 
             GameManager.Instance.m_CustomersList.Add(customer);
-
-            Debug.Log(m_CashDeskPosition.transform.position);
 
             m_CurrentCustomer += 1;
 

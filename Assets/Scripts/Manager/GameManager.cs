@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public List<CustomerController> m_CustomersList = new List<CustomerController>();
 
 
-    // Dieser bool-Wert gibt an, ob die Szene vollst‰ndig geladen ist
+    // Dieser bool-Wert gibt an, ob die Szene vollst√§ndig geladen ist
     private bool isSceneLoaded = false;
 
     private void Awake()
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        //ToDo: Sp‰ter lade Perma HP, ...
+        //ToDo: Sp√§ter lade Perma HP, ...
         //ChangeScene("GameScene");
 
         StartCoroutine(LoadSceneAsync("GameScene"));
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     {
         if (isSceneLoaded)
         {
-            Debug.Log("Szene vollst‰ndig geladen!");
+            Debug.Log("Szene vollst√§ndig geladen!");
 
             CustomerSpawnPoint customerSpawn = FindObjectOfType<CustomerSpawnPoint>();
             
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     void DayEnd()
     {
         m_CurrentLevel += 1;
-        m_DailyMaxCustomer += m_StartCustomer; //ToDo: Hier Upgrade integrieren f¸r mehr Kunden
+        m_DailyMaxCustomer += m_StartCustomer; //ToDo: Hier Upgrade integrieren f√ºr mehr Kunden
     }
 
 
