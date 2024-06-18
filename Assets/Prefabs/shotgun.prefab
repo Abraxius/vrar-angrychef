@@ -521,8 +521,9 @@ MonoBehaviour:
   StartingPoint: {fileID: 2026891723714650059}
   Ammo: 100
   Projectile: {fileID: 2792176449383971889, guid: a8dd848246edb1148843630b78e4aa99, type: 3}
-  Strength: 2000
+  Strength: 5000
   FireRate: 0.2
+  Particles: {fileID: 4812777098084798749, guid: 0e8e08735ceae3c48b9d89c1029da75a, type: 3}
 --- !u!114 &3513214322721401732
 MonoBehaviour:
   m_ObjectHideFlags: 0
