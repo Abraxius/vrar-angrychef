@@ -71,6 +71,11 @@ namespace AngryChief.Customer
 
             GameManager.Instance.m_CurrentWaitingCustomer += 1;
 
+            CoroutineForSpawn();
+        }
+
+        public void CoroutineForSpawn()
+        {
             if (m_CurrentCustomer < m_DailyMaxCustomer)
                 StartCoroutine(SpawnCustomer());
         }

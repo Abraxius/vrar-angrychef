@@ -43,7 +43,8 @@ namespace AngryChief.Customer
         {
             if (m_Destroy)
             {
-                FinishOrder();
+                //FinishOrder();
+                Die();
                 m_Destroy = false;
             }
         }
@@ -138,20 +139,18 @@ namespace AngryChief.Customer
             
             NextCustomer();
             
+            //ToDo: Neue Leute spawnen
+            m_CustomerSpawnManager.CoroutineForSpawn();
+            
             Destroy(gameObject);
         }
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<Collider>().tag == "Seat")
-            {
-                Debug.Log("SITZ ERREICHT BOOOM");
-                //m_Animator.SetBool("Sit", true);
-            }
-            
             if (other.GetComponent<Collider>().tag == "Bullet")
             {
                 Die();
+                Destroy(other.gameObject);
             }
         }
         
