@@ -135,10 +135,10 @@ namespace AngryChief.Customer
         public void Die()
         {
             Debug.Log("Gestorben");
-
-            Destroy(gameObject);
             
             NextCustomer();
+            
+            Destroy(gameObject);
         }
         
         private void OnTriggerEnter(Collider other)
@@ -154,7 +154,7 @@ namespace AngryChief.Customer
                 Die();
             }
         }
-
+        
         void NextCustomer()
         {
             GameManager.Instance.m_CustomersList.Remove(this);
