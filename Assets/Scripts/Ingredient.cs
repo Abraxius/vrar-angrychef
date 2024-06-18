@@ -15,7 +15,8 @@ public class Ingredient : MonoBehaviour
     public bool cuttable = false;
     public IngredientType ingredientType;
     public List<IngredientState> ingredientStates = new List<IngredientState>();
-    private IngredientState currentState;
+    [HideInInspector]
+    public IngredientState currentState;
 
     // For Snapping System
     [HideInInspector]
