@@ -22,45 +22,45 @@ namespace AngryChief.Cook
         {
             var newRecipe = Recipe.GenerateRecipe();
             var row = new Vector3(0, 1.0f, 0);
-            foreach (var ingredient in newRecipe.Ingredients)
+            foreach (var ingredientType in newRecipe.Ingredients)
             {
                 row -= new Vector3(0, 0.2f, 0);
 
-                switch (ingredient)
+                switch (ingredientType)
                 {
-                    case Ingredient.BunTop:
+                    case IngredientType.BunTop:
                         Instantiate(bunTop, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Onion:
+                    case IngredientType.Onion:
                         Instantiate(onion, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Tomato:
+                    case IngredientType.Tomato:
                         Instantiate(tomato, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Carrot:
+                    case IngredientType.Carrot:
                         Instantiate(carrot, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Salad:
+                    case IngredientType.Salad:
                         Instantiate(salad, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Steak:
+                    case IngredientType.Steak:
                         Instantiate(steak, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Beef:
+                    case IngredientType.Beef:
                         Instantiate(beef, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Cheese:
+                    case IngredientType.Cheese:
                         Instantiate(cheese, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.BunBottom:
+                    case IngredientType.BunBottom:
                         Instantiate(bunBottom, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 

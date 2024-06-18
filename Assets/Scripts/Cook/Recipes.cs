@@ -7,7 +7,7 @@ using Random = System.Random;
 /// <summary>
 /// Enum that represents ingredients to choose
 /// </summary>
-public enum Ingredient
+public enum IngredientType
 {
     BunTop,
     Onion,
@@ -28,24 +28,24 @@ public class Recipe : IEquatable<Recipe>
     #region Private Variables
 
     private static int maxTotalIngredientCount = 7;
-    private static Dictionary<Ingredient, int> maxIngredientCount = new Dictionary<Ingredient, int>
+    private static Dictionary<IngredientType, int> maxIngredientCount = new Dictionary<IngredientType, int>
     {
-        { Ingredient.BunTop, 1 },
-        { Ingredient.Onion, 2 },
-        { Ingredient.Carrot, 2 },
-        { Ingredient.Tomato, 1 },
-        { Ingredient.Salad, 2 },
-        { Ingredient.Steak, 2 },
-        { Ingredient.Cheese, 2 },
-        { Ingredient.Beef, 2 },
-        { Ingredient.BunBottom, 1 },
+        { IngredientType.BunTop, 1 },
+        { IngredientType.Onion, 2 },
+        { IngredientType.Carrot, 2 },
+        { IngredientType.Tomato, 1 },
+        { IngredientType.Salad, 2 },
+        { IngredientType.Steak, 2 },
+        { IngredientType.Cheese, 2 },
+        { IngredientType.Beef, 2 },
+        { IngredientType.BunBottom, 1 },
     };
 
     #endregion
 
     #region Constructor
 
-    public Recipe(List<Ingredient> ingredients)
+    public Recipe(List<IngredientType> ingredients)
     {
         this.Ingredients = ingredients;
     }
@@ -57,12 +57,12 @@ public class Recipe : IEquatable<Recipe>
     /// <summary>
     /// List of ingredients
     /// </summary>
-    public List<Ingredient> Ingredients;
+    public List<IngredientType> Ingredients;
 
     /// <summary>
     /// Maximum amount of each ingredient
     /// </summary>
-    public Dictionary<Ingredient, int> MaxIngredientCount
+    public Dictionary<IngredientType, int> MaxIngredientCount
     {
         get => maxIngredientCount;
         set => maxIngredientCount = value;
@@ -87,21 +87,21 @@ public class Recipe : IEquatable<Recipe>
     /// <returns>Recipe object</returns>
     public static Recipe GenerateRecipe()
     {
-        List<Ingredient> ingredients = new List<Ingredient>();
-        for (int i = 0; i < Enum.GetNames(typeof(Ingredient)).Length; i++)
+        List<IngredientType> ingredients = new List<IngredientType>();
+        for (int i = 0; i < Enum.GetNames(typeof(IngredientType)).Length; i++)
         {
-            int maxCount = maxIngredientCount[(Ingredient)i];
+            int maxCount = maxIngredientCount[(IngredientType)i];
             Random random = new Random();
             int count = random.Next(0, maxCount);
-            if (i == (int)Ingredient.BunTop || i == (int)Ingredient.BunBottom)
+            if (i == (int)IngredientType.BunTop || i == (int)IngredientType.BunBottom)
             {
                 count = 1;
             }
-            if ((ingredients.Count + count) < (maxTotalIngredientCount - 1) || (i == (int)Ingredient.BunBottom) || (i == (int)Ingredient.BunTop))
+            if ((ingredients.Count + count) < (maxTotalIngredientCount - 1) || (i == (int)IngredientType.BunBottom) || (i == (int)IngredientType.BunTop))
             {
                 for (int j = 0; j < count; j++)
                 {
-                    ingredients.Add((Ingredient)i);
+                    ingredients.Add((IngredientType)i);
                 }
             }
 

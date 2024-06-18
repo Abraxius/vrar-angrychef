@@ -13,6 +13,7 @@ public class Ingredient : MonoBehaviour
     // Set states and possibilities for further processing
     public bool fryable = false;
     public bool cuttable = false;
+    public IngredientType ingredientType;
     public List<IngredientState> ingredientStates = new List<IngredientState>();
     private IngredientState currentState;
 
