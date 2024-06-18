@@ -112,9 +112,6 @@ namespace AngryChief.Customer
 
             m_Animator.SetTrigger("SitDown");
             transform.rotation = m_Target.rotation;
-            
-            Debug.Log("ERSTMAL WAMPE VOLLHAUFEN!!!!");
-
         }
         
         public void FinishOrder()
@@ -139,6 +136,8 @@ namespace AngryChief.Customer
         {
             Debug.Log("Gestorben");
 
+            Destroy(gameObject);
+            
             NextCustomer();
         }
         
