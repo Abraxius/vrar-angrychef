@@ -20,12 +20,7 @@ public class Umgehen : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Die();
         }
     }
 
-    void Die()
-    {
-
-    }
 }
