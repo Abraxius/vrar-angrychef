@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class JokerGun : MonoBehaviour
 {
-    //Difference between Weapons
+    //Variables to make the weapon feel diferent
     [SerializeField] Transform StartingPoint;
-    public int Ammo;
     public GameObject Projectile;
     [SerializeField] float Strength;
     [SerializeField] float FireRate;
@@ -16,6 +15,10 @@ public class JokerGun : MonoBehaviour
     private float lastUsedTime;
     private Vector3 shootingDirection = Vector3.forward;
 
+    //Extra objects
+    public GameObject canvas;
+    public AmmoDisplay display;
+
     void Start()
     {
         
@@ -23,7 +26,8 @@ public class JokerGun : MonoBehaviour
     
     public void PullTrigger()
     {
-        if(Time.time > lastUsedTime + FireRate && Ammo > 0)
+
+        if(Time.time > lastUsedTime + FireRate && GameManager.Instance.m_Ammunition > 0)
         {
             Fire();
             lastUsedTime = Time.time;
@@ -40,20 +44,36 @@ public class JokerGun : MonoBehaviour
     }
     public void Fire()
     {
-        Quaternion rotation = Quaternion.identity;
-        GameObject newObject = Instantiate(Projectile, StartingPoint.position, Quaternion.LookRotation(shootingDirection), null);
-        GameObject shootingParticles = Instantiate(Particles, StartingPoint.position, StartingPoint.rotation, null);
+        GameObject newObject = Instantiate(Projectile, StartingPoint.position, StartingPoint.rotation, null);
+        Instantiate(Particles, StartingPoint.position, StartingPoint.rotation, null);
 
         if (newObject.TryGetComponent(out Rigidbody rigidBody))
+        {
             ApplyForce(rigidBody);
+        }
 
-        Ammo -= 1;
-
+        GameManager.Instance.m_Ammunition-= 1;
+        display.UpdateCanvas();
     }
 
     void ApplyForce(Rigidbody rigidBody)
     {
         Vector3 force = StartingPoint.forward * Strength;
         rigidBody.AddForce(force);
+    }
+
+    public void ActivateCanvas()
+    {
+        if (canvas != null)
+        {
+            canvas.SetActive(true);
+        }
+    }
+    public void DeactivateCanvas()
+    {
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 }
