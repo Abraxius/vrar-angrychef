@@ -16,12 +16,18 @@ namespace AngryChief.Customer
         public int m_WaitingPosition;
         public int m_OldWaitingPosition;
 
+        [SerializeField] private GameObject m_BurgerPrefab;
+        
         [HideInInspector] public CustomerSpawnPoint m_CustomerSpawnManager;
         
         private NavMeshAgent m_Agent;
 
         Animator m_Animator;
         ShowOrder m_ShowOrder;
+
+        private float m_EatingTime = 10f;
+        
+        private Seat m_CurrentSeat;
         
         public bool m_Destroy = false; //Testobject
         private void Awake()
@@ -43,8 +49,8 @@ namespace AngryChief.Customer
         {
             if (m_Destroy)
             {
-                //FinishOrder();
-                StartCoroutine( Die());
+                FinishOrder();
+                //StartCoroutine( Die());
                 m_Destroy = false;
             }
         }
@@ -56,23 +62,7 @@ namespace AngryChief.Customer
 
         public IEnumerator WalkToCashDesk()
         {
-            if (m_Target != null)
-            {
-                m_Animator.SetBool("Walking", true);
-                m_Agent.SetDestination(m_Position);
-            }
-            else
-            {
-                yield return null;
-            }
-
-            // Warte bis der Agent tats�chlich am Ziel angekommen ist
-            while (m_Agent.pathPending || m_Agent.remainingDistance > m_Agent.stoppingDistance || m_Agent.velocity.sqrMagnitude > 0f)
-            {
-                yield return null;
-            }
-
-            m_Animator.SetBool("Walking", false);
+            yield return MoveToTarget(m_Position);
 
             if (m_WaitingPosition == 0)
             {
@@ -113,7 +103,62 @@ namespace AngryChief.Customer
 
             m_Animator.SetTrigger("SitDown");
             transform.rotation = m_Target.rotation;
+
+            GameObject tmpBurger = GameObject.Instantiate(m_BurgerPrefab, transform.position + Vector3.forward * 0.7f + Vector3.up, transform.rotation);
+
+            yield return new WaitForSeconds(m_EatingTime);
+            
+            Destroy(tmpBurger);
+
+            m_Target = m_CustomerSpawnManager.transform;
+
+            StartCoroutine(LeaveTheKiosk());
         }
+
+        IEnumerator LeaveTheKiosk()
+        {
+            m_Animator.SetTrigger("StandUp");
+            
+            yield return new WaitForSeconds(1f);
+            
+            m_CurrentSeat.m_Busy = false;
+            
+            if (m_Target != null)
+            {
+                m_Animator.SetBool("Walking", true);
+                m_Agent.SetDestination(m_Target.position);
+            }
+            else
+            {
+                yield return null;
+            }
+
+            // Warte bis der Agent tats�chlich am Ziel angekommen ist
+            while (m_Agent.pathPending || m_Agent.remainingDistance > m_Agent.stoppingDistance || m_Agent.velocity.sqrMagnitude > 0f)
+            {
+                yield return null;
+            }
+
+            m_Animator.SetBool("Walking", false);       
+            
+            Destroy(gameObject);
+        }
+
+        //ToDo: Ersetze die doppelte Codestellen durch das hier
+        IEnumerator MoveToTarget(Vector3 targetPosition)
+        {
+            m_Animator.SetBool("Walking", true);
+            m_Agent.SetDestination(targetPosition);
+
+            while (m_Agent.pathPending || m_Agent.remainingDistance > m_Agent.stoppingDistance || m_Agent.velocity.sqrMagnitude > 0f)
+            {
+                yield return null;
+            }
+
+            m_Animator.SetBool("Walking", false);
+        }
+
+
         
         public void FinishOrder()
         {
@@ -124,6 +169,7 @@ namespace AngryChief.Customer
                 {
                     m_Target = seat.m_Transform;
                     seat.m_Busy = true;
+                    m_CurrentSeat = seat;
                     break;
                 }
             }
