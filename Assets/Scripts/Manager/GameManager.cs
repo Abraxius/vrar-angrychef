@@ -18,11 +18,12 @@ public class GameManager : MonoBehaviour
     public int m_CurrentLevel;
 
     public int m_StartCustomer;
-    public int m_CurrentCustomer;
-    public int m_DailyMaxCustomer = 3;
+    public int m_DailyMaxCustomer = 4;
+    public int m_LengthCustomerQueue = 3;
 
     public int m_CurrentWaitingCustomer;
-
+    public int m_AllGuestsVisitedToday;
+    
     public List<CustomerController> m_CustomersList = new List<CustomerController>();
 
 
@@ -95,10 +96,12 @@ public class GameManager : MonoBehaviour
         //ToDo: Verwende Upgrades
     }
 
-    void DayEnd()
+    public void DayEnd()
     {
         m_CurrentLevel += 1;
         m_DailyMaxCustomer += m_StartCustomer; //ToDo: Hier Upgrade integrieren für mehr Kunden
+        
+        StartCoroutine(LoadSceneAsync("PauseScene"));
     }
 
 

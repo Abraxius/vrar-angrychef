@@ -19,12 +19,12 @@ namespace AngryChief.Customer
     public class CustomerSpawnPoint : MonoBehaviour
     {
         public List<Seat> m_SeatList = new List<Seat>();
+        //[HideInInspector] public int m_CurrentCustomer = 0;
+        int m_DailyMaxCustomer;
+  
         [SerializeField] GameObject m_CashDeskPosition;
         [SerializeField] GameObject m_Customer;
         
-        int m_CurrentCustomer = 0;
-        int m_DailyMaxCustomer;
-
         public void StarGame()
         {
             m_DailyMaxCustomer = GameManager.Instance.m_DailyMaxCustomer;
@@ -60,23 +60,24 @@ namespace AngryChief.Customer
                 customer.m_Position = customer.m_Target.position + new Vector3(0, 0, -GameManager.Instance.m_CurrentWaitingCustomer * 1.5f);
             }
 
+            int currentCustomer = GameManager.Instance.m_CurrentWaitingCustomer;
+            customer.m_WaitingPosition = currentCustomer;
+            customer.m_OldWaitingPosition = currentCustomer;
+            
             customer.m_CustomerSpawnManager = this;
             customer.WalkToCashDesk();
-            customer.m_WaitingPosition = m_CurrentCustomer;
-            customer.m_OldWaitingPosition = m_CurrentCustomer;
-
+            
             GameManager.Instance.m_CustomersList.Add(customer);
-
-            m_CurrentCustomer += 1;
-
+            
             GameManager.Instance.m_CurrentWaitingCustomer += 1;
+            GameManager.Instance.m_AllGuestsVisitedToday += 1;
 
             CoroutineForSpawn();
         }
 
         public void CoroutineForSpawn()
         {
-            if (m_CurrentCustomer < m_DailyMaxCustomer)
+            if (GameManager.Instance.m_AllGuestsVisitedToday < m_DailyMaxCustomer && GameManager.Instance.m_CurrentWaitingCustomer < GameManager.Instance.m_LengthCustomerQueue)
                 StartCoroutine(SpawnCustomer());
         }
     }
