@@ -10,10 +10,10 @@ public class JokerGun : MonoBehaviour
     [SerializeField] float Strength;
     [SerializeField] float FireRate;
     [SerializeField] GameObject Particles;
+    private AudioSource audioSource;
 
     //logic variables
     private float lastUsedTime;
-    private Vector3 shootingDirection = Vector3.forward;
 
     //Extra objects
     public GameObject canvas;
@@ -21,7 +21,11 @@ public class JokerGun : MonoBehaviour
 
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("No AudioSource component found on this GameObject. Please add one.");
+        }
     }
     
     public void PullTrigger()
@@ -45,11 +49,15 @@ public class JokerGun : MonoBehaviour
     public void Fire()
     {
         GameObject newObject = Instantiate(Projectile, StartingPoint.position, StartingPoint.rotation, null);
-        Instantiate(Particles, StartingPoint.position, StartingPoint.rotation, null);
-
         if (newObject.TryGetComponent(out Rigidbody rigidBody))
         {
             ApplyForce(rigidBody);
+        }
+        Instantiate(Particles, StartingPoint.position, StartingPoint.rotation, null);
+
+        if (audioSource != null)
+        {
+            audioSource.Play();
         }
 
         GameManager.Instance.m_Ammunition-= 1;
@@ -58,7 +66,7 @@ public class JokerGun : MonoBehaviour
 
     void ApplyForce(Rigidbody rigidBody)
     {
-        Vector3 force = StartingPoint.forward * Strength;
+        Vector3 force = StartingPoint.up * Strength;
         rigidBody.AddForce(force);
     }
 
