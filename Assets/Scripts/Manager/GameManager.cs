@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
 
     public int m_Life;
+    public int m_MaxLives;
     public int m_Ammunition;
 
     public int m_Money;
