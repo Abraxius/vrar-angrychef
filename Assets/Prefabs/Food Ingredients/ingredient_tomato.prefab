@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 667273628688558070}
   - component: {fileID: 3166713257749416045}
   m_Layer: 0
-  m_Name: food_tomato
+  m_Name: ingredient_tomato
   m_TagString: Snappable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

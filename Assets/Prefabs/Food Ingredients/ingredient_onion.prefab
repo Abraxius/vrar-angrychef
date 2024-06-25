@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4302449488064761585
+--- !u!1 &3636063756661217156
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,51 +8,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 829495681629998995}
-  - component: {fileID: 7465502667215097819}
-  - component: {fileID: 2965612698464522729}
-  - component: {fileID: 6390165794000574903}
-  - component: {fileID: 5312238646469840608}
-  - component: {fileID: 7423369860515281656}
-  - component: {fileID: 4254238570117617215}
-  - component: {fileID: 5059501636764441258}
+  - component: {fileID: 496562369153320682}
+  - component: {fileID: 1979528507257031852}
+  - component: {fileID: 6824542961894631936}
+  - component: {fileID: 2894964918516496132}
+  - component: {fileID: 2778669257226957068}
+  - component: {fileID: 7383266309416085194}
+  - component: {fileID: 5659481629758430082}
+  - component: {fileID: 5273973959188920325}
   m_Layer: 0
-  m_Name: food_lettuce_slice
+  m_Name: ingredient_onion
   m_TagString: Snappable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &829495681629998995
+--- !u!4 &496562369153320682
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302449488064761585}
+  m_GameObject: {fileID: 3636063756661217156}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.633, y: 0.737, z: -0.187}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.53165317, y: 0.72737813, z: 0.036173105}
+  m_LocalScale: {x: 0.72, y: 0.72, z: 0.72}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7465502667215097819
+--- !u!33 &1979528507257031852
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302449488064761585}
-  m_Mesh: {fileID: 4387450455345236887, guid: bc5332d8d568d6e4fa88cb9ea8877947, type: 3}
---- !u!23 &2965612698464522729
+  m_GameObject: {fileID: 3636063756661217156}
+  m_Mesh: {fileID: -3992234213484251479, guid: 396a1fbd932b12241a3ec5d6436c8c0a, type: 3}
+--- !u!23 &6824542961894631936
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302449488064761585}
+  m_GameObject: {fileID: 3636063756661217156}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1724080987372072942, guid: bc5332d8d568d6e4fa88cb9ea8877947, type: 3}
+  - {fileID: -1724080987372072942, guid: 396a1fbd932b12241a3ec5d6436c8c0a, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,29 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6390165794000574903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302449488064761585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90ab8c1ff5a275e4c84266e8f32ead90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fryable: 0
-  cuttable: 0
-  ingredientStates: []
-  isSnapped: 0
---- !u!64 &5312238646469840608
+--- !u!64 &2894964918516496132
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302449488064761585}
+  m_GameObject: {fileID: 3636063756661217156}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -125,14 +109,14 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4387450455345236887, guid: bc5332d8d568d6e4fa88cb9ea8877947, type: 3}
---- !u!54 &7423369860515281656
+  m_Mesh: {fileID: -3992234213484251479, guid: 396a1fbd932b12241a3ec5d6436c8c0a, type: 3}
+--- !u!54 &2778669257226957068
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302449488064761585}
+  m_GameObject: {fileID: 3636063756661217156}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -153,13 +137,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4254238570117617215
+--- !u!114 &7383266309416085194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302449488064761585}
+  m_GameObject: {fileID: 3636063756661217156}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
@@ -305,13 +289,13 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &5059501636764441258
+--- !u!114 &5659481629758430082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302449488064761585}
+  m_GameObject: {fileID: 3636063756661217156}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0a1302d0d134fa8a2a5b3bf4aec3c20, type: 3}
@@ -328,3 +312,19 @@ MonoBehaviour:
   m_MinimumScaleRatio: 0.25
   m_MaximumScaleRatio: 2
   m_ScaleMultiplier: 0.25
+--- !u!114 &5273973959188920325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3636063756661217156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ab8c1ff5a275e4c84266e8f32ead90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fryable: 0
+  cuttable: 0
+  ingredientStates: []
+  isSnapped: 0

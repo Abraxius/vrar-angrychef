@@ -8,7 +8,7 @@ public class IngredientSnapping : MonoBehaviour
     public bool snapped = false;
     public List<Ingredient> snappedIngredients = new List<Ingredient>();
     public bool stackable = false;
-    [SerializeField] private Transform snapPosition;
+    public Transform snapPosition;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,18 +40,26 @@ public class IngredientSnapping : MonoBehaviour
         }
 
         // Set position and rotation of snapped object
-        float totalHeight = 0f;
-        for (int i = 0; i < snappedIngredients.Count - 1; i++)
+        if (stackable)
         {
-            totalHeight += snappedIngredients[i].GetHeight();
+            float totalHeight = 0f;
+            for (int i = 0; i < snappedIngredients.Count - 1; i++)
+            {
+                totalHeight += snappedIngredients[i].GetHeight();
+            }
+            float currentHeight = ingredient.GetHeight();
+            print("Current Height: " + currentHeight);
+            print("Total Height: " + totalHeight);
+            Vector3 position = gameObject.transform.position + new Vector3(0, totalHeight + (currentHeight / 2), 0);
+            print("Position: " + position);
+            snappableObject.transform.position = position;
+            snappableObject.transform.rotation = Quaternion.identity;
         }
-        float currentHeight = ingredient.GetHeight();
-        print("Current Height: " + currentHeight);
-        print("Total Height: " + totalHeight);
-        Vector3 position = gameObject.transform.position + new Vector3(0, totalHeight + (currentHeight / 2), 0);
-        print("Position: " + position);
-        snappableObject.transform.position = position;
-        snappableObject.transform.rotation = Quaternion.identity;
+        else
+        {
+            snappableObject.transform.position = snapPosition.position;
+            snappableObject.transform.rotation = Quaternion.identity;
+        }
     }
 
     private void AdjustColliderSize()

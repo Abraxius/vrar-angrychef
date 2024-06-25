@@ -1,10 +1,32 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+public enum IngredientName
+{
+    Lettuce,
+    Tomato,
+    Onion,
+    Cheese,
+    Carrot,
+    Burger,
+    Bun_Top,
+    Bun_Bottom,
+}
+
+public enum IngredientStateType
+{
+    Uncooked,
+    Cooked,
+    Burned,
+    Whole,
+    Slice,
+    Chopped
+}
+
 [System.Serializable]
 public class IngredientState
 {
-    public string stateName;
+    public IngredientStateType stateType;
     public GameObject stateObject;
 }
 
@@ -13,6 +35,7 @@ public class Ingredient : MonoBehaviour
     // Set states and possibilities for further processing
     public bool fryable = false;
     public bool cuttable = false;
+    public IngredientName name;
     public List<IngredientState> ingredientStates = new List<IngredientState>();
     private IngredientState currentState;
 
@@ -24,15 +47,15 @@ public class Ingredient : MonoBehaviour
     {
         if (ingredientStates.Count > 0)
         {
-            SetState(ingredientStates[0].stateName); // Set initial state to the first state in the list
+            SetState(ingredientStates[0].stateType); // Set initial state to the first state in the list
         }
     }
 
-    public void SetState(string stateName)
+    public void SetState(IngredientStateType stateType)
     {
         foreach (var state in ingredientStates)
         {
-            if (state.stateName == stateName)
+            if (state.stateType == stateType)
             {
                 currentState = state;
                 break;
@@ -52,9 +75,10 @@ public class Ingredient : MonoBehaviour
         }
     }
 
-    public string GetCurrentState()
+    public IngredientStateType GetCurrentStateType()
     {
-        return currentState != null ? currentState.stateName : null;
+        //return currentState != null ? currentState.stateType : null;
+        return currentState.stateType;
     }
 
     // Get height of ingredient

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2178558731510498781}
   - component: {fileID: 8992811908402021033}
   m_Layer: 0
-  m_Name: ingredient_carrot_pieces
+  m_Name: ingredient_carrot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,15 +14,16 @@ public class Stove : IngredientSnapping
         if (snappedIngredients.Count == 1)
         {
             timer += Time.deltaTime;
-            print(snappedIngredients[0].GetCurrentState());
 
-            if (snappedIngredients[0].GetCurrentState() == "uncooked" && timer >= cookTime)
+            if (snappedIngredients[0].GetCurrentStateType() == IngredientStateType.Uncooked && timer >= cookTime)
             {
-                snappedIngredients[0].SetState("cooked");
+                snappedIngredients[0].SetState(IngredientStateType.Cooked);
+                print(snappedIngredients[0].GetCurrentStateType());
             }
-            else if (snappedIngredients[0].GetCurrentState() == "cooked" && timer >= burnTime)
+            else if (snappedIngredients[0].GetCurrentStateType() == IngredientStateType.Cooked && timer >= burnTime)
             {
-                snappedIngredients[0].SetState("burned");
+                snappedIngredients[0].SetState(IngredientStateType.Burned);
+                print(snappedIngredients[0].GetCurrentStateType());
             }
         }
     }
