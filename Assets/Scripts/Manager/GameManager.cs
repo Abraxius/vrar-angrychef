@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     
     public List<CustomerController> m_CustomersList = new List<CustomerController>();
 
-
+    public int m_CurrentPrices = 10;
+    
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
     private bool isSceneLoaded = false;
 

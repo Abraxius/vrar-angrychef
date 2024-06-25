@@ -22,7 +22,7 @@ namespace AngryChief.Customer
 
         Animator m_Animator;
         ShowOrder m_ShowOrder;
-
+        
         public bool m_Destroy = false; //Testobject
         private void Awake()
         {
@@ -128,6 +128,8 @@ namespace AngryChief.Customer
                 }
             }
 
+            GameManager.Instance.m_Money += GameManager.Instance.m_CurrentPrices;
+            
             StartCoroutine(WalkToSeat());
             
             if (!CheckWaveIsFinished())
