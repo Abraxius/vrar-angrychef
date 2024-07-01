@@ -5320,10 +5320,11 @@ MonoBehaviour:
   m_Money: 0
   m_Diamands: 0
   m_CurrentLevel: 0
-  m_StartCustomer: 0
-  m_CurrentCustomer: 0
-  m_DailyMaxCustomer: 3
+  m_StartCustomer: 3
+  m_DailyMaxCustomer: 4
+  m_LengthCustomerQueue: 3
   m_CurrentWaitingCustomer: 0
+  m_AllGuestsVisitedToday: 0
   m_CustomersList: []
 --- !u!4 &776859447
 Transform:

@@ -22,7 +22,7 @@ namespace AngryChief.Customer
 
         Animator m_Animator;
         ShowOrder m_ShowOrder;
-
+        
         public bool m_Destroy = false; //Testobject
         private void Awake()
         {
@@ -44,7 +44,7 @@ namespace AngryChief.Customer
             if (m_Destroy)
             {
                 //FinishOrder();
-                Die();
+                StartCoroutine( Die());
                 m_Destroy = false;
             }
         }
@@ -128,16 +128,29 @@ namespace AngryChief.Customer
                 }
             }
 
+            GameManager.Instance.m_Money += GameManager.Instance.m_CurrentPrices;
+            
             StartCoroutine(WalkToSeat());
             
-            NextCustomer();
+            if (!CheckWaveIsFinished())
+                NextCustomer();
+            else
+                GameManager.Instance.DayEnd();
         }
 
-        public void Die()
+        public IEnumerator Die()
         {
             Debug.Log("Gestorben");
             
-            NextCustomer();
+            m_Animator.SetTrigger("DieTrigger");
+            
+            //ToDo: Hier Animationsabfrage verhindert, dass es zu Animationsabbrüchen kommt
+            yield return new WaitForSeconds(1f);
+            
+            if (!CheckWaveIsFinished())
+                NextCustomer();
+            else
+                GameManager.Instance.DayEnd();
             
             //ToDo: Neue Leute spawnen
             m_CustomerSpawnManager.CoroutineForSpawn();
@@ -154,6 +167,9 @@ namespace AngryChief.Customer
             }
         }
         
+        /// <summary>
+        /// Start the walk from the queue customer 
+        /// </summary>
         void NextCustomer()
         {
             GameManager.Instance.m_CustomersList.Remove(this);
@@ -173,6 +189,14 @@ namespace AngryChief.Customer
                 Debug.Log(" Individuelle Warteposition " + customer.m_WaitingPosition  +" Neue Position: " + customer.m_Position);
                 customer.StartWalk();
             }     
+        }
+
+        bool CheckWaveIsFinished()
+        {
+            if (GameManager.Instance.m_CurrentWaitingCustomer == 1 && GameManager.Instance.m_AllGuestsVisitedToday >= GameManager.Instance.m_DailyMaxCustomer)
+                return true;
+            else
+                return false;
         }
     }
 
