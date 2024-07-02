@@ -10,7 +10,8 @@ public class IngredientSnapping : MonoBehaviour
 {
     [HideInInspector]
     public bool snapped = false;
-    public List<Ingredient> snappedIngredients = new List<Ingredient>();
+    //public List<Ingredient> snappedIngredients = new List<Ingredient>();
+    public Meal snappedIngredients = new Meal { Ingredients = new List<Ingredient>() };
     public bool stackable = false;
     public Transform snapPosition;
 
@@ -18,7 +19,7 @@ public class IngredientSnapping : MonoBehaviour
     {
         if (other.gameObject.tag == "Snappable")
         {
-            if ((snappedIngredients.Count == 0 && !other.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Count >= 1 && stackable == true && !other.gameObject.GetComponent<Ingredient>().isSnapped))
+            if ((snappedIngredients.Ingredients.Count == 0 && !other.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Ingredients.Count >= 1 && stackable == true && !other.gameObject.GetComponent<Ingredient>().isSnapped))
             {
                 SnapObject(other.gameObject);
                 AdjustColliderSize();
@@ -33,7 +34,7 @@ public class IngredientSnapping : MonoBehaviour
         Ingredient ingredient = snappableObject.GetComponent<Ingredient>();
         ingredient.isSnapped = true;
         snappableObject.transform.SetParent(transform);
-        snappedIngredients.Add(ingredient);
+        snappedIngredients.Ingredients.Add(ingredient);
 
         // Deactivate Rigidbody/physics
         Rigidbody rb = snappableObject.GetComponent<Rigidbody>();
@@ -47,9 +48,9 @@ public class IngredientSnapping : MonoBehaviour
         if (stackable)
         {
             float totalHeight = 0f;
-            for (int i = 0; i < snappedIngredients.Count - 1; i++)
+            for (int i = 0; i < snappedIngredients.Ingredients.Count - 1; i++)
             {
-                totalHeight += snappedIngredients[i].GetHeight();
+                totalHeight += snappedIngredients.Ingredients[i].GetHeight();
             }
             float currentHeight = ingredient.GetHeight();
             print("Current Height: " + currentHeight);
@@ -72,7 +73,7 @@ public class IngredientSnapping : MonoBehaviour
         if (collider != null)
         {
             float totalHeight = 0f;
-            foreach (Ingredient ingredient in snappedIngredients)
+            foreach (Ingredient ingredient in snappedIngredients.Ingredients)
             {
                 totalHeight += ingredient.GetHeight();
             }

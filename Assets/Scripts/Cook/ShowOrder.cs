@@ -12,7 +12,6 @@ namespace AngryChief.Cook
         public GameObject tomato;
         public GameObject carrot;
         public GameObject salad;
-        public GameObject steak;
         public GameObject beef;
         public GameObject cheese;
         public GameObject bunBottom;
@@ -51,7 +50,7 @@ namespace AngryChief.Cook
                         break;
 
                     case IngredientName.Burger:
-                        Instantiate(steak, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
+                        Instantiate(beef, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
                     case IngredientName.Cheese:
@@ -77,7 +76,6 @@ namespace AngryChief.Cook
         void Start()
         {
             m_yPos = transform.position.y;
-            GenerateOrder();
         }
         // Update is called once per frame
         void FixedUpdate()

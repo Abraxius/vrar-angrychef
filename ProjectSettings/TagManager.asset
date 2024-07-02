@@ -7,6 +7,8 @@ TagManager:
   - Anchor
   - Seat
   - Snappable
+  - Bullet
+  - Meal
   layers:
   - Default
   - TransparentFX

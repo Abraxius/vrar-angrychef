@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8992811908402021033}
   m_Layer: 0
   m_Name: ingredient_carrot
-  m_TagString: Untagged
+  m_TagString: Snappable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,5 +326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fryable: 0
   cuttable: 0
+  name: 0
   ingredientStates: []
+  currentState:
+    stateType: 0
+    stateObject: {fileID: 0}
   isSnapped: 0

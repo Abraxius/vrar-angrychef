@@ -329,6 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fryable: 1
   cuttable: 0
+  name: 6
   ingredientStates:
   - stateType: 0
     stateObject: {fileID: 4997379500048855375}
@@ -336,6 +337,9 @@ MonoBehaviour:
     stateObject: {fileID: 1670210920657335995}
   - stateType: 2
     stateObject: {fileID: 4151321515374364937}
+  currentState:
+    stateType: 0
+    stateObject: {fileID: 0}
   isSnapped: 0
 --- !u!1 &1670210920657335995
 GameObject:
