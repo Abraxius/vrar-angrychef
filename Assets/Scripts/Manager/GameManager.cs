@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
 
     public void DayEnd()
     {
+        Debug.Log("Day successed!");
         m_CurrentLevel += 1;
         m_DailyMaxCustomer += m_StartCustomer; //ToDo: Hier Upgrade integrieren für mehr Kunden
         
