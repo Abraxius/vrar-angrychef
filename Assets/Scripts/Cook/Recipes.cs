@@ -70,25 +70,44 @@ public class Recipe : IEquatable<Meal>
     /// <returns>Recipe object</returns>
     public static Recipe GenerateRecipe()
     {
+        //seed random
+        Random random = new Random();
+
+        //Get random number for max total ingredient count of recipe
+        var recipeTotalIngredientCount = random.Next(3, maxTotalIngredientCount);
+
+        //Create a list of ingredients for recipe
         List<IngredientName> ingredients = new List<IngredientName>();
+
+        // Add bun top to the list
+        ingredients.Add(IngredientName.BunTop);
+
+        // Iterate through each ingredient name except bun top and bun bottom and fill the sandwich
         for (int i = 0; i < Enum.GetNames(typeof(IngredientName)).Length; i++)
         {
-            int maxCount = maxIngredientCount[(IngredientName)i];
-            Random random = new Random();
-            int count = random.Next(0, maxCount);
-            if (i == (int)IngredientName.BunTop || i == (int)IngredientName.BunBottom)
+            // Skip bun top and bun bottom
+            if ((i != (int)IngredientName.BunTop && i != (int)IngredientName.BunBottom))
             {
-                count = 1;
-            }
-            if ((ingredients.Count + count) < (maxTotalIngredientCount - 1) || (i == (int)IngredientName.BunBottom) || (i == (int)IngredientName.BunTop))
-            {
-                for (int j = 0; j < count; j++)
+                // Get max count of ingredient
+                int maxCount = maxIngredientCount[(IngredientName)i];
+
+                // Get random count of ingredient
+                int count = random.Next(0, maxCount);
+
+                // if total ingredient count is less than max total ingredient count, add ingredient to list
+                if ((ingredients.Count + count) < (recipeTotalIngredientCount - 1))
                 {
-                    ingredients.Add((IngredientName)i);
+                    for (int j = 0; j < count; j++)
+                    {
+                        ingredients.Add((IngredientName)i);
+                    }
                 }
             }
-
         }
+
+        // Add bun bottom to list
+        ingredients.Add(IngredientName.BunBottom);
+
         return new Recipe(ingredients);
     }
 

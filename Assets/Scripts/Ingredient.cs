@@ -3,15 +3,13 @@ using System.Collections.Generic;
 
 public enum IngredientName
 {
+    BunTop,
     Lettuce,
     Tomato,
     Onion,
     Cheese,
     Carrot,
     Burger,
-    Bun_Top,
-    Bun_Bottom,
-    BunTop,
     BunBottom,
 }
 
