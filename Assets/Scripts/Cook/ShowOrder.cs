@@ -18,6 +18,8 @@ namespace AngryChief.Cook
         public GameObject cheese;
         public GameObject bunBottom;
 
+        [SerializeField] GameObject m_Bubble; 
+        
         public void GenerateOrder()
         {
             var newRecipe = Recipe.GenerateRecipe();
@@ -66,6 +68,8 @@ namespace AngryChief.Cook
 
                 }
             }
+
+            m_Bubble.SetActive(true);
         }
         
         public void ClearOrder()
@@ -74,10 +78,12 @@ namespace AngryChief.Cook
             {
                 Destroy(child.gameObject);
             }
+            m_Bubble.SetActive(false);
         }
 
         void Start()
         {
+            m_Bubble.SetActive(false);
             m_yPos = transform.position.y;
         }
         // Update is called once per frame
@@ -86,7 +92,7 @@ namespace AngryChief.Cook
             
             var tempPos = transform.position;
             
-            tempPos.y = m_yPos + Mathf.Sin(Time.time) * 0.1f;
+            //tempPos.y = m_yPos + Mathf.Sin(Time.time) * 0.05f;
             transform.position = tempPos;
             transform.Rotate(new Vector3(0, 1f, 0));
         }

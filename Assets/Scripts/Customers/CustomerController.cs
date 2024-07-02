@@ -16,6 +16,8 @@ namespace AngryChief.Customer
         public int m_WaitingPosition;
         public int m_OldWaitingPosition;
 
+        [SerializeField] private GameObject m_WaitingBubblePrefab;
+        
         [SerializeField] private GameObject m_BurgerPrefab;
         
         [HideInInspector] public CustomerSpawnPoint m_CustomerSpawnManager;
@@ -105,10 +107,15 @@ namespace AngryChief.Customer
             transform.rotation = m_Target.rotation;
 
             GameObject tmpBurger = GameObject.Instantiate(m_BurgerPrefab, transform.position + Vector3.forward * 0.7f + Vector3.up, transform.rotation);
-
+            
+            GameObject tmpBubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f, transform.rotation);
+            
+            tmpBubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+            
             yield return new WaitForSeconds(m_EatingTime);
             
             Destroy(tmpBurger);
+            Destroy(tmpBubble);
 
             m_Target = m_CustomerSpawnManager.transform;
 

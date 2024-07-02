@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Position: {x: 0, y: 0, z: 0}
   m_WaitingPosition: 0
   m_OldWaitingPosition: 0
+  m_WaitingBubblePrefab: {fileID: 2166156832342542573, guid: d15c0c9b99705e8449e2a7f111f07995, type: 3}
   m_BurgerPrefab: {fileID: 4123713378311352635, guid: fcdc3b51e51680a4e85ac0197a31ffc4, type: 3}
   m_CustomerSpawnManager: {fileID: 0}
   m_Destroy: 0
