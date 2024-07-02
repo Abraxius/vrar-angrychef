@@ -102,7 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fryable: 0
   cuttable: 0
+  name: 1
   ingredientStates: []
+  currentState:
+    stateType: 0
+    stateObject: {fileID: 0}
   isSnapped: 0
 --- !u!64 &5312238646469840608
 MeshCollider:

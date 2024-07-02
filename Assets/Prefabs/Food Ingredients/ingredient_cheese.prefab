@@ -326,5 +326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fryable: 0
   cuttable: 0
+  name: 4
   ingredientStates: []
+  currentState:
+    stateType: 0
+    stateObject: {fileID: 0}
   isSnapped: 0

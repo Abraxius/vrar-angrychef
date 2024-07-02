@@ -327,7 +327,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fryable: 0
   cuttable: 0
+  name: 2
   ingredientStates: []
+  currentState:
+    stateType: 0
+    stateObject: {fileID: 0}
   isSnapped: 0
 --- !u!1 &1007899828350097875
 GameObject:
