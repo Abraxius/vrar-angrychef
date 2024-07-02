@@ -10,6 +10,8 @@ public class UpgradesManager : MonoBehaviour
     public int m_AmmoCost = 50;
     public int m_CustomerCost = 150;
     public float m_KnifeSpeed = 3f;
+    public int m_AmmountOfUpgrades = 0;
+
 
     private void Start()
     {
@@ -34,7 +36,8 @@ public class UpgradesManager : MonoBehaviour
 
     public void ExtraLeben()
     {
-        GameManager.Instance.m_Life++;
+        GameManager.Instance.m_Life++; 
+        GameManager.Instance.m_MaxLives++;
         GameManager.Instance.m_Money -= m_LebenCost;
         m_LebenCost += 100;
         Debug.Log("Button pressed");
@@ -67,6 +70,17 @@ public class UpgradesManager : MonoBehaviour
     void SaveUpgrades()
     {
         //TO DO: add all upgrades and make it so they save. Maybe do scriptable objects
+        PlayerPrefs.SetInt("Life", GameManager.Instance.m_Life);
+        PlayerPrefs.SetInt("Ammo", GameManager.Instance.m_Ammunition);
+        PlayerPrefs.SetInt("Money", GameManager.Instance.m_Life);
+        PlayerPrefs.SetInt("Diamands", GameManager.Instance.m_Life);
+        PlayerPrefs.SetInt("MaxCustomers", GameManager.Instance.m_Life);
+        PlayerPrefs.SetFloat("Knife", GameManager.Instance.m_Life);
         PlayerPrefs.Save();
+    }
+
+    void Restart()
+    {
+
     }
 }
