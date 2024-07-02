@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8764768014330810418}
   m_Layer: 0
   m_Name: food_bun_top
-  m_TagString: Untagged
+  m_TagString: Snappable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fryable: 0
   cuttable: 0
+  name: 0
   ingredientStates: []
+  currentState:
+    stateType: 0
+    stateObject: {fileID: 0}
   isSnapped: 0
 --- !u!114 &1458954324413722775
 MonoBehaviour:

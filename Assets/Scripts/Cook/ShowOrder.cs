@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 
@@ -7,62 +6,60 @@ namespace AngryChief.Cook
     public class ShowOrder : MonoBehaviour
     {
         private float m_yPos = 0.0f;
-        
+
         public GameObject bunTop;
         public GameObject onion;
         public GameObject tomato;
         public GameObject carrot;
         public GameObject salad;
-        public GameObject steak;
         public GameObject beef;
         public GameObject cheese;
         public GameObject bunBottom;
 
         [SerializeField] GameObject m_Bubble; 
         
+        [HideInInspector] Recipe currentOrder;
+
         public void GenerateOrder()
         {
-            var newRecipe = Recipe.GenerateRecipe();
+            Debug.Log("saasda");
+            currentOrder = Recipe.GenerateRecipe();
             var row = new Vector3(0, 1.0f, 0);
-            foreach (var ingredient in newRecipe.Ingredients)
+            foreach (var ingredient in currentOrder.Ingredients)
             {
                 row -= new Vector3(0, 0.2f, 0);
 
                 switch (ingredient)
                 {
-                    case Ingredient.BunTop:
+                    case IngredientName.BunTop:
                         Instantiate(bunTop, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Onion:
+                    case IngredientName.Onion:
                         Instantiate(onion, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Tomato:
+                    case IngredientName.Tomato:
                         Instantiate(tomato, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Carrot:
+                    case IngredientName.Carrot:
                         Instantiate(carrot, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Salad:
+                    case IngredientName.Lettuce:
                         Instantiate(salad, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Steak:
-                        Instantiate(steak, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
-                        break;
-
-                    case Ingredient.Beef:
+                    case IngredientName.Burger:
                         Instantiate(beef, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.Cheese:
+                    case IngredientName.Cheese:
                         Instantiate(cheese, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
-                    case Ingredient.BunBottom:
+                    case IngredientName.BunBottom:
                         Instantiate(bunBottom, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
 
@@ -71,7 +68,7 @@ namespace AngryChief.Cook
 
             m_Bubble.SetActive(true);
         }
-        
+
         public void ClearOrder()
         {
             foreach (Transform child in transform)
@@ -89,7 +86,7 @@ namespace AngryChief.Cook
         // Update is called once per frame
         void FixedUpdate()
         {
-            
+
             var tempPos = transform.position;
             
             //tempPos.y = m_yPos + Mathf.Sin(Time.time) * 0.05f;
@@ -99,7 +96,7 @@ namespace AngryChief.Cook
 
         void Update()
         {
-            
+
         }
     }
 
