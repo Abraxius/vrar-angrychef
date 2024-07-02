@@ -1,6 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public class Meal
+{
+    public List<Ingredient> Ingredients;
+}
 
 public class IngredientSnapping : MonoBehaviour
 {

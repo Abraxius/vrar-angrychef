@@ -5,47 +5,30 @@ using UnityEngine;
 using Random = System.Random;
 
 /// <summary>
-/// Enum that represents ingredients to choose
-/// </summary>
-public enum Ingredient
-{
-    BunTop,
-    Onion,
-    Tomato,
-    Carrot,
-    Salad,
-    Steak,
-    Beef,
-    Cheese,
-    BunBottom,
-}
-
-/// <summary>
 /// Class that represents a recipe with a list of ingredients
 /// </summary>
-public class Recipe : IEquatable<Recipe>
+public class Recipe : IEquatable<Meal>
 {
     #region Private Variables
 
     private static int maxTotalIngredientCount = 7;
-    private static Dictionary<Ingredient, int> maxIngredientCount = new Dictionary<Ingredient, int>
+    private static Dictionary<IngredientName, int> maxIngredientCount = new Dictionary<IngredientName, int>
     {
-        { Ingredient.BunTop, 1 },
-        { Ingredient.Onion, 2 },
-        { Ingredient.Carrot, 2 },
-        { Ingredient.Tomato, 1 },
-        { Ingredient.Salad, 2 },
-        { Ingredient.Steak, 2 },
-        { Ingredient.Cheese, 2 },
-        { Ingredient.Beef, 2 },
-        { Ingredient.BunBottom, 1 },
+        { IngredientName.BunTop, 1 },
+        { IngredientName.Onion, 2 },
+        { IngredientName.Carrot, 2 },
+        { IngredientName.Tomato, 1 },
+        { IngredientName.Lettuce, 2 },
+        { IngredientName.Burger, 2 },
+        { IngredientName.Cheese, 2 },
+        { IngredientName.BunBottom, 1 },
     };
 
     #endregion
 
     #region Constructor
 
-    public Recipe(List<Ingredient> ingredients)
+    public Recipe(List<IngredientName> ingredients)
     {
         this.Ingredients = ingredients;
     }
@@ -57,12 +40,12 @@ public class Recipe : IEquatable<Recipe>
     /// <summary>
     /// List of ingredients
     /// </summary>
-    public List<Ingredient> Ingredients;
+    public List<IngredientName> Ingredients;
 
     /// <summary>
     /// Maximum amount of each ingredient
     /// </summary>
-    public Dictionary<Ingredient, int> MaxIngredientCount
+    public Dictionary<IngredientName, int> MaxIngredientCount
     {
         get => maxIngredientCount;
         set => maxIngredientCount = value;
@@ -79,7 +62,7 @@ public class Recipe : IEquatable<Recipe>
 
     #endregion
 
-#region Public Methods
+    #region Public Methods
 
     /// <summary>
     /// Generates a recipe with random ingredients with top bun and bottom bun in the right place
@@ -87,21 +70,21 @@ public class Recipe : IEquatable<Recipe>
     /// <returns>Recipe object</returns>
     public static Recipe GenerateRecipe()
     {
-        List<Ingredient> ingredients = new List<Ingredient>();
-        for (int i = 0; i < Enum.GetNames(typeof(Ingredient)).Length; i++)
+        List<IngredientName> ingredients = new List<IngredientName>();
+        for (int i = 0; i < Enum.GetNames(typeof(IngredientName)).Length; i++)
         {
-            int maxCount = maxIngredientCount[(Ingredient)i];
+            int maxCount = maxIngredientCount[(IngredientName)i];
             Random random = new Random();
             int count = random.Next(0, maxCount);
-            if (i == (int)Ingredient.BunTop || i == (int)Ingredient.BunBottom)
+            if (i == (int)IngredientName.BunTop || i == (int)IngredientName.BunBottom)
             {
                 count = 1;
             }
-            if ((ingredients.Count + count) < (maxTotalIngredientCount - 1) || (i == (int)Ingredient.BunBottom) || (i == (int)Ingredient.BunTop))
+            if ((ingredients.Count + count) < (maxTotalIngredientCount - 1) || (i == (int)IngredientName.BunBottom) || (i == (int)IngredientName.BunTop))
             {
                 for (int j = 0; j < count; j++)
                 {
-                    ingredients.Add((Ingredient)i);
+                    ingredients.Add((IngredientName)i);
                 }
             }
 
@@ -114,27 +97,27 @@ public class Recipe : IEquatable<Recipe>
     /// </summary>
     /// <param name="other">Other Recipe object</param>
     /// <returns>Boolean value if Recipe objects are the same</returns>
-    public bool Equals(Recipe other)
+    public bool Equals(Meal meal)
     {
-        if (other == null)
+        if (meal == null)
         {
             return false;
         }
 
-        if (this.Ingredients.Count != other.Ingredients.Count)
+        if (this.Ingredients.Count != meal.Ingredients.Count)
         {
             return false;
         }
 
         for (int i = 0; i < this.Ingredients.Count; i++)
         {
-            if (this.Ingredients[i] != other.Ingredients[i])
+            if (this.Ingredients[i] == meal.Ingredients[i].name && meal.Ingredients[i].currentState.stateType == Ingredient.wantedIngredientStateType[this.Ingredients[i]])
             {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     #endregion

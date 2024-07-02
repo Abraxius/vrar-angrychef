@@ -11,6 +11,8 @@ public enum IngredientName
     Burger,
     Bun_Top,
     Bun_Bottom,
+    BunTop,
+    BunBottom,
 }
 
 public enum IngredientStateType
@@ -37,11 +39,23 @@ public class Ingredient : MonoBehaviour
     public bool cuttable = false;
     public IngredientName name;
     public List<IngredientState> ingredientStates = new List<IngredientState>();
-    private IngredientState currentState;
+    public IngredientState currentState;
 
     // For Snapping System
     [HideInInspector]
     public bool isSnapped = false;
+    [HideInInspector]
+    public static Dictionary<IngredientName, IngredientStateType> wantedIngredientStateType = new Dictionary<IngredientName, IngredientStateType>
+{
+    { IngredientName.BunTop, IngredientStateType.Whole },
+    { IngredientName.Onion, IngredientStateType.Slice },
+    { IngredientName.Carrot, IngredientStateType.Slice },
+    { IngredientName.Tomato, IngredientStateType.Slice },
+    { IngredientName.Lettuce, IngredientStateType.Slice },
+    { IngredientName.Burger, IngredientStateType.Cooked },
+    { IngredientName.Cheese, IngredientStateType.Slice },
+    { IngredientName.BunBottom, IngredientStateType.Whole },
+};
 
     void Start()
     {
