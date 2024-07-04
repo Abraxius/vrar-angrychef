@@ -1179,7 +1179,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CashDeskPosition: {fileID: 1979877345}
-  m_Customer: {fileID: 2875192408404953740, guid: a950d0c54b8aa3e45afc39958e73c2c6, type: 3}
+  m_Customer:
+  - {fileID: 2875192408404953740, guid: a950d0c54b8aa3e45afc39958e73c2c6, type: 3}
+  - {fileID: 3280736038727595652, guid: 418c9929656ae7d4c976949fe227f0c6, type: 3}
+  - {fileID: 596442288302857026, guid: 5ecd732735e25ab4a9bf9a3a7e413bca, type: 3}
+  - {fileID: 6220067422365322826, guid: 21db62740964ea4448377b4d3689a406, type: 3}
 --- !u!4 &243624527
 Transform:
   m_ObjectHideFlags: 0

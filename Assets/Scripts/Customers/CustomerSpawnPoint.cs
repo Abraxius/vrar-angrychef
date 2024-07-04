@@ -21,9 +21,10 @@ namespace AngryChief.Customer
         public List<Seat> m_SeatList = new List<Seat>();
         //[HideInInspector] public int m_CurrentCustomer = 0;
         int m_DailyMaxCustomer;
-  
+        int m_LastSpawnInt = -1;
+        
         [SerializeField] GameObject m_CashDeskPosition;
-        [SerializeField] GameObject m_Customer;
+        [SerializeField] GameObject[] m_Customer;
         
         public void StarGame()
         {
@@ -46,8 +47,15 @@ namespace AngryChief.Customer
 
             yield return new WaitForSeconds(waitTime);
 
-            GameObject tmp = GameObject.Instantiate(m_Customer, transform.position, transform.rotation);
+            int randomInt = Random.Range(0, m_Customer.Length);
+            
+            if (randomInt == m_LastSpawnInt) 
+                randomInt = Random.Range(0, m_Customer.Length);
+            
+            GameObject tmp = GameObject.Instantiate(m_Customer[randomInt], transform.position, transform.rotation);
 
+            m_LastSpawnInt = randomInt;
+            
             CustomerController customer = tmp.GetComponent<CustomerController>();
             customer.m_Target = m_CashDeskPosition.transform;
             
