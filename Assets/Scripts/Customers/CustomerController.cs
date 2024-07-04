@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
 using AngryChief.Cook;
+using AngryChief.Manager;
 
 namespace AngryChief.Customer
 {
