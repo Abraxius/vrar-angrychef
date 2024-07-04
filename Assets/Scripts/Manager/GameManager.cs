@@ -17,8 +17,7 @@ public class GameManager : MonoBehaviour
     public int m_Diamands;
 
     public int m_CurrentLevel;
-
-    public int m_StartCustomer;
+    
     public int m_DailyMaxCustomer = 4;
     public int m_LengthCustomerQueue = 3;
 
@@ -56,7 +55,6 @@ public class GameManager : MonoBehaviour
         //ChangeScene("GameScene");
 
         StartCoroutine(LoadSceneAsync("GameScene"));
-        //GameScene
     }
 
     IEnumerator LoadSceneAsync(string sceneName)
@@ -96,13 +94,16 @@ public class GameManager : MonoBehaviour
     public void ContinueGame(int level)
     {
         //ToDo: Verwende Upgrades
+        
+        
     }
 
     public void DayEnd()
     {
         Debug.Log("Day successed!");
+        m_AllGuestsVisitedToday = 0;
         m_CurrentLevel += 1;
-        m_DailyMaxCustomer += m_StartCustomer; //ToDo: Hier Upgrade integrieren für mehr Kunden
+        m_DailyMaxCustomer += 3; //ToDo: Hier Upgrade integrieren für mehr Kunden
         
         StartCoroutine(LoadSceneAsync("PauseScene"));
     }

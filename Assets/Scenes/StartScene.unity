@@ -5316,16 +5316,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Life: 1
+  m_MaxLives: 1
   m_Ammunition: 10
   m_Money: 0
   m_Diamands: 0
   m_CurrentLevel: 0
-  m_StartCustomer: 3
   m_DailyMaxCustomer: 4
   m_LengthCustomerQueue: 3
   m_CurrentWaitingCustomer: 0
   m_AllGuestsVisitedToday: 0
   m_CustomersList: []
+  m_CurrentPrices: 10
 --- !u!4 &776859447
 Transform:
   m_ObjectHideFlags: 0

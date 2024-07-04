@@ -169,6 +169,8 @@ namespace AngryChief.Customer
         
         public void FinishOrder()
         {
+            m_ShowOrder.ClearOrder();
+            
             //Start walking to the seat
             foreach (var seat in m_CustomerSpawnManager.m_SeatList)
             {
@@ -189,6 +191,8 @@ namespace AngryChief.Customer
                 NextCustomer();
             else
                 GameManager.Instance.DayEnd();
+            
+            m_CustomerSpawnManager.CoroutineForSpawn();
         }
 
         public IEnumerator Die()
@@ -205,7 +209,6 @@ namespace AngryChief.Customer
             else
                 GameManager.Instance.DayEnd();
             
-            //ToDo: Neue Leute spawnen
             m_CustomerSpawnManager.CoroutineForSpawn();
             
             Destroy(gameObject);
@@ -231,8 +234,6 @@ namespace AngryChief.Customer
             //Start movement from waiting customers
             foreach (var customer in GameManager.Instance.m_CustomersList)
             {
-                //customer.m_Target.position = m_Target.position + new Vector3(0, 0, +2f);
-                //customer.m_OldWaitingPosition = customer.m_WaitingPosition;
                 if (customer.m_WaitingPosition == 0)
                     break;
                 
@@ -246,10 +247,18 @@ namespace AngryChief.Customer
 
         bool CheckWaveIsFinished()
         {
-            if (GameManager.Instance.m_CurrentWaitingCustomer == 1 && GameManager.Instance.m_AllGuestsVisitedToday >= GameManager.Instance.m_DailyMaxCustomer)
+            if (GameManager.Instance.m_CurrentWaitingCustomer == 1 && GameManager.Instance.m_AllGuestsVisitedToday >=
+                GameManager.Instance.m_DailyMaxCustomer)
+            {
+                Debug.Log("Wave finish");
                 return true;
+            }
             else
+            {
+                Debug.Log("Wave not finish");
                 return false;
+            }
+
         }
     }
 

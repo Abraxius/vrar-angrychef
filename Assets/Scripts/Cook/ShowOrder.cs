@@ -22,7 +22,6 @@ namespace AngryChief.Cook
 
         public void GenerateOrder()
         {
-            Debug.Log("saasda");
             currentOrder = Recipe.GenerateRecipe();
             var row = new Vector3(0, 1.0f, 0);
             foreach (var ingredient in currentOrder.Ingredients)
