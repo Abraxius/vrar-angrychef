@@ -44,4 +44,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fdaad1ecee8c244b98093f3a77f6c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: mcdonalds
+    clip: {fileID: 8300000, guid: eae73bebb6d9e4e6fbb584b72405fdf8, type: 3}
+    volume: 0.55
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_speech_happahappa
+    clip: {fileID: 8300000, guid: 9aa585fbf19424fea8cf2ccd7a47f916, type: 3}
+    volume: 1
+    pitch: 0.1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_speech_reinschrauben
+    clip: {fileID: 8300000, guid: 7390beae9406a4a88ab27c37a6dd20f2, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_speech_sappalott
+    clip: {fileID: 8300000, guid: 063e0b8e5ab83472d9d06583447ffb9b, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
