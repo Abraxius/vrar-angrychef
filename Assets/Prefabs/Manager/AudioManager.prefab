@@ -59,3 +59,24 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
     isSpatialSound: 0
+  - name: fun_order_1
+    clip: {fileID: 8300000, guid: 9aa585fbf19424fea8cf2ccd7a47f916, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_2
+    clip: {fileID: 8300000, guid: 7390beae9406a4a88ab27c37a6dd20f2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_3
+    clip: {fileID: 8300000, guid: 063e0b8e5ab83472d9d06583447ffb9b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
