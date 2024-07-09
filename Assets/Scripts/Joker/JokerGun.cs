@@ -54,7 +54,7 @@ public class JokerGun : MonoBehaviour
     public void Fire()
     {
         GameObject newObject = Instantiate(Projectile, StartingPoint.position, StartingPoint.rotation, null);
-        if (newObject.TryGetComponent(out Rigidbody rigidBody))
+        if (newObject.transform.GetChild(0).TryGetComponent(out Rigidbody rigidBody))
         {
             ApplyForce(rigidBody);
         }
