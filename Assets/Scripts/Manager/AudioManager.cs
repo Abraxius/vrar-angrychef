@@ -55,6 +55,8 @@ namespace AngryChief.Manager
                 return;
             }
 
+            s.source.Play();
+            /*
             if (lastStartedSound != null)
             {
                 Stop(lastStartedSound.name);
@@ -65,7 +67,7 @@ namespace AngryChief.Manager
                 s.source.Play();
             }
 
-            lastStartedSound = s;
+            lastStartedSound = s;*/
         }
 
         /// <summary>
