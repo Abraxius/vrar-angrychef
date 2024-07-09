@@ -200,6 +200,8 @@ namespace AngryChief.Customer
         {
             Debug.Log("Gestorben");
             
+            m_ShowOrder.ClearOrder();
+            
             m_Animator.SetTrigger("DieTrigger");
             
             //ToDo: Hier Animationsabfrage verhindert, dass es zu Animationsabbrüchen kommt
@@ -219,11 +221,11 @@ namespace AngryChief.Customer
         {
             if (other.GetComponent<Collider>().tag == "Bullet")
             {
-                Die();
-                Destroy(other.gameObject);
+                StartCoroutine(Die());
+                Destroy(other.transform.parent.gameObject);
             }
         }
-        
+
         /// <summary>
         /// Start the walk from the queue customer 
         /// </summary>
