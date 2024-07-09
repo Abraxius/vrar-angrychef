@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
 
     public int m_Life;
     public int m_MaxLives;
+    public int m_MaxAmmo;
     public int m_Ammunition;
+
 
     public int m_Money;
     public int m_Diamands;
+    public int m_StartingMoney = 500;
 
     public int m_CurrentLevel;
     

@@ -35,8 +35,8 @@ public class UpgradesManager : MonoBehaviour
     {
         availableUpgrades = new Dictionary<string, Upgrade>
         {
-            { "Life", new LifeUpgrade(150, 150) },
-            { "Ammo", new AmmoUpgrade(250, 250) }
+            { "MaxLives", new LifeUpgrade(150, 150) },
+            { "MaxAmmo", new AmmoUpgrade(250, 250) }
             // TO DO: add all upgrades
         };
     }
@@ -97,21 +97,47 @@ public class UpgradesManager : MonoBehaviour
 
     }
 
-    void SaveUpgrades()
+    public void SaveUpgrades()
     {
-        //TO DO: add all upgrades and make it so they save. Maybe do scriptable objects
-        PlayerPrefs.SetInt("Life", GameManager.Instance.m_Life);
-        PlayerPrefs.SetInt("Ammo", GameManager.Instance.m_Ammunition);
-        PlayerPrefs.SetInt("Money", GameManager.Instance.m_Life);
-        PlayerPrefs.SetInt("Diamands", GameManager.Instance.m_Life);
-        PlayerPrefs.SetInt("MaxCustomers", GameManager.Instance.m_Life);
-        PlayerPrefs.SetFloat("Knife", GameManager.Instance.m_Life);
+        #region PERMAUPGRADES
+
+        PlayerPrefs.SetInt("MaxLife", GameManager.Instance.m_MaxLives);
+        PlayerPrefs.SetInt("MaxAmmo", GameManager.Instance.m_MaxAmmo);
+        PlayerPrefs.SetInt("Diamands", GameManager.Instance.m_Diamands);
         PlayerPrefs.Save();
+            
+        #endregion
+
+
+        //PlayerPrefs.SetInt("Money", GameManager.Instance.m_Money);
+        //PlayerPrefs.SetInt("MaxCustomers", GameManager.Instance.m_DailyMaxCustomer);
+
     }
 
-    void Restart()
+    public void Restart()
     {
         //Reset upgrade Cost
         //foreach .... upgrade.ResetUpgrade();
     }
+
+    public void LoadUpgrades()
+    {
+        GameManager.Instance.m_MaxLives =  PlayerPrefs.GetInt("MaxLife", GameManager.Instance.m_MaxLives);
+        GameManager.Instance.m_MaxAmmo = PlayerPrefs.GetInt("MaxAmmo", GameManager.Instance.m_MaxAmmo);
+        GameManager.Instance.m_Diamands = PlayerPrefs.GetInt("Diamands", GameManager.Instance.m_Diamands);
+        //...?
+    }
+
+    public void NewRun()
+    {
+        //Reset only temporary upgrades;
+        GameManager.Instance.m_Life = GameManager.Instance.m_MaxLives;
+        GameManager.Instance.m_Money = GameManager.Instance.m_StartingMoney;
+        //Messer
+        //Herd
+        //Mehr Zutaten
+        //...?
+    }
+
+    
 }

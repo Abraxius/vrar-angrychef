@@ -14,6 +14,7 @@ public class AmmoUpgrade : Upgrade
     public override void Apply()
     {
         GameManager.Instance.m_Ammunition += 2;
+        GameManager.Instance.m_MaxAmmo += 2;
     }
 
     public override void IncreaseCost()
