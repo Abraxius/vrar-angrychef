@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public int m_Life;
     public int m_MaxLives;
-    public int m_MaxAmmo;
+    public int m_MaxAmmo = 1;
     public int m_Ammunition;
 
 

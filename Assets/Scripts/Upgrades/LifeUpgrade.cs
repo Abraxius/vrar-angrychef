@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LifeUpgrade : Upgrade
 {
-    private int additionalHealth;
-
     public LifeUpgrade(int cost, int costIncrement) : base("Life Upgrade", cost, costIncrement)
     {
 
