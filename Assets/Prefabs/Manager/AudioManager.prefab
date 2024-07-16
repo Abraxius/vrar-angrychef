@@ -44,4 +44,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fdaad1ecee8c244b98093f3a77f6c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: background_mcdonalds
+    clip: {fileID: 8300000, guid: eae73bebb6d9e4e6fbb584b72405fdf8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: background_jazz
+    clip: {fileID: 8300000, guid: eae73bebb6d9e4e6fbb584b72405fdf8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_1
+    clip: {fileID: 8300000, guid: 9aa585fbf19424fea8cf2ccd7a47f916, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_2
+    clip: {fileID: 8300000, guid: 7390beae9406a4a88ab27c37a6dd20f2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_3
+    clip: {fileID: 8300000, guid: 063e0b8e5ab83472d9d06583447ffb9b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_finish_good_1
+    clip: {fileID: 8300000, guid: c8c91d8e8171647c9a7f38ac34194735, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_finish_good2
+    clip: {fileID: 8300000, guid: 8c18d9210d8c2484981604609f38c0f7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_finish_bad1
+    clip: {fileID: 8300000, guid: d1519e42e57184a50b5eb9d7c61a4a4b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_finish_bad2
+    clip: {fileID: 8300000, guid: efe9ed571390b48228565c393292a24a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0
+  - name: fun_order_finish_bad3
+    clip: {fileID: 8300000, guid: 384ee3595af27439aab9a849691a2649, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isSpatialSound: 0

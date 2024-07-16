@@ -7,6 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.Animations;
 using AngryChief.Cook;
 using AngryChief.Manager;
+using Random = UnityEngine.Random;
 
 namespace AngryChief.Customer
 {
@@ -22,6 +23,9 @@ namespace AngryChief.Customer
         [SerializeField] private GameObject m_BurgerPrefab;
         
         [HideInInspector] public CustomerSpawnPoint m_CustomerSpawnManager;
+
+        [HideInInspector]
+        private System.Random m_Random = new System.Random();
         
         private NavMeshAgent m_Agent;
 
@@ -76,6 +80,12 @@ namespace AngryChief.Customer
                 m_Animator.SetTrigger("Interact");
 
                 m_ShowOrder.GenerateOrder();
+
+                if (GameManager.Instance.m_FunLevel)
+                {
+                    AudioManager.Instance.Play("fun_order_" + m_Random.Next(1,3)); //TODO: Update count of sounds
+                }
+                
             }
             else
             {
