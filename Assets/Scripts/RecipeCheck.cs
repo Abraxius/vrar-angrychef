@@ -2,45 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AngryChief.Cook;
+using AngryChief.Customer;
 
 public class RecipeCheck : MonoBehaviour
 {
     ShowOrder m_ShowOrder;
     Meal meal;
+    CustomerController _customerController;
+    
 
     private void Awake()
     {
-        m_ShowOrder = FindAnyObjectByType<ShowOrder>();
+        
+        //m_ShowOrder = FindAnyObjectByType<ShowOrder>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+ 
+        
         if (other.gameObject.tag == "Meal")
         {
-            meal = other.gameObject.transform.GetChild(0).gameObject.GetComponent<IngredientSnapping>().snappedIngredients;
-            Debug.Log(meal.Ingredients);
+            _customerController = GameManager.Instance.m_CustomersList[0];
+            
+            this.meal = other.gameObject.transform.GetChild(0).gameObject.GetComponent<IngredientSnapping>().snappedIngredients;
+            
             if(m_ShowOrder.Equals(meal))
             {
                 Debug.Log("Meal is correct!");
+                _customerController.FinishOrder();
+
                 //Destroy(other.gameObject);
             }
             else
             {
                 Debug.Log("Meal is wrong!");
-           
-                Destroy(other.gameObject);
-            }
-            foreach(var ing in meal.Ingredients)
-            {
-                var ingString = "meal: ";
-                ingString += ing.ToString() + " Name: " + ing.name +  " \n";
-                Debug.Log(ingString);
-            }
-            foreach (var ing in m_ShowOrder.currentOrder.Ingredients)
-            {
-                var ingString = "current: ";
-                ingString += ing.ToString() + "Name: "+ ing + " \n";
-                Debug.Log(ingString);
+                _customerController.FailOrder();
+
             }
         }
     }
