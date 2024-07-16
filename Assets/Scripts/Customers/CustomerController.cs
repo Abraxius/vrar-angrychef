@@ -231,7 +231,9 @@ namespace AngryChief.Customer
         {
             if (other.GetComponent<Collider>().tag == "Bullet")
             {
-                StartCoroutine(Die());
+                if (m_WaitingPosition == 0)
+                    StartCoroutine(Die());
+                
                 Destroy(other.transform.parent.gameObject);
             }
         }
