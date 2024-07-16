@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         //ToDo: Später lade Perma HP, ...
         //ChangeScene("GameScene");
 
-        StartCoroutine(LoadSceneAsync("GameScene"));
+        StartCoroutine(LoadSceneAsync("HassGameScene"));
     }
 
     IEnumerator LoadSceneAsync(string sceneName)
