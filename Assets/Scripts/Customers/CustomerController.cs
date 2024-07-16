@@ -180,6 +180,11 @@ namespace AngryChief.Customer
         
         public void FinishOrder()
         {
+            if (GameManager.Instance.m_FunLevel)
+            {
+                AudioManager.Instance.Play("fun_order_finish_good_" + Random.Range(1,2).ToString()); //TOOD: Update count of sounds
+            }
+            
             m_ShowOrder.ClearOrder();
             
             //Start walking to the seat
@@ -204,6 +209,26 @@ namespace AngryChief.Customer
                 GameManager.Instance.DayEnd();
             
             m_CustomerSpawnManager.CoroutineForSpawn();
+        }
+
+        public void FailOrder()
+        {
+            if (GameManager.Instance.m_FunLevel)
+            {
+                AudioManager.Instance.Play("fun_order_finish_bad_" + Random.Range(1,3).ToString()); //TOOD: Update count of sounds
+            }
+            
+            m_ShowOrder.ClearOrder();
+            
+            StartCoroutine(LeaveTheKiosk());
+            
+            if (!CheckWaveIsFinished())
+                NextCustomer();
+            else
+                GameManager.Instance.DayEnd();
+            
+            m_CustomerSpawnManager.CoroutineForSpawn();
+            
         }
 
         public IEnumerator Die()
