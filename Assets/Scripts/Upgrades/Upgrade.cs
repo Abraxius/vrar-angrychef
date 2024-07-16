@@ -22,26 +22,48 @@ public abstract class Upgrade
     public string Name { get; protected set; }
     public int Cost { get; protected set; }
     private int initialCost;
-    private int costIncrement;
+    public int Level { get; private set; }
+    private int maxLevel;
 
 
-    public Upgrade(string name, int cost, int costIncrement)
+    public Upgrade(string name, int initialCost, int maxLevel)
     {
         Name = name;
-        Cost = cost;
-        initialCost = cost;
-        this.costIncrement = costIncrement;
+        this.initialCost = initialCost;
+        this.maxLevel = maxLevel;
+        Level = 0;
+        UpdateCost();
     }
 
     public abstract void Apply();
 
     public virtual void IncreaseCost()
     {
-        Cost += costIncrement;
+        if (Level < maxLevel)
+        {
+            Level++;
+            UpdateCost();
+        }
+        else
+        {
+            //What happens if max level is reached.
+        }
+        
     }
-    
+    private void UpdateCost()
+    {
+        Cost = initialCost * (Level + 1);
+    }
+
     public void ResetUpgrade()
     {
-        Cost = initialCost;
+        Level = 0;
+        UpdateCost();
+    }
+
+    public void SetLevel(int level)
+    {
+        Level = level;
+        UpdateCost();
     }
 }

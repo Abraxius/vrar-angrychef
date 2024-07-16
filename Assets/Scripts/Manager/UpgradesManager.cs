@@ -35,8 +35,8 @@ public class UpgradesManager : MonoBehaviour
     {
         availableUpgrades = new Dictionary<string, Upgrade>
         {
-            { "MaxLives", new LifeUpgrade(150, 150) },
-            { "MaxAmmo", new AmmoUpgrade(250, 250) }
+            { "MaxLives", new LifeUpgrade(250, 10) },
+            { "MaxAmmo", new AmmoUpgrade(350, 5) }
             // TO DO: add all upgrades
         };
     }
@@ -77,7 +77,7 @@ public class UpgradesManager : MonoBehaviour
             }
             else
             {
-                //No Money Logic
+                //No Diamands Logic
                 Debug.Log("No Diamands");
             }
         }
@@ -99,34 +99,44 @@ public class UpgradesManager : MonoBehaviour
 
     public void SaveUpgrades()
     {
-        #region PERMAUPGRADES
+        List<UpgradeData> upgradeDataList = new List<UpgradeData>();
 
-        PlayerPrefs.SetInt("MaxLife", GameManager.Instance.m_MaxLives);
-        PlayerPrefs.SetInt("MaxAmmo", GameManager.Instance.m_MaxAmmo);
-        PlayerPrefs.SetInt("Diamands", GameManager.Instance.m_Diamands);
+        foreach (var upgrade in availableUpgrades.Values)
+        {
+            upgradeDataList.Add(new UpgradeData(upgrade.Name, upgrade.Level));
+        }
+
+        string json = JsonUtility.ToJson(new Serialization<UpgradeData>(upgradeDataList));
+        PlayerPrefs.SetString("Upgrades", json);
         PlayerPrefs.Save();
-            
-        #endregion
-
-
-        //PlayerPrefs.SetInt("Money", GameManager.Instance.m_Money);
-        //PlayerPrefs.SetInt("MaxCustomers", GameManager.Instance.m_DailyMaxCustomer);
-
-    }
-
-    public void Restart()
-    {
-        //Reset upgrade Cost
-        //foreach .... upgrade.ResetUpgrade();
     }
 
     public void LoadUpgrades()
     {
-        GameManager.Instance.m_MaxLives =  PlayerPrefs.GetInt("MaxLife", GameManager.Instance.m_MaxLives);
-        GameManager.Instance.m_MaxAmmo = PlayerPrefs.GetInt("MaxAmmo", GameManager.Instance.m_MaxAmmo);
-        GameManager.Instance.m_Diamands = PlayerPrefs.GetInt("Diamands", GameManager.Instance.m_Diamands);
-        //...?
+        if (PlayerPrefs.HasKey("Upgrades"))
+        {
+            string json = PlayerPrefs.GetString("Upgrades");
+            List<UpgradeData> upgradeDataList = JsonUtility.FromJson<Serialization<UpgradeData>>(json).ToList();
+
+            foreach (var data in upgradeDataList)
+            {
+                if (availableUpgrades.ContainsKey(data.Name))
+                {
+                    availableUpgrades[data.Name].SetLevel(data.Level);
+                }
+            }
+        }
     }
+
+    public void Restart()
+    {
+        foreach (var upgrade in availableUpgrades.Values)
+        {
+            upgrade.ResetUpgrade();
+        }
+    }
+
+
 
     public void NewRun()
     {

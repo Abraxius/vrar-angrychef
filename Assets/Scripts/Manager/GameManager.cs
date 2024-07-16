@@ -49,6 +49,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        UpgradesManager.Instance.LoadUpgrades();
+    }
+
+    private void OnApplicationQuit()
+    {
+        UpgradesManager.Instance.SaveUpgrades();
+    }
+
     public void LoadScene(string value)
     {
         StartCoroutine(LoadSceneAsync(value));
@@ -59,7 +69,7 @@ public class GameManager : MonoBehaviour
         //ToDo: Später lade Perma HP, ...
         //ChangeScene("GameScene");
 
-        StartCoroutine(LoadSceneAsync("HassGameScene"));
+        StartCoroutine(LoadSceneAsync("GameScene"));
     }
 
     IEnumerator LoadSceneAsync(string sceneName)
