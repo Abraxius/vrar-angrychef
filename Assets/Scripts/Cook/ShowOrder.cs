@@ -23,10 +23,10 @@ namespace AngryChief.Cook
         public void GenerateOrder()
         {
             currentOrder = Recipe.GenerateRecipe();
-            var row = new Vector3(0, 1.0f, 0);
+            var row = new Vector3(0, 0.05f, 0);
             foreach (var ingredient in currentOrder.Ingredients)
             {
-                row -= new Vector3(0, 0.2f, 0);
+                row += new Vector3(0, 0.2f, 0);
 
                 switch (ingredient)
                 {

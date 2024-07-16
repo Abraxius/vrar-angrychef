@@ -31,6 +31,7 @@ public class RecipeCheck : MonoBehaviour
             {
                 Debug.Log("Meal is correct!");
                 _customerController.FinishOrder();
+
                 //Destroy(other.gameObject);
             }
             else
