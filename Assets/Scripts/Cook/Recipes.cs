@@ -108,6 +108,8 @@ public class Recipe : IEquatable<Meal>
         // Add bun bottom to list
         ingredients.Add(IngredientName.BunBottom);
 
+        ingredients.Reverse();
+
         return new Recipe(ingredients);
     }
 
@@ -121,19 +123,22 @@ public class Recipe : IEquatable<Meal>
         if (meal == null)
         {
             return false;
+            Debug.Log("Meal is null");
         }
 
         if (this.Ingredients.Count != meal.Ingredients.Count)
         {
+            Debug.Log("Ingredient Count is wrong.");
             return false;
         }
 
         for (int i = 0; i < this.Ingredients.Count; i++)
         {
-            if (this.Ingredients[i] == meal.Ingredients[i].name && meal.Ingredients[i].currentState.stateType == Ingredient.wantedIngredientStateType[this.Ingredients[i]])
+            if (Enum.GetName(typeof(IngredientName), this.Ingredients[i]) == Enum.GetName(typeof(IngredientName), meal.Ingredients[i].name))// && meal.Ingredients[i].currentState.stateType == Ingredient.wantedIngredientStateType[this.Ingredients[i]])
             {
                 return true;
             }
+            Debug.Log("Failed on:" + Enum.GetName(typeof(IngredientName), this.Ingredients[i])+ "  " + Enum.GetName(typeof(IngredientName), meal.Ingredients[i].name));
         }
 
         return false;

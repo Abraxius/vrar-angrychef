@@ -17,15 +17,30 @@ public class RecipeCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "Meal")
         {
-            this.meal = other.gameObject.transform.GetChild(0).gameObject.GetComponent<IngredientSnapping>().snappedIngredients;
+            meal = other.gameObject.transform.GetChild(0).gameObject.GetComponent<IngredientSnapping>().snappedIngredients;
+            Debug.Log(meal.Ingredients);
             if(m_ShowOrder.Equals(meal))
             {
                 Debug.Log("Meal is correct!");
-                Destroy(other.gameObject);
+                //Destroy(other.gameObject);
             }
             else
             {
                 Debug.Log("Meal is wrong!");
+           
+                Destroy(other.gameObject);
+            }
+            foreach(var ing in meal.Ingredients)
+            {
+                var ingString = "meal: ";
+                ingString += ing.ToString() + " Name: " + ing.name +  " \n";
+                Debug.Log(ingString);
+            }
+            foreach (var ing in m_ShowOrder.currentOrder.Ingredients)
+            {
+                var ingString = "current: ";
+                ingString += ing.ToString() + "Name: "+ ing + " \n";
+                Debug.Log(ingString);
             }
         }
     }
