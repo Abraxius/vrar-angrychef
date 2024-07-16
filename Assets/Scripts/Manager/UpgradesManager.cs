@@ -35,8 +35,9 @@ public class UpgradesManager : MonoBehaviour
     {
         availableUpgrades = new Dictionary<string, Upgrade>
         {
-            { "MaxLives", new LifeUpgrade(250, 10) },
-            { "MaxAmmo", new AmmoUpgrade(350, 5) }
+            { "MaxLives", new LifeUpgrade() },
+            { "MaxAmmo", new AmmoUpgrade() },
+            { "1UP", new StockUpgrade()}
             // TO DO: add all upgrades
         };
     }

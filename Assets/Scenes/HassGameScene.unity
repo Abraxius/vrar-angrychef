@@ -4396,6 +4396,66 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.764151
       objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 833874672}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 833874672}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyUpgradeMoney
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateCostText
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ButtonHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 1UP
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 1UP
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866685270661666033, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4446434571174915734, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
       propertyPath: m_Transition
       value: 1
@@ -4435,6 +4495,10 @@ PrefabInstance:
     - target: {fileID: 4446434571174915734, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446434571174915734, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyUpgradeDiamands
       objectReference: {fileID: 0}
     - target: {fileID: 4641905475824100150, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
       propertyPath: m_Color.b
@@ -4749,6 +4813,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8604412307614015510, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_text
+      value: Buy Max Lives
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604412307614015510, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
       propertyPath: m_fontSize
       value: 18
       objectReference: {fileID: 0}
@@ -4901,6 +4969,10 @@ PrefabInstance:
       value: 0.4431373
       objectReference: {fileID: 0}
     - target: {fileID: 9184196491574942321, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      propertyPath: m_text
+      value: Buy extra Life
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184196491574942321, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
       propertyPath: m_fontSize
       value: 18
       objectReference: {fileID: 0}
@@ -4956,7 +5028,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9168604733393221812, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1599821665}
+    - targetCorrespondingSourceObject: {fileID: 9184196492791503908, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 833874672}
   m_SourcePrefab: {fileID: 100100000, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+--- !u!114 &833874670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8239194556515350158, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+  m_PrefabInstance: {fileID: 833874669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &833874671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9184196492791503908, guid: 0e53a5b9b5358cf489c4f30ed42e7cf4, type: 3}
+  m_PrefabInstance: {fileID: 833874669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &833874672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833874671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8cf3b4079d2664b9c3badb8006c008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costText: {fileID: 833874670}
+  upgradeName: LvlUp
 --- !u!1 &849064552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8a20471bb9a84a7428776239b0881316, type: 3}

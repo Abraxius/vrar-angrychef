@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LifeUpgrade : Upgrade
 {
-    public LifeUpgrade(int initialcost, int maxlevel) : base("MaxLives", 250, 10)
+    public LifeUpgrade() : base("MaxLives", 10, 10)
     {
 
     }

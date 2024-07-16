@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AmmoUpgrade : Upgrade
 {
-    public AmmoUpgrade(int cost, int costIncrement) : base("MaxAmmo", 350, 5)
+    public AmmoUpgrade() : base("MaxAmmo", 5, 5)
     {
 
     }
