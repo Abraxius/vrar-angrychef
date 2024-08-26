@@ -97,10 +97,7 @@ public class GameManager : MonoBehaviour
             
             if (customerSpawn != null)
             {
-                if (m_CurrentLevel == 0)
-                    customerSpawn.StarGame();
-                else
-                    customerSpawn.ContinueGame(m_CurrentLevel);
+                customerSpawn.StarGame();
             }
             isSceneLoaded = false;
         }
@@ -110,7 +107,7 @@ public class GameManager : MonoBehaviour
     {
         //ToDo: Verwende Upgrades
         
-        
+        StartCoroutine(LoadSceneAsync("GameScene"));    
     }
 
     public void DayEnd()
@@ -119,8 +116,9 @@ public class GameManager : MonoBehaviour
         m_AllGuestsVisitedToday = 0;
         m_CurrentLevel += 1;
         m_DailyMaxCustomer += 3; //ToDo: Hier Upgrade integrieren für mehr Kunden
+        m_CustomersList.Clear();
         
-        StartCoroutine(LoadSceneAsync("PauseScene"));
+        StartCoroutine(LoadSceneAsync("HassGameScene"));
     }
 
 

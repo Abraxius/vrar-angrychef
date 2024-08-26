@@ -11,6 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace AngryChief.Customer
 {
+    //ToDo: Diesen Script aufräumen!!!! Alex
     public class CustomerController : MonoBehaviour
     {
         public Transform m_Target;
@@ -220,7 +221,12 @@ namespace AngryChief.Customer
             if (!CheckWaveIsFinished())
                 NextCustomer();
             else
+            {
+                GameManager.Instance.m_CustomersList.Remove(this);
+                GameManager.Instance.m_CurrentWaitingCustomer -= 1;
+                
                 GameManager.Instance.DayEnd();
+            }
             
             m_CustomerSpawnManager.CoroutineForSpawn();
             

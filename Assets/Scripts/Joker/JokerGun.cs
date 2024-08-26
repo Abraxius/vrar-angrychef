@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,37 @@ public class JokerGun : MonoBehaviour
     //Extra objects
     public GameObject canvas;
     public AmmoDisplay display;
+
+    [SerializeField] private bool debugFunction;
+
+    private GameInput _gameInput;
+
+    private void Awake()
+    {
+        _gameInput = new GameInput();
+    }
+
+    private void OnEnable()
+    {
+        _gameInput.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _gameInput.Player.Disable();
+    }
+    
+    private void Update()
+    {
+        if (debugFunction)
+        {
+            if (_gameInput.Player.Interact.triggered)
+            {
+                Fire();
+                Debug.Log("E is pressed");
+            }
+        }
+    }
 
     void Start()
     {
