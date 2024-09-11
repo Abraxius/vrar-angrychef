@@ -9326,6 +9326,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradesManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1179137050766040586, guid: f3af855b8ecf85c40b266b6c6ab18882, type: 3}
+      propertyPath: m_UpgradeList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179137050766040586, guid: f3af855b8ecf85c40b266b6c6ab18882, type: 3}
+      propertyPath: m_UpgradeList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bf0fd61bb4b4ac4b8ab756c44a9c425, type: 2}
+    - target: {fileID: 1179137050766040586, guid: f3af855b8ecf85c40b266b6c6ab18882, type: 3}
+      propertyPath: m_UpgradeList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 13f40ae72aee902469fc4b9d5135e179, type: 2}
+    - target: {fileID: 1179137050766040586, guid: f3af855b8ecf85c40b266b6c6ab18882, type: 3}
+      propertyPath: m_UpgradeList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b1a5ba3b407cc10448b3b56720dd699d, type: 2}
+    - target: {fileID: 1179137050766040586, guid: f3af855b8ecf85c40b266b6c6ab18882, type: 3}
+      propertyPath: m_UpgradeList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 47c9952650f4c8f44984d75a0594c802, type: 2}
     - target: {fileID: 7393281314191878851, guid: f3af855b8ecf85c40b266b6c6ab18882, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.478364
@@ -18126,6 +18146,14 @@ PrefabInstance:
     - target: {fileID: 3244990198269706043, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_Money
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_Diamands
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8473559165435091835, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_LocalPosition.x

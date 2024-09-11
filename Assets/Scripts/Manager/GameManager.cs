@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
     public bool m_FunLevel = false;
     
     public int m_CurrentPrices = 10;
+
+    //GameObject Upgrades
+    public int m_HouseLevel = 0;
+    public int m_StoveLevel = 0;
+    public int m_TableLevel;
+    public int m_IngredientsLevel;
     
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
     private bool isSceneLoaded = false;
