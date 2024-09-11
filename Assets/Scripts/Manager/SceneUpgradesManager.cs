@@ -9,16 +9,19 @@ public class SceneUpgradesManager : MonoBehaviour
 {
     public GameObject[] m_TableObjects;
     public GameObject[] m_HouseGameObjects;
+    public GameObject[] m_StoveGameObjects;
 
     public NavMeshSurface m_NavMesh;
     
     private int m_HouseLevel = 0;
     private int m_TableLevel = 0;
+    private int m_StoveLevel = 0;
     
     private void Awake()
     {
         m_HouseLevel = GameManager.Instance.m_HouseLevel;
         m_TableLevel = GameManager.Instance.m_TableLevel;
+        m_StoveLevel = GameManager.Instance.m_StoveLevel;
         
         if (m_HouseLevel != 0)
         {
@@ -28,10 +31,26 @@ public class SceneUpgradesManager : MonoBehaviour
 
         if (m_TableLevel > 0)
         {
-            for (int i = 3; i < m_TableLevel + 3; i++)
-            {   
-                m_TableObjects[m_TableLevel].SetActive(true);       
+            if (m_HouseLevel == 1)
+            {
+                if (m_TableLevel > 3)
+                    m_TableLevel = 3;
             }
+            else if (m_HouseLevel == 2)
+            {
+                if (m_TableLevel > 6)
+                    m_TableLevel = 6;          
+            }
+            for (int i = 4; i < m_TableLevel + 4; i++)
+            {   
+                m_TableObjects[i].SetActive(true);       
+            }
+        }
+        
+        if (m_StoveLevel != 0)
+        {
+            m_StoveGameObjects[0].SetActive(false);     
+            m_StoveGameObjects[m_StoveLevel].SetActive(true);   
         }
     }
 
