@@ -129,8 +129,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadSceneAsync("HassGameScene"));
     }
 
-
-
     void ChangeScene(string value)
     {
         SceneManager.LoadScene(value);
