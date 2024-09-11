@@ -53,3 +53,13 @@ public class StoveUpgrade : BaseUpgrade
         GameManager.Instance.m_StoveLevel++;    
     }
 }
+
+[CreateAssetMenu(fileName = "TableUpgrade", menuName = "Upgrades/Tables")]
+public class TableUpgrade : BaseUpgrade
+{
+    // Überschreibe die Methode mit spezifischer Funktionalität
+    public override void Apply()
+    {
+        GameManager.Instance.m_TableLevel++;    
+    }
+}

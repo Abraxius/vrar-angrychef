@@ -22,6 +22,8 @@ namespace AngryChief.Audio
         [HideInInspector]
         public AudioSource source;
 
+        public bool isMusic;
+        
         public bool isSpatialSound;
     }
 }

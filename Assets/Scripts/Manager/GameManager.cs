@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour
 
     //GameObject Upgrades
     public int m_HouseLevel = 0;
+
     public int m_StoveLevel = 0;
     public int m_TableLevel;
+
     public int m_IngredientsLevel;
     
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(LoadSceneAsync("GameScene"));
     }
-
+    
     IEnumerator LoadSceneAsync(string sceneName)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
@@ -126,8 +128,6 @@ public class GameManager : MonoBehaviour
         
         StartCoroutine(LoadSceneAsync("HassGameScene"));
     }
-
-
 
     void ChangeScene(string value)
     {

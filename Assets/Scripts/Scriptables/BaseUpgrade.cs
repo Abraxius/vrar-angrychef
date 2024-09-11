@@ -9,7 +9,6 @@ public abstract class BaseUpgrade : ScriptableObject
     public int m_InitialCost;
     public int m_Level { get; private set; }
     public int m_MaxLevel;
-    public GameObject[] m_AvailableObjects;
     
     // Virtuelle Methode, die von Subklassen überschrieben wird
     public abstract void Apply();

@@ -15,7 +15,7 @@ namespace AngryChief.Manager
         
         public Sound[] sounds;
         Sound lastStartedSound;
-
+        
         void Awake()
         {
             if (Instance == null)
@@ -27,11 +27,16 @@ namespace AngryChief.Manager
                 if (Instance != this)
                 Destroy(gameObject);
         }
-
+        
         private void Start()
         {
             foreach (Sound s in sounds)
             {
+                if (s.isMusic)
+                    s.volume = PlayerPrefs.GetFloat("musicVolume");
+                else
+                    s.volume = PlayerPrefs.GetFloat("soundVolume");
+                
                 s.source = gameObject.AddComponent<AudioSource>();
                 s.source.clip = s.clip;
 
@@ -41,6 +46,37 @@ namespace AngryChief.Manager
             }
         }
 
+        public void ChangeMusicVolume(float volume)
+        {
+            foreach (Sound s in sounds)
+            {
+                if (s.isMusic)
+                {
+                    s.source.volume = volume;
+                    s.volume = volume;
+                }
+            }       
+        }
+    
+        public void ChangeSoundVolume(float volume)
+        {
+            foreach (Sound s in sounds)
+            {
+                if (!s.isMusic)
+                {
+                    s.source.volume = volume;
+                    s.volume = volume;
+                }
+            }
+            
+            AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+            
+            foreach (AudioSource audioSource in audioSources)
+            {
+                audioSource.volume = volume;
+            }
+        }
+        
         /// <summary>
         /// Start continuous playback
         /// </summary>
