@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6beab1efcac045d4fa6fb97d89c0c929, type: 3}
+  m_Script: {fileID: 0}
   m_Name: LifeUpgrade
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Life
+  Name: LifeUpgrade
+  m_InitialCost: 10
+  m_MaxLevel: 10
+  m_AvailableObjects: []
