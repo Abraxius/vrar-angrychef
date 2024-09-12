@@ -25,7 +25,7 @@ public class Info_UI : MonoBehaviour
         lives = gameManager.m_Life;
         ammo = gameManager.m_Ammunition;
         money = gameManager.m_Money;
-        diamands = gameManager.m_Diamands;
+        diamands = gameManager.m_Diamonds;
 
         text.text =
     "- Lives: " + lives.ToString() + "\n" +

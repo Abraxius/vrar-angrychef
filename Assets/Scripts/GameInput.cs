@@ -35,6 +35,42 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadEndScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""e56d6504-26b6-468d-bd3d-05a4fcb98fe2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Motherlode"",
+                    ""type"": ""Button"",
+                    ""id"": ""4740b498-0c9d-4ba0-907c-1869b236a3c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mama"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddda7f9f-0cd4-44fb-a6b3-7210e564292d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CheatSystem"",
+                    ""type"": ""Button"",
+                    ""id"": ""c09b31be-8c89-4164-afd5-22c3389dfc7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +84,50 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""597db22d-2507-43d2-a96a-423190d8bb3a"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadEndScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38a7afbd-6ecd-45ca-ab06-e7a07ba71b8c"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Motherlode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2719fd38-6405-4eee-8c4e-68c8d156b64b"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mama"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c01eeb6-311a-4f32-bd1f-43dff2195d6c"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CheatSystem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -57,6 +137,10 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_LoadEndScene = m_Player.FindAction("LoadEndScene", throwIfNotFound: true);
+        m_Player_Motherlode = m_Player.FindAction("Motherlode", throwIfNotFound: true);
+        m_Player_Mama = m_Player.FindAction("Mama", throwIfNotFound: true);
+        m_Player_CheatSystem = m_Player.FindAction("CheatSystem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -119,11 +203,19 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_LoadEndScene;
+    private readonly InputAction m_Player_Motherlode;
+    private readonly InputAction m_Player_Mama;
+    private readonly InputAction m_Player_CheatSystem;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
         public PlayerActions(@GameInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @LoadEndScene => m_Wrapper.m_Player_LoadEndScene;
+        public InputAction @Motherlode => m_Wrapper.m_Player_Motherlode;
+        public InputAction @Mama => m_Wrapper.m_Player_Mama;
+        public InputAction @CheatSystem => m_Wrapper.m_Player_CheatSystem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -136,6 +228,18 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @LoadEndScene.started += instance.OnLoadEndScene;
+            @LoadEndScene.performed += instance.OnLoadEndScene;
+            @LoadEndScene.canceled += instance.OnLoadEndScene;
+            @Motherlode.started += instance.OnMotherlode;
+            @Motherlode.performed += instance.OnMotherlode;
+            @Motherlode.canceled += instance.OnMotherlode;
+            @Mama.started += instance.OnMama;
+            @Mama.performed += instance.OnMama;
+            @Mama.canceled += instance.OnMama;
+            @CheatSystem.started += instance.OnCheatSystem;
+            @CheatSystem.performed += instance.OnCheatSystem;
+            @CheatSystem.canceled += instance.OnCheatSystem;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -143,6 +247,18 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @LoadEndScene.started -= instance.OnLoadEndScene;
+            @LoadEndScene.performed -= instance.OnLoadEndScene;
+            @LoadEndScene.canceled -= instance.OnLoadEndScene;
+            @Motherlode.started -= instance.OnMotherlode;
+            @Motherlode.performed -= instance.OnMotherlode;
+            @Motherlode.canceled -= instance.OnMotherlode;
+            @Mama.started -= instance.OnMama;
+            @Mama.performed -= instance.OnMama;
+            @Mama.canceled -= instance.OnMama;
+            @CheatSystem.started -= instance.OnCheatSystem;
+            @CheatSystem.performed -= instance.OnCheatSystem;
+            @CheatSystem.canceled -= instance.OnCheatSystem;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -163,5 +279,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnInteract(InputAction.CallbackContext context);
+        void OnLoadEndScene(InputAction.CallbackContext context);
+        void OnMotherlode(InputAction.CallbackContext context);
+        void OnMama(InputAction.CallbackContext context);
+        void OnCheatSystem(InputAction.CallbackContext context);
     }
 }

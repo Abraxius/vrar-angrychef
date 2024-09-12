@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AngryChief.Customer;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,12 +15,16 @@ public class GameManager : MonoBehaviour
     public int m_MaxAmmo = 1;
     public int m_Ammunition;
 
-
+    [HideInInspector] public int m_Score;
+    [HideInInspector] public int m_ScoreDiamonds;
     public int m_Money;
-    public int m_Diamands;
+    [FormerlySerializedAs("m_Diamands")] public int m_Diamonds;
     public int m_StartingMoney = 500;
 
     public int m_CurrentLevel;
+
+    private int m_StandardDailyMaxCustomer;
+    private int m_StandardLengthCustomerQueue;
     
     public int m_DailyMaxCustomer = 4;
     public int m_LengthCustomerQueue = 3;
@@ -75,8 +80,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         //ToDo: Später lade Perma HP, ...
-        //ChangeScene("GameScene");
 
+        m_StandardDailyMaxCustomer = m_DailyMaxCustomer;
+        m_StandardLengthCustomerQueue = m_LengthCustomerQueue;
+
+        m_Score = 0;
+        
         StartCoroutine(LoadSceneAsync("GameScene"));
     }
     
@@ -129,6 +138,31 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadSceneAsync("HassGameScene"));
     }
 
+    /// <summary>
+    /// ToDo: Muss getriggert werden, wenn alle Leben verbraucht sind also x falsche Rezepte gemacht wurden
+    /// </summary>
+    public void LoseGame()
+    {
+        m_AllGuestsVisitedToday = 0;
+        m_CurrentLevel = 0;
+        m_DailyMaxCustomer = m_StandardDailyMaxCustomer;
+        m_CustomersList.Clear();
+        
+        m_HouseLevel = 0;
+        m_StoveLevel = 0;
+        m_IngredientsLevel = 0;
+        m_TableLevel = 0;
+
+        m_LengthCustomerQueue = m_StandardLengthCustomerQueue;
+        
+        m_Money = m_StartingMoney;
+        
+        m_ScoreDiamonds = m_Score / 100;
+        m_Diamonds += m_ScoreDiamonds;
+
+        ChangeScene("EndScene");
+    }
+    
     void ChangeScene(string value)
     {
         SceneManager.LoadScene(value);
