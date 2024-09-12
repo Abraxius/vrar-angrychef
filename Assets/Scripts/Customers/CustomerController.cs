@@ -196,6 +196,7 @@ namespace AngryChief.Customer
             }
 
             GameManager.Instance.m_Money += GameManager.Instance.m_CurrentPrices;
+            GameManager.Instance.m_Score += GameManager.Instance.m_CurrentPrices;
             
             StartCoroutine(WalkToSeat());
             

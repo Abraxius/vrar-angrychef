@@ -101,9 +101,9 @@ public class UpgradesManager : MonoBehaviour
         BaseUpgrade tmp = FindObjectByName(upgradeName);
         if (tmp != null)
         {
-            if (GameManager.Instance.m_Diamands >= tmp.m_Cost)
+            if (GameManager.Instance.m_Diamonds >= tmp.m_Cost)
             {
-                GameManager.Instance.m_Diamands -= tmp.m_Cost;
+                GameManager.Instance.m_Diamonds -= tmp.m_Cost;
                 tmp.Apply();
                 tmp.IncreaseCost();
             }

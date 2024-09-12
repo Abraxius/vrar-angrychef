@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HassGameScene.unity
     guid: cd381a99db61a7a46a0a4b31cec7c746
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: ad56021fda0a43440985500f72a90af2
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}

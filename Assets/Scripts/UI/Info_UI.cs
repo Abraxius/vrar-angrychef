@@ -27,14 +27,14 @@ public class Info_UI : MonoBehaviour
             case Stats.Money:
                 UpdateText(gameManager.m_Money);
                 break;
-            /*case Stats.Score:
+            case Stats.Score:
                 UpdateText(gameManager.m_Score);
-                break;*/
+                break;
             case Stats.Health:
                 UpdateText(gameManager.m_Life);
                 break;
             case Stats.Diamands:
-                UpdateText(gameManager.m_Diamands);
+                UpdateText(gameManager.m_Diamonds);
                 break;
             default:
                 Debug.Log("Error stat not defined");

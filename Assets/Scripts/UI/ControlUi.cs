@@ -85,4 +85,16 @@ public class ControlUi : MonoBehaviour
         if (m_Sound != null)
             m_Sound.GetComponent<Slider>().value = PlayerPrefs.GetFloat("soundVolume");
     }
+
+    public void ChangeScene(string value)
+    {
+        if (value.Contains("GameScene"))
+        {
+            GameManager.Instance.StartGame();
+        }
+        else
+        {
+            GameManager.Instance.LoadScene(value);         
+        }
+    }
 }
