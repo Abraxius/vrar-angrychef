@@ -18,7 +18,7 @@ namespace AngryChief.Cook
 
         [SerializeField] GameObject m_Bubble; 
         
-        [HideInInspector] Recipe currentOrder;
+        [HideInInspector] public Recipe currentOrder;
 
         public void GenerateOrder()
         {

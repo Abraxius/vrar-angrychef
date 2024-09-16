@@ -45,14 +45,14 @@ public class Ingredient : MonoBehaviour
     [HideInInspector]
     public static Dictionary<IngredientName, IngredientStateType> wantedIngredientStateType = new Dictionary<IngredientName, IngredientStateType>
 {
-    { IngredientName.BunTop, IngredientStateType.Whole },
+    { IngredientName.BunTop, IngredientStateType.Uncooked },
     { IngredientName.Onion, IngredientStateType.Slice },
     { IngredientName.Carrot, IngredientStateType.Slice },
     { IngredientName.Tomato, IngredientStateType.Slice },
     { IngredientName.Lettuce, IngredientStateType.Slice },
     { IngredientName.Burger, IngredientStateType.Cooked },
     { IngredientName.Cheese, IngredientStateType.Slice },
-    { IngredientName.BunBottom, IngredientStateType.Whole },
+    { IngredientName.BunBottom, IngredientStateType.Uncooked },
 };
 
     void Start()

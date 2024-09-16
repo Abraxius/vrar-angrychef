@@ -120,22 +120,32 @@ public class Recipe : IEquatable<Meal>
     {
         if (meal == null)
         {
+            Debug.Log("Meal is null");
             return false;
         }
 
         if (this.Ingredients.Count != meal.Ingredients.Count)
         {
+            Debug.Log("Meal and Recipe have different Ingredients Count");
             return false;
         }
 
         for (int i = 0; i < this.Ingredients.Count; i++)
         {
-            if (this.Ingredients[i] == meal.Ingredients[i].name && meal.Ingredients[i].currentState.stateType == Ingredient.wantedIngredientStateType[this.Ingredients[i]])
+            Debug.Log("Meal Ingredient: " + this.Ingredients[(this.Ingredients.Count - 1) - i]);
+            Debug.Log("Recipe Ingredient: " + meal.Ingredients[i].name);
+            if (this.Ingredients[(this.Ingredients.Count - 1) - i] == meal.Ingredients[i].name)
             {
-                return true;
+                Debug.Log("Current Ingredient State: " + meal.Ingredients[i].currentState.stateType);
+                Debug.Log("Wanted Ingredient State: " + Ingredient.wantedIngredientStateType[this.Ingredients[(this.Ingredients.Count - 1) - i]]);
+                if (meal.Ingredients[i].currentState.stateType == Ingredient.wantedIngredientStateType[this.Ingredients[(this.Ingredients.Count - 1) - i]])
+                {
+                    return true;
+                }
+                Debug.Log("Ingredients are right, but Ingredient State is wrong");
             }
         }
-
+        Debug.Log("Meal order of Ingredient is wrong");
         return false;
     }
 

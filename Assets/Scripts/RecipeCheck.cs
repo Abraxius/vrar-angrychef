@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AngryChief.Cook;
+using AngryChief.Customer;
 
 public class RecipeCheck : MonoBehaviour
 {
     ShowOrder m_ShowOrder;
+    Recipe m_Recipe;
     Meal meal;
 
     private void Awake()
@@ -15,13 +17,22 @@ public class RecipeCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Meal")
+        // Get current Recipe
+        m_Recipe = m_ShowOrder.currentOrder;
+        Debug.Log(m_Recipe == null);
+
+        // Check if gameobject is a Meal and if there is a current Order
+        if (other.gameObject.tag == "Meal" && m_Recipe != null)
         {
             this.meal = other.gameObject.transform.GetChild(0).gameObject.GetComponent<IngredientSnapping>().snappedIngredients;
-            if(m_ShowOrder.Equals(meal))
+            
+            Debug.Log(m_Recipe.Ingredients);
+            if(m_Recipe.Equals(meal))
             {
                 Debug.Log("Meal is correct!");
+                // Finish Order and Destroy Meal
                 Destroy(other.gameObject);
+                GameManager.Instance.m_CustomersList[0].FinishOrder();
             }
             else
             {
