@@ -177,8 +177,30 @@ namespace AngryChief.Customer
             m_Animator.SetBool("Walking", false);
         }
 
+        IEnumerator LeaveTheKioskWithOutEat()
+        {
+            if (m_Target != null)
+            {
+                m_Animator.SetBool("Walking", true);
+                m_Agent.SetDestination(m_Target.position);
+            }
+            else
+            {
+                yield return null;
+            }
 
+            // Warte bis der Agent tats�chlich am Ziel angekommen ist
+            while (m_Agent.pathPending || m_Agent.remainingDistance > m_Agent.stoppingDistance || m_Agent.velocity.sqrMagnitude > 0f)
+            {
+                yield return null;
+            }
+
+            m_Animator.SetBool("Walking", false);       
+            
+            Destroy(gameObject);
+        }
         
+        //function should be called if the order was true
         public void FinishOrder()
         {
             m_ShowOrder.ClearOrder();
@@ -208,6 +230,32 @@ namespace AngryChief.Customer
             m_CustomerSpawnManager.CoroutineForSpawn();
         }
 
+        //function should be called if the order was false
+        public void LoseOrder()
+        {
+            m_ShowOrder.ClearOrder();
+            
+            GameManager.Instance.m_Life -= 1;
+
+            if (GameManager.Instance.m_Life <= 0)
+            {
+                GameManager.Instance.LoseGame();
+            }
+            else
+            {
+                m_Target = m_CustomerSpawnManager.transform;
+            
+                StartCoroutine(LeaveTheKioskWithOutEat());
+            
+                if (!CheckWaveIsFinished())
+                    NextCustomer();
+                else
+                    GameManager.Instance.DayEnd();
+            
+                m_CustomerSpawnManager.CoroutineForSpawn();                
+            }
+        }
+        
         public IEnumerator Die()
         {
             Debug.Log("Gestorben");
