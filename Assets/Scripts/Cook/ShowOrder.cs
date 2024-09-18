@@ -23,11 +23,14 @@ namespace AngryChief.Cook
         public void GenerateOrder()
         {
             currentOrder = Recipe.GenerateRecipe();
-            var row = new Vector3(0, 1.0f, 0);
-            foreach (var ingredient in currentOrder.Ingredients)
+            var row = new Vector3(0, 0, 0);
+            
+            //So that the order is built up from the bottom up and looks nicer in the bubble
+            var reverseOrderList = currentOrder.Ingredients;
+            reverseOrderList.Reverse();
+            
+            foreach (var ingredient in reverseOrderList)
             {
-                row -= new Vector3(0, 0.2f, 0);
-
                 switch (ingredient)
                 {
                     case IngredientName.BunTop:
@@ -61,11 +64,13 @@ namespace AngryChief.Cook
                     case IngredientName.BunBottom:
                         Instantiate(bunBottom, gameObject.transform.position + row, Quaternion.identity, gameObject.transform);
                         break;
-
                 }
+                
+                row += new Vector3(0, 0.2f, 0);
             }
 
             m_Bubble.SetActive(true);
+            m_Bubble.GetComponent<AdjustPanelSize>().UpdatePanelSize();
         }
 
         public void ClearOrder()
@@ -86,10 +91,10 @@ namespace AngryChief.Cook
         void FixedUpdate()
         {
 
-            var tempPos = transform.position;
+           // var tempPos = transform.position;
             
             //tempPos.y = m_yPos + Mathf.Sin(Time.time) * 0.05f;
-            transform.position = tempPos;
+           // transform.position = tempPos;
             transform.Rotate(new Vector3(0, 1f, 0));
         }
 
