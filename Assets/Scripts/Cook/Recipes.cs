@@ -104,6 +104,12 @@ public class Recipe : IEquatable<Meal>
                 }
             }
         }
+        
+        // If no ingredients are added, add one random ingredient
+        if (ingredients.Count == 1)
+        {
+            ingredients.Add((IngredientName)random.Next(1, Enum.GetNames(typeof(IngredientName)).Length - 1));
+        }
 
         // Add bun bottom to list
         ingredients.Add(IngredientName.BunBottom);
