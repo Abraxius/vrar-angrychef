@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Info_UI : MonoBehaviour
 {
     [SerializeField] Text text;
-    public GameManager gameManager;
 
     public enum Stats { Health, Score, Money, Diamands }
     public Stats statToUpdate;
@@ -16,25 +15,25 @@ public class Info_UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+
         switch (statToUpdate)
         {
             case Stats.Money:
-                UpdateText(gameManager.m_Money);
+                UpdateText(GameManager.Instance.m_Money);
                 break;
             case Stats.Score:
-                UpdateText(gameManager.m_Score);
+                UpdateText(GameManager.Instance.m_Score);
                 break;
             case Stats.Health:
-                UpdateText(gameManager.m_Life);
+                UpdateText(GameManager.Instance.m_Life);
                 break;
             case Stats.Diamands:
-                UpdateText(gameManager.m_Diamonds);
+                UpdateText(GameManager.Instance.m_Diamonds);
                 break;
             default:
                 Debug.Log("Error stat not defined");
