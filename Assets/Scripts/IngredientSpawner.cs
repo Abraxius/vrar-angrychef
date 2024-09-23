@@ -10,5 +10,6 @@ public class IngredientSpawner : MonoBehaviour
     {
         GameObject spawnedIngredient = Instantiate(ingredient);
         spawnedIngredient.transform.position = new Vector3(0.0f, 2.2f, 6f);
+        Debug.Log("Object spawned");
     }
 }
