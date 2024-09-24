@@ -8,6 +8,7 @@ public class Stove : IngredientSnapping
     [SerializeField] private float burnTime = 10f; // Time to change from cooked to burned
     private float timer = 0f;
     private GameObject snappedBurger;
+    private bool canSnapAgain = true;   // Flag, um eine kurze Verzögerung nach dem Herausnehmen zu ermöglichen
 
     // Update is called once per frame
     void Update()
@@ -31,7 +32,7 @@ public class Stove : IngredientSnapping
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Snappable" && !snapped)
+        if (other.gameObject.tag == "Snappable" && !snapped && canSnapAgain)
         {
             if (other.gameObject.GetComponent<Ingredient>().fryable && ((snappedIngredients.Ingredients.Count == 0 && !other.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Ingredients.Count >= 1 && stackable == true && !other.gameObject.GetComponent<Ingredient>().isSnapped)))
             {
@@ -48,6 +49,9 @@ public class Stove : IngredientSnapping
         {
             TakeObject(other.gameObject);
             Debug.Log("Burger aus der Pfanne genommen");
+
+            // Starte Coroutine, um zu verhindern, dass der Burger sofort wieder gesnapped wird
+            StartCoroutine(SnapCooldown());
         }
         else
         {
@@ -82,5 +86,13 @@ public class Stove : IngredientSnapping
             rb.useGravity = true;
             rb.isKinematic = false;
         }
+    }
+
+    // Coroutine für eine kurze Verzögerung nach dem Herausnehmen
+    IEnumerator SnapCooldown()
+    {
+        canSnapAgain = false;  // Verhindere, dass sofort wieder gesnapped wird
+        yield return new WaitForSeconds(0.5f);  // Warte 0,5 Sekunden
+        canSnapAgain = true;  // Erlaube wieder das Snapping
     }
 }
