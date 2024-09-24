@@ -45,7 +45,8 @@ public class GameManager : MonoBehaviour
     public int m_TableLevel;
 
     public int m_IngredientsLevel;
-    
+
+    public float m_TimeForOrder = 60f;
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
     private bool isSceneLoaded = false;
 

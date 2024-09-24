@@ -66,6 +66,15 @@ public class DebugManager : MonoBehaviour
                 GameManager.Instance.m_Score += 100;
                 Debug.Log("Motherlode, du erhälst 100 Dollar, du Rabauke!");
             }
+            if (_gameInput.Player.SpawnEat.triggered)
+            {
+                if (GameManager.Instance.m_CustomersList[0] == null)
+                    return;
+                
+                GameManager.Instance.m_CustomersList[0].FinishOrder();
+                
+                Debug.Log("Simsalabim, wie von Zauberhand erscheint das richtige Rezept!");
+            }
         }
     }
 }
