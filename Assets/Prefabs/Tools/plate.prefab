@@ -365,8 +365,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.2, z: 0.5}
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Size: {x: 0.92879176, y: 0.24803638, z: 0.90881526}
+  m_Center: {x: -0.0016750097, y: 0.12401819, z: 0.016770542}
 --- !u!114 &2295829741128904873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapped: 0
-  snappedIngredients: []
   stackable: 1
   snapPosition: {fileID: 2382021220210002333}
 --- !u!1 &7766557824977051508

@@ -15,7 +15,7 @@ public class IngredientSnapping : MonoBehaviour
     public bool stackable = false;
     public Transform snapPosition;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Snappable")
         {
