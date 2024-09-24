@@ -293,6 +293,9 @@ namespace AngryChief.Customer
         public IEnumerator Die()
         {
             Debug.Log("Gestorben");
+
+            Destroy(m_Bubble);
+            m_WorkOnOrder = false;
             
             m_ShowOrder.ClearOrder();
             
