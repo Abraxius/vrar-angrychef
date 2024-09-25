@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Meal
 {
@@ -42,6 +43,14 @@ public class IngredientSnapping : MonoBehaviour
         {
             rb.useGravity = false;
             rb.isKinematic = true;
+        }
+        
+        // Deactivate interaction with snapped ingredient
+        var interactable = snappableObject.GetComponent<XRGrabInteractable>();
+        if (interactable != null)
+        {
+            interactable.interactionLayers = LayerMask.GetMask("None");
+            interactable.movementType = XRBaseInteractable.MovementType.Kinematic;
         }
 
         // Set position and rotation of snapped object
