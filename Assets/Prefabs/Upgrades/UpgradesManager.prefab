@@ -49,3 +49,10 @@ MonoBehaviour:
   m_CustomerCost: 0
   m_KnifeSpeed: 1
   m_AmmountOfUpgrades: 0
+  m_UpgradeList:
+  - {fileID: 11400000, guid: 13f40ae72aee902469fc4b9d5135e179, type: 2}
+  - {fileID: 11400000, guid: 7bf0fd61bb4b4ac4b8ab756c44a9c425, type: 2}
+  - {fileID: 11400000, guid: 53188cc022a428242a8a2223d1273dde, type: 2}
+  - {fileID: 11400000, guid: 0acde37b5b46c054ba6aff4bc7c21d6c, type: 2}
+  - {fileID: 11400000, guid: 824f43bce3eedc340822a061bf85b7cf, type: 2}
+  - {fileID: 11400000, guid: 2e8d84707ea7fe74e96a5de64609539b, type: 2}

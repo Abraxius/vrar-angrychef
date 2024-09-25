@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 0a92fce33671ba04fba956025df887af, type: 3}
   m_Name: StoveUpgrade
-  m_EditorClassIdentifier: Assembly-CSharp::StoveUpgrade
+  m_EditorClassIdentifier: 
   Name: StoveUpgrade
-  m_InitialCost: 10
-  m_MaxLevel: 1
+  m_InitialCost: 25
+  m_MaxLevel: 3

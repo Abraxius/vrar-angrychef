@@ -64,12 +64,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpgradesManager.Instance.LoadUpgrades();
+        //UpgradesManager.Instance.LoadUpgrades();
     }
 
     private void OnApplicationQuit()
     {
-        UpgradesManager.Instance.SaveUpgrades();
+        //UpgradesManager.Instance.SaveUpgrades();
     }
 
     public void LoadScene(string value)
@@ -162,7 +162,14 @@ public class GameManager : MonoBehaviour
 
         ChangeScene("EndScene");
     }
-    
+
+    [ContextMenu("Reset Upgrades to Level 0")]
+    public void ResetUpgrades()
+    {
+        UpgradesManager.Instance.Restart();
+        Debug.Log("Upgrades have been reset to level 0.");
+    }
+
     void ChangeScene(string value)
     {
         SceneManager.LoadScene(value);

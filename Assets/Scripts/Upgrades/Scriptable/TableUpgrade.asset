@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 41d8540d0306fee4da20af00d63e740b, type: 3}
   m_Name: TableUpgrade
-  m_EditorClassIdentifier: Assembly-CSharp::TableUpgrade
-  Name: TableUpgrades
-  m_InitialCost: 10
-  m_MaxLevel: 9
+  m_EditorClassIdentifier: 
+  Name: TablesUpgrade
+  m_InitialCost: 25
+  m_MaxLevel: 10
