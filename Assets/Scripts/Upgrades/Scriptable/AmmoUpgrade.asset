@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7c344e89c5f3043971228f5336c752, type: 3}
   m_Name: AmmoUpgrade
   m_EditorClassIdentifier: 
-  Name: MaxAmmo
+  m_UpgradeName: AmmoUpgrade
   m_InitialCost: 1
   m_MaxLevel: 5

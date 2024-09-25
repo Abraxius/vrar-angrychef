@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a92fce33671ba04fba956025df887af, type: 3}
   m_Name: StoveUpgrade
   m_EditorClassIdentifier: 
-  m_Name: StoveUpgrade
+  m_UpgradeName: StoveUpgrade
   m_InitialCost: 25
   m_MaxLevel: 1

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc11854583f64a346bb8e8609579ab1e, type: 3}
   m_Name: HouseUpgrade
   m_EditorClassIdentifier: 
-  Name: HouseUpgrade
+  m_UpgradeName: HouseUpgrade
   m_InitialCost: 10
   m_MaxLevel: 2

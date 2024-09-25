@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f60ed90ffc3074386a5d5f0030e39f, type: 3}
   m_Name: MaxHpUpgrade
   m_EditorClassIdentifier: 
-  Name: MaxHpUpgrade
+  m_UpgradeName: MaxHpUpgrade
   m_InitialCost: 1
   m_MaxLevel: 7

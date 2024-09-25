@@ -10,7 +10,7 @@ public class ButtonHandler : MonoBehaviour
     public string upgradeName;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         UpdateCostText();
     }
@@ -71,6 +71,11 @@ public class ButtonHandler : MonoBehaviour
         {
             //Sound to make the person know its blocked
         }
+    }
+
+    public void DebugUpgrades()
+    {
+        UpgradesManager.Instance.AllUpgrades();
     }
 }
 

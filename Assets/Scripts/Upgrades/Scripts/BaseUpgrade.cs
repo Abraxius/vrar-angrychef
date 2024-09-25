@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class BaseUpgrade : ScriptableObject
 {
-    public string m_Name;
+    public string m_UpgradeName;
     public int m_Cost { get; protected set; }
     public int m_InitialCost;
     public int m_Level { get; private set; }

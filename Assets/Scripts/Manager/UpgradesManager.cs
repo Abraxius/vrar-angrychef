@@ -31,7 +31,7 @@ public class UpgradesManager : MonoBehaviour
         foreach (BaseUpgrade obj in m_UpgradeList)
         {
             // Vergleicht den Namen des ScriptableObjects mit dem gesuchten Namen
-            if (obj.m_Name == objectName)
+            if (obj.m_UpgradeName == objectName)
             {
                 return obj; // Gibt das gefundene Objekt zurück
             }
@@ -39,6 +39,12 @@ public class UpgradesManager : MonoBehaviour
 
         Debug.LogWarning($"Object with name {objectName} not found.");
         return null; // Gibt null zurück, wenn kein Objekt gefunden wurde
+    }
+
+    public void AllUpgrades()
+    {
+        foreach (BaseUpgrade obj in m_UpgradeList)
+            Debug.Log(obj.m_UpgradeName);
     }
 
     public void PurchaseUpgradeMoney(string upgradeName)
