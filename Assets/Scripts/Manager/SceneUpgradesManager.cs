@@ -10,6 +10,11 @@ public class SceneUpgradesManager : MonoBehaviour
     public GameObject[] m_TableObjects;
     public GameObject[] m_HouseGameObjects;
     public GameObject[] m_StoveGameObjects;
+    public GameObject m_CuttingGameObject;
+    public GameObject m_OnionGameObject;
+    public GameObject m_TomatoGameObjects;
+    public GameObject m_CarrotGameObjects;
+    public GameObject m_LettuceGameObjects;
 
     public NavMeshSurface m_NavMesh;
     
@@ -52,6 +57,21 @@ public class SceneUpgradesManager : MonoBehaviour
             m_StoveGameObjects[0].SetActive(false);     
             m_StoveGameObjects[m_StoveLevel].SetActive(true);   
         }
+        
+        if (GameManager.Instance.m_IngredientLettuce)
+            m_LettuceGameObjects.SetActive(true);
+        
+        if (GameManager.Instance.m_IngredientOnion)
+            m_OnionGameObject.SetActive(true);
+        
+        if (GameManager.Instance.m_IngredientCarrot)
+            m_CarrotGameObjects.SetActive(true);
+        
+        if (GameManager.Instance.m_IngredientTomato)
+            m_TomatoGameObjects.SetActive(true);
+        
+        if (GameManager.Instance.m_CuttingTable)
+            m_CuttingGameObject.SetActive(true);
     }
 
     private void Start()
