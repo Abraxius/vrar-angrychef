@@ -37,11 +37,18 @@ namespace AngryChief.Customer
         
         private Seat m_CurrentSeat;
         
+        private float m_Timer;
+        private float m_TargetTime;
+        private bool m_WorkOnOrder;
+        private GameObject m_Bubble;
+        
         public bool m_Destroy = false; //Testobject
         private void Awake()
         {
             m_Animator = GetComponent<Animator>();
             m_ShowOrder = FindAnyObjectByType<ShowOrder>();
+
+            m_TargetTime = GameManager.Instance.m_TimeForOrder;
         }
 
         // Start is called before the first frame update
@@ -82,17 +89,38 @@ namespace AngryChief.Customer
 
                 m_ShowOrder.GenerateOrder();
 
+                m_WorkOnOrder = true;
+                
+                m_Bubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f + Vector3.left * 0.5f, transform.rotation);
+            
+                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder);
+                
+                m_Bubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+                
                 if (GameManager.Instance.m_FunLevel)
                 {
                     AudioManager.Instance.Play("fun_order_" + m_Random.Next(1,3)); //TODO: Update count of sounds
                 }
-                
             }
             else
             {
                 transform.LookAt(GameManager.Instance.m_CustomersList[0].gameObject.transform);
             }
 
+        }
+
+        private void FixedUpdate()
+        {
+            if (m_WorkOnOrder)
+            {
+                m_Timer += Time.fixedDeltaTime;  // Erhöht den Timer mit der FixedUpdate-Zeit
+                if (m_Timer >= m_TargetTime)
+                {
+                    Destroy(m_Bubble);
+                    LoseOrder();
+                    m_WorkOnOrder = false;
+                }
+            }
         }
         
         public IEnumerator WalkToSeat()
@@ -121,6 +149,9 @@ namespace AngryChief.Customer
             GameObject tmpBurger = GameObject.Instantiate(m_BurgerPrefab, transform.position + Vector3.forward * 0.7f + Vector3.up, transform.rotation);
             
             GameObject tmpBubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f, transform.rotation);
+            
+            tmpBubble.GetComponentInChildren<TimeClock>().onlyEatTimer = true;
+            tmpBubble.GetComponentInChildren<TimeClock>().SetTime(m_EatingTime);
             
             tmpBubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
             
@@ -204,6 +235,9 @@ namespace AngryChief.Customer
         public void FinishOrder()
         {
             m_ShowOrder.ClearOrder();
+         
+            Destroy(m_Bubble);
+            m_WorkOnOrder = false;
             
             //Start walking to the seat
             foreach (var seat in m_CustomerSpawnManager.m_SeatList)
@@ -259,6 +293,9 @@ namespace AngryChief.Customer
         public IEnumerator Die()
         {
             Debug.Log("Gestorben");
+
+            Destroy(m_Bubble);
+            m_WorkOnOrder = false;
             
             m_ShowOrder.ClearOrder();
             
