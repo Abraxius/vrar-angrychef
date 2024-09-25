@@ -9,7 +9,7 @@ public class Info_UI : MonoBehaviour
 {
     [SerializeField] Text text;
 
-    public enum Stats { Health, Score, Money, Diamands }
+    public enum Stats { Health, Score, Money, Diamands, MaxHp }
     public Stats statToUpdate;
 
     // Start is called before the first frame update
@@ -34,6 +34,9 @@ public class Info_UI : MonoBehaviour
                 break;
             case Stats.Diamands:
                 UpdateText(GameManager.Instance.m_Diamonds);
+                break;
+            case Stats.MaxHp:
+                UpdateText(GameManager.Instance.m_MaxLives);
                 break;
             default:
                 Debug.Log("Error stat not defined");
