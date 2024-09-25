@@ -6051,7 +6051,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422825549}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -6868,7 +6868,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 81863878}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 776859446}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: CloseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &508369886
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11430,6 +11442,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1754733313}
         m_TargetAssemblyTypeName: ControlUi, Assembly-CSharp
         m_MethodName: SetSliders
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1754733313}
+        m_TargetAssemblyTypeName: ControlUi, Assembly-CSharp
+        m_MethodName: EnableFunButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18135,6 +18159,7 @@ MonoBehaviour:
   - {fileID: 6720873}
   m_Music: {fileID: 988278636}
   m_Sound: {fileID: 219683497}
+  m_FunButton: {fileID: 2009363580}
 --- !u!1001 &1765069897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20201,6 +20226,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2009363580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2829200413747192424, guid: 5503f0367cfc03f4484ac78fecdbc9c7, type: 3}
+  m_PrefabInstance: {fileID: 8957372582090679081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2020738030
 GameObject:
   m_ObjectHideFlags: 0
@@ -21266,6 +21302,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2294528719412472617, guid: 5503f0367cfc03f4484ac78fecdbc9c7, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829200413747192424, guid: 5503f0367cfc03f4484ac78fecdbc9c7, type: 3}
+      propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2829200413747192424, guid: 5503f0367cfc03f4484ac78fecdbc9c7, type: 3}

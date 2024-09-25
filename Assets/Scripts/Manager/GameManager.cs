@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
     public bool m_CuttingTable;
     public int m_CuttingLevel;
     
-    //ToDo: Wer macht das ????? Juan or Alex
     public int m_CookingLevel;
     public int m_WaitingTimeLevel; //Kunden warten länger
     public int m_AdvertismentLevel; //More Customers
@@ -146,7 +145,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Day successed!");
         m_AllGuestsVisitedToday = 0;
         m_CurrentLevel += 1;
-        m_DailyMaxCustomer += 3; //ToDo: Hier Upgrade integrieren für mehr Kunden
+        m_DailyMaxCustomer += 3; 
         m_CustomersList.Clear();
         
         StartCoroutine(LoadSceneAsync("HassGameScene"));
