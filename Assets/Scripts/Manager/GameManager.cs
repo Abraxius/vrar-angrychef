@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
     public bool m_IngredientTomato;
     public bool m_IngredientLettuce;
     public bool m_IngredientOnion;
-
+    [HideInInspector] public int m_IngredientsLevel;
+    
     public bool m_CuttingTable;
     public int m_CuttingLevel;
     

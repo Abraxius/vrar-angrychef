@@ -93,7 +93,7 @@ namespace AngryChief.Customer
                 
                 m_Bubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f + Vector3.left * 0.5f, transform.rotation);
             
-                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder);
+                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10)); //Upgrade: Wartezeit 
                 
                 m_Bubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
                 
@@ -251,8 +251,9 @@ namespace AngryChief.Customer
                 }
             }
 
-            GameManager.Instance.m_Money += GameManager.Instance.m_CurrentPrices;
-            GameManager.Instance.m_Score += GameManager.Instance.m_CurrentPrices;
+            var tmpMoney =  GameManager.Instance.m_CurrentPrices * (GameManager.Instance.m_IngredientsLevel/20) * (GameManager.Instance.m_QualityLevel/100); //Upgrade: Mehr Geld
+            GameManager.Instance.m_Money += tmpMoney; 
+            GameManager.Instance.m_Score += tmpMoney;
             
             StartCoroutine(WalkToSeat());
             

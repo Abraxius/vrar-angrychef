@@ -28,7 +28,7 @@ namespace AngryChief.Customer
         
         public void StarGame()
         {
-            m_DailyMaxCustomer = GameManager.Instance.m_DailyMaxCustomer;
+            m_DailyMaxCustomer = GameManager.Instance.m_DailyMaxCustomer + GameManager.Instance.m_AdvertismentLevel; //Upgrade: Max Besucher
 
             StartCoroutine(SpawnCustomer());
         }
