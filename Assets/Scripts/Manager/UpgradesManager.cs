@@ -17,7 +17,7 @@ public class UpgradesManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            // InitializeUpgrades();
+            Restart();
         }
         else
         {
