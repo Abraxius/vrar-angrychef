@@ -14,6 +14,8 @@ public class ControlUi : MonoBehaviour
 
     [SerializeField] private GameObject m_Music;
     [SerializeField] private GameObject m_Sound;
+    [SerializeField] private Toggle m_FunButton;
+    
     public void Awake()
     {
         for (int i = 1; i < m_UiElements.Length; i++)
@@ -54,6 +56,22 @@ public class ControlUi : MonoBehaviour
         PlayerPrefs.SetFloat("musicVolume", value);
     }
 
+    /// <summary>
+    /// Wird per Inspector aufgerufen
+    /// </summary>
+    public void EnableFunButton()
+    {
+        if (GameManager.Instance.m_FunLevelBuyed)
+        {
+            m_FunButton.interactable = true;   
+        }
+        else
+        {
+            m_FunButton.interactable = false;
+            m_FunButton.isOn = false;
+        }
+    }
+    
     /// <summary>
     /// Wird im Inspector aufgerufen
     /// </summary>
