@@ -44,8 +44,11 @@ public class GameManager : MonoBehaviour
     public int m_StoveLevel = 0;
     public int m_TableLevel;
 
-    public int m_IngredientsLevel;
-
+    public bool m_IngredientCarrot;
+    public bool m_IngredientTomato;
+    public bool m_IngredientLettuce;
+    public bool m_IngredientOnion;
+    
     public float m_TimeForOrder = 60f;
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
     private bool isSceneLoaded = false;
@@ -151,7 +154,10 @@ public class GameManager : MonoBehaviour
         
         m_HouseLevel = 0;
         m_StoveLevel = 0;
-        m_IngredientsLevel = 0;
+        m_IngredientCarrot = false;
+        m_IngredientTomato = false;
+        m_IngredientLettuce = false;
+        m_IngredientOnion = false;
         m_TableLevel = 0;
 
         m_LengthCustomerQueue = m_StandardLengthCustomerQueue;

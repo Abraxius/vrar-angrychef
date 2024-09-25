@@ -46,13 +46,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Life: 1
   m_MaxLives: 1
+  m_MaxAmmo: 1
   m_Ammunition: 10
+  m_Score: 0
+  m_ScoreDiamonds: 0
   m_Money: 0
-  m_Diamands: 0
+  m_Diamonds: 1000
+  m_StartingMoney: 500
   m_CurrentLevel: 0
   m_DailyMaxCustomer: 4
   m_LengthCustomerQueue: 3
   m_CurrentWaitingCustomer: 0
   m_AllGuestsVisitedToday: 0
   m_CustomersList: []
+  m_FunLevel: 0
   m_CurrentPrices: 10
+  m_HouseLevel: 0
+  m_StoveLevel: 1
+  m_TableLevel: 5
+  m_IngredientsLevel: 0
+  m_TimeForOrder: 60
