@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     
     public List<CustomerController> m_CustomersList = new List<CustomerController>();
 
+    public bool m_FunLevelBuyed; //Ist Fun Level verfügbar? Also gekauft?
     public bool m_FunLevel = false;
     
     public int m_CurrentPrices = 10;
@@ -48,6 +49,15 @@ public class GameManager : MonoBehaviour
     public bool m_IngredientTomato;
     public bool m_IngredientLettuce;
     public bool m_IngredientOnion;
+
+    public bool m_CuttingTable;
+    public int m_CuttingLevel;
+    
+    //ToDo: Wer macht das ????? Juan or Alex
+    public int m_CookingLevel;
+    public int m_WaitingTimeLevel; //Kunden warten länger
+    public int m_AdvertismentLevel; //More Customers
+    public int m_QualityLevel; //More moneyprices for eat
     
     public float m_TimeForOrder = 60f;
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
@@ -159,7 +169,9 @@ public class GameManager : MonoBehaviour
         m_IngredientLettuce = false;
         m_IngredientOnion = false;
         m_TableLevel = 0;
-
+        m_CuttingTable = false;
+        m_CuttingLevel = 0;
+        
         m_LengthCustomerQueue = m_StandardLengthCustomerQueue;
         
         m_Money = m_StartingMoney;
