@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UpgradeName: TableUpgrade
   m_InitialCost: 25
-  m_MaxLevel: 10
+  m_MaxLevel: 6
