@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
 public class Meal
 {
@@ -16,7 +17,7 @@ public class IngredientSnapping : MonoBehaviour
     public bool stackable = false;
     public Transform snapPosition;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Snappable")
         {
@@ -34,25 +35,16 @@ public class IngredientSnapping : MonoBehaviour
         snapped = true;
         Ingredient ingredient = snappableObject.GetComponent<Ingredient>();
         ingredient.isSnapped = true;
-        snappableObject.transform.SetParent(transform);
+
         snappedIngredients.Ingredients.Add(ingredient);
-
-        // Deactivate Rigidbody/physics
-        Rigidbody rb = snappableObject.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.useGravity = false;
-            rb.isKinematic = true;
-        }
         
-        // Deactivate interaction with snapped ingredient
-        var interactable = snappableObject.GetComponent<XRGrabInteractable>();
-        if (interactable != null)
-        {
-            interactable.interactionLayers = LayerMask.GetMask("None");
-            interactable.movementType = XRBaseInteractable.MovementType.Kinematic;
-        }
+        Destroy(snappableObject.GetComponent<XRGrabInteractable>());
+        Destroy(snappableObject.GetComponent<XRGeneralGrabTransformer>());
+        Destroy(snappableObject.GetComponent<Rigidbody>());
 
+        snappableObject.transform.SetParent(gameObject.transform);
+        Debug.Log(snappableObject);
+        
         // Set position and rotation of snapped object
         if (stackable)
         {

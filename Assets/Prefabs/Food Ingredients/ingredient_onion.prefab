@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3636063756661217156}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.53165317, y: 0.72737813, z: 0.036173105}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.72, y: 0.72, z: 0.72}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -326,5 +326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fryable: 0
   cuttable: 0
+  name: 0
   ingredientStates: []
+  currentState:
+    stateType: 0
+    stateObject: {fileID: 0}
   isSnapped: 0
