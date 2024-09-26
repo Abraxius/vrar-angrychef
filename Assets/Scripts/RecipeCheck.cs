@@ -37,6 +37,8 @@ public class RecipeCheck : MonoBehaviour
             else
             {
                 Debug.Log("Meal is wrong!");
+                Destroy(other.gameObject);
+                GameManager.Instance.m_CustomersList[0].LoseOrder();
             }
         }
     }
