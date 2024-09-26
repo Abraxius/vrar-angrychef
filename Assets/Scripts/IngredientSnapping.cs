@@ -43,7 +43,6 @@ public class IngredientSnapping : MonoBehaviour
         Destroy(snappableObject.GetComponent<Rigidbody>());
 
         snappableObject.transform.SetParent(gameObject.transform);
-        Debug.Log(snappableObject);
         
         // Set position and rotation of snapped object
         if (stackable)
@@ -56,7 +55,7 @@ public class IngredientSnapping : MonoBehaviour
             float currentHeight = ingredient.GetHeight();
             print("Current Height: " + currentHeight);
             print("Total Height: " + totalHeight);
-            Vector3 position = gameObject.transform.position + new Vector3(0, totalHeight + (currentHeight / 2), 0);
+            Vector3 position = gameObject.transform.position + new Vector3(0, totalHeight, 0);
             print("Position: " + position);
             snappableObject.transform.position = position;
             snappableObject.transform.rotation = Quaternion.identity;
@@ -78,7 +77,7 @@ public class IngredientSnapping : MonoBehaviour
             {
                 totalHeight += ingredient.GetHeight();
             }
-            collider.size = new Vector3(collider.size.x, totalHeight + 0.7f, collider.size.z);
+            collider.size = new Vector3(collider.size.x, totalHeight, collider.size.z);
             collider.center = new Vector3(collider.center.x, (totalHeight / 2), collider.center.z);
 
             // Adjust the position to move the collider upwards
