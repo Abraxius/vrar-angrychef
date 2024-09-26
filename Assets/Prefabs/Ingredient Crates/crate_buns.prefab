@@ -187,8 +187,8 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6879788745294663980}
-        m_TargetAssemblyTypeName: IngredientSpawner, Assembly-CSharp
+      - m_Target: {fileID: 1005942929631984511}
+        m_TargetAssemblyTypeName: BunSpawner, Assembly-CSharp
         m_MethodName: SpawnIngredient
         m_Mode: 1
         m_Arguments:
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2117993506542540393}
-  - component: {fileID: 6879788745294663980}
+  - component: {fileID: 1005942929631984511}
   m_Layer: 0
   m_Name: IngredientSpawner
   m_TagString: Untagged
@@ -282,7 +282,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3951350033519917038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6879788745294663980
+--- !u!114 &1005942929631984511
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,7 +291,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6686773118860801660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3cbdf9134e2ef48ba9fc178ec11c44, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c16ea5f1ac15f94f9440975765e2622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredient: {fileID: 7961465518905650323, guid: 110518f02efb5864d9ca503ad1f19ada, type: 3}
+  ingredient: {fileID: 0}
+  bunBottom: {fileID: 3959396621032802561, guid: 0cdc31a866c3d6441a40296702eec934, type: 3}
+  bunTop: {fileID: 7821089468580943086, guid: 8d2e660c7c6c1884286bed0dcfeb72db, type: 3}

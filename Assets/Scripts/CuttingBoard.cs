@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CuttingBoard : IngredientSnapping
 {
-    [SerializeField] private float choppTime = 5f; // Time to change from whole to chopped
-    [SerializeField] private float sliceTime = 10f; // Time to change from chopped to sliced
+    [SerializeField] private float choppTime = 2f; // Time to change from whole to chopped
+    [SerializeField] private float sliceTime = 4f; // Time to change from chopped to sliced
     private float timer = 0f;
     private GameObject snappedIngredient;
 
