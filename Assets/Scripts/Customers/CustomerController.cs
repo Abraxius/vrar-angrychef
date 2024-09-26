@@ -250,8 +250,12 @@ namespace AngryChief.Customer
                     break;
                 }
             }
-
-            var tmpMoney =  GameManager.Instance.m_CurrentPrices * (GameManager.Instance.m_IngredientsLevel/20) * (GameManager.Instance.m_QualityLevel/100); //Upgrade: Mehr Geld
+            
+            var tmpMoney = GameManager.Instance.m_CurrentPrices +
+                            (GameManager.Instance.m_CurrentPrices * 
+                            (GameManager.Instance.m_IngredientsLevel / 100 * 30) +
+                            (GameManager.Instance.m_CurrentPrices * (GameManager.Instance.m_QualityLevel / 100 * 10))); //Upgrade: Mehr Geld
+            
             GameManager.Instance.m_Money += tmpMoney; 
             GameManager.Instance.m_Score += tmpMoney;
             
