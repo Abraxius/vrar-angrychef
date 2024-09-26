@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Transformers;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class Stove : IngredientSnapping
+public class Stove : MonoBehaviour
 {
+    [HideInInspector]
+    public bool snapped = false;
+    public Meal snappedIngredients = new Meal { Ingredients = new List<Ingredient>() };
+    public bool stackable = false;
+    public Transform snapPosition;
     [SerializeField] private float cookTime = 5f; // Time to change from uncooked to cooked
     [SerializeField] private float burnTime = 10f; // Time to change from cooked to burned
     private float timer = 0f;
     private GameObject snappedBurger;
     private bool canSnapAgain = true;   // Flag, um eine kurze Verzögerung nach dem Herausnehmen zu ermöglichen
+    private bool canTake = false;
 
     // Update is called once per frame
     void Update()
@@ -20,62 +28,83 @@ public class Stove : IngredientSnapping
             if (snappedIngredients.Ingredients[0].GetCurrentStateType() == IngredientStateType.Uncooked && timer >= cookTime)
             {
                 snappedIngredients.Ingredients[0].SetState(IngredientStateType.Cooked);
-                print(snappedIngredients.Ingredients[0].GetCurrentStateType());
+                // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
             }
             else if (snappedIngredients.Ingredients[0].GetCurrentStateType() == IngredientStateType.Cooked && timer >= burnTime)
             {
                 snappedIngredients.Ingredients[0].SetState(IngredientStateType.Burned);
-                print(snappedIngredients.Ingredients[0].GetCurrentStateType());
+                // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Snappable" && !snapped && canSnapAgain)
+        if (canSnapAgain)
         {
-            if (other.gameObject.GetComponent<Ingredient>().fryable && ((snappedIngredients.Ingredients.Count == 0 && !other.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Ingredients.Count >= 1 && stackable == true && !other.gameObject.GetComponent<Ingredient>().isSnapped)))
+            if (other.gameObject.tag == "Snappable" && !snapped)
             {
-                SnapObject(other.gameObject);
-                snappedBurger = other.gameObject;
+                if (other.gameObject.GetComponent<Ingredient>().fryable && ((snappedIngredients.Ingredients.Count == 0 && !other.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Ingredients.Count >= 1 && stackable == true && !other.gameObject.GetComponent<Ingredient>().isSnapped)))
+                {
+                    StartCoroutine(TakeCooldown());
+
+                    Debug.Log("Burger in die Pfanne gelegt");
+                    SnapObject(other.gameObject);
+                    snappedBurger = other.gameObject;
+                }
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Trigger Exit");
-        if (other.gameObject.Equals(snappedBurger) && snapped)
+        if (canTake)
         {
-            TakeObject(other.gameObject);
-            Debug.Log("Burger aus der Pfanne genommen");
+            if (other.gameObject.Equals(snappedBurger) && snapped)
+            {
+                // Starte Coroutine, um zu verhindern, dass der Burger sofort wieder gesnapped wird
+                StartCoroutine(SnapCooldown());
 
-            // Starte Coroutine, um zu verhindern, dass der Burger sofort wieder gesnapped wird
-            StartCoroutine(SnapCooldown());
+                TakeObject(other.gameObject);
+                Debug.Log("Burger aus der Pfanne genommen");
+            }
+            else
+            {
+                Debug.Log("Nicht der aktuelle Burger");
+            }
         }
-        else
+    }
+
+    protected void SnapObject(GameObject snappableObject)
+    {
+        print("Snapped");
+        snapped = true;
+        Ingredient ingredient = snappableObject.GetComponent<Ingredient>();
+        ingredient.isSnapped = true;
+        snappableObject.transform.SetParent(transform);
+
+        // Deactivate Rigidbody/physics
+        Rigidbody rb = snappableObject.GetComponent<Rigidbody>();
+        if (rb != null)
         {
-            Debug.Log("Nicht der aktuelle Burger");
+            rb.useGravity = false;
+            rb.isKinematic = true;
         }
+
+        snappedIngredients.Ingredients.Add(ingredient);
+
+        snappableObject.transform.SetParent(gameObject.transform);
+        Debug.Log(snappableObject);
+
+        snappableObject.transform.position = snapPosition.position;
+        snappableObject.transform.rotation = Quaternion.identity;
     }
 
     private void TakeObject(GameObject snappedObject)
     {
-        // Prüfe, ob das Objekt überhaupt einen Parent hat
-        if (snappedObject.transform.parent != null)
-        {
-            Debug.Log("Parent before: " + snappedObject.transform.parent.name);
-        }
-        else
-        {
-            Debug.Log("Das Objekt hat keinen Parent.");
-        }
+        Debug.Log(snappedObject.gameObject.name);
 
-        snapped = false;
-        snappedBurger = null;
         Ingredient ingredient = snappedObject.GetComponent<Ingredient>();
-        ingredient.isSnapped = false;
-        snappedObject.transform.parent = null;
         snappedIngredients.Ingredients.Remove(ingredient);
 
 
@@ -83,16 +112,36 @@ public class Stove : IngredientSnapping
         Rigidbody rb = snappedObject.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.useGravity = true;
+            Debug.Log("Rigidbody!");
             rb.isKinematic = false;
+            rb.useGravity = true;
         }
+        else
+        {
+            Debug.Log("Rigidbody is null!");
+        }
+
+        ingredient.isSnapped = false;
+        snapped = false;
+        snappedBurger = null;
     }
 
     // Coroutine für eine kurze Verzögerung nach dem Herausnehmen
     IEnumerator SnapCooldown()
     {
         canSnapAgain = false;  // Verhindere, dass sofort wieder gesnapped wird
-        yield return new WaitForSeconds(0.5f);  // Warte 0,5 Sekunden
+        Debug.Log("Snapping Cooldown started");
+        yield return new WaitForSeconds(2f);
         canSnapAgain = true;  // Erlaube wieder das Snapping
+        Debug.Log("Snapping Cooldown finished");
+    }
+
+    IEnumerator TakeCooldown()
+    {
+        canTake = false;  // Verhindere, dass sofort wieder gesnapped wird
+        Debug.Log("Take Cooldown started");
+        yield return new WaitForSeconds(1f);
+        canTake = true;  // Erlaube wieder das Snapping
+        Debug.Log("Take Cooldown finished");
     }
 }
