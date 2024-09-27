@@ -102,9 +102,6 @@ public class GameManager : MonoBehaviour
         m_StandardLengthCustomerQueue = m_LengthCustomerQueue;
 
         m_Score = 0;
-
-
-
         
         if (m_FunLevel)
         {

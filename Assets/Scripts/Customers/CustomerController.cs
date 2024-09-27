@@ -264,7 +264,12 @@ namespace AngryChief.Customer
             if (!CheckWaveIsFinished())
                 NextCustomer();
             else
+            {
+                GameManager.Instance.m_CustomersList.Remove(this);
+                GameManager.Instance.m_CurrentWaitingCustomer -= 1;
+                
                 GameManager.Instance.DayEnd();
+            }
             
             m_CustomerSpawnManager.CoroutineForSpawn();
         }

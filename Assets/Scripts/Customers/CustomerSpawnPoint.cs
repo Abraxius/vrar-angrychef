@@ -40,7 +40,7 @@ namespace AngryChief.Customer
 
         IEnumerator SpawnCustomer()
         {
-            float waitTime = Random.Range(2f, 5f); //ToDo: muss mit dem level mitskalieren
+            float waitTime = Random.Range(2f, 5f); //ToDo: muss mit dem level mitskalieren 10-20s????
 
             // Ausgabe der Wartezeit in der Konsole (optional)
             Debug.Log("Wartezeit: " + waitTime + " Sekunden");
