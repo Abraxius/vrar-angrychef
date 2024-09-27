@@ -49,6 +49,10 @@ public class Stove : MonoBehaviour
                 // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
             }
         }
+        else
+        {
+            timer = 0f; // Reset timer if no ingredients are snapped
+        }
     }
 
     float CalculateCookTime(float baseTime, int level)

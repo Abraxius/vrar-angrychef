@@ -101,8 +101,15 @@ public class GameManager : MonoBehaviour
         m_StandardLengthCustomerQueue = m_LengthCustomerQueue;
 
         m_Score = 0;
-        
+
+
         AudioManager.Instance.Play("background_jazz");
+        
+        if (m_FunLevel)
+        {
+            AudioManager.Instance.Stop("background_jazz");
+            AudioManager.Instance.Play("background_mcdonalds");
+        }
         
         StartCoroutine(LoadSceneAsync("GameScene"));
     }

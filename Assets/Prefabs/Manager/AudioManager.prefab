@@ -85,7 +85,7 @@ MonoBehaviour:
     source: {fileID: 0}
     isMusic: 0
     isSpatialSound: 0
-  - name: fun_order_finish_good_1
+  - name: fun_order_finish_good1
     clip: {fileID: 8300000, guid: c8c91d8e8171647c9a7f38ac34194735, type: 3}
     volume: 1
     pitch: 1
@@ -151,6 +151,14 @@ MonoBehaviour:
     isSpatialSound: 0
   - name: success
     clip: {fileID: 8300000, guid: 168b0cf8b105f46d88631f000590e521, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isMusic: 0
+    isSpatialSound: 0
+  - name: wrong
+    clip: {fileID: 8300000, guid: edac7514f0fbe4ab28da9743cbf15566, type: 3}
     volume: 1
     pitch: 1
     loop: 0

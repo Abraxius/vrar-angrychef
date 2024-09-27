@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using AngryChief.Cook;
 using AngryChief.Customer;
+using AngryChief.Manager;
+using Random = System.Random;
 
 public class RecipeCheck : MonoBehaviour
 {
@@ -32,12 +34,32 @@ public class RecipeCheck : MonoBehaviour
                 Debug.Log("Meal is correct!");
                 // Finish Order and Destroy Meal
                 Destroy(other.gameObject);
+
+                if (GameManager.Instance.m_FunLevel)
+                {
+                    AudioManager.Instance.Play("fun_order_finish_good" + new Random().Next(1,2)); // TODO: Update count
+                }
+                else
+                {
+                    AudioManager.Instance.Play("success");
+                }
+                
                 GameManager.Instance.m_CustomersList[0].FinishOrder();
             }
             else
             {
                 Debug.Log("Meal is wrong!");
                 Destroy(other.gameObject);
+                
+                if (GameManager.Instance.m_FunLevel)
+                {
+                    AudioManager.Instance.Play("fun_order_finish_bad" + new Random().Next(1,3)); // TODO: Update count
+                }
+                else
+                {
+                    AudioManager.Instance.Play("wrong");
+                }
+                
                 GameManager.Instance.m_CustomersList[0].LoseOrder();
             }
         }
