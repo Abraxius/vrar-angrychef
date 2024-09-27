@@ -157,6 +157,14 @@ MonoBehaviour:
     source: {fileID: 0}
     isMusic: 0
     isSpatialSound: 0
+  - name: wrong
+    clip: {fileID: 8300000, guid: edac7514f0fbe4ab28da9743cbf15566, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isMusic: 0
+    isSpatialSound: 0
   - name: alarm
     clip: {fileID: 8300000, guid: 23b7a7a84c0434b0da71c385df9ed08f, type: 3}
     volume: 1

@@ -39,6 +39,10 @@ public class RecipeCheck : MonoBehaviour
                 {
                     AudioManager.Instance.Play("fun_order_finish_good" + new Random().Next(1,2)); // TODO: Update count
                 }
+                else
+                {
+                    AudioManager.Instance.Play("success");
+                }
                 
                 GameManager.Instance.m_CustomersList[0].FinishOrder();
             }
@@ -50,6 +54,10 @@ public class RecipeCheck : MonoBehaviour
                 if (GameManager.Instance.m_FunLevel)
                 {
                     AudioManager.Instance.Play("fun_order_finish_bad" + new Random().Next(1,3)); // TODO: Update count
+                }
+                else
+                {
+                    AudioManager.Instance.Play("wrong");
                 }
                 
                 GameManager.Instance.m_CustomersList[0].LoseOrder();
