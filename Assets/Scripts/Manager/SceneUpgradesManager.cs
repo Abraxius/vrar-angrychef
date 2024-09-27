@@ -57,6 +57,11 @@ public class SceneUpgradesManager : MonoBehaviour
             m_StoveGameObjects[0].SetActive(false);     
             m_StoveGameObjects[m_StoveLevel].SetActive(true);   
         }
+        else
+        {
+            m_StoveGameObjects[0].SetActive(true);     
+            m_StoveGameObjects[m_StoveLevel].SetActive(false);        
+        }
         
         if (GameManager.Instance.m_IngredientLettuce)
             m_LettuceGameObjects.SetActive(true);

@@ -106,12 +106,34 @@ public class Ingredient : MonoBehaviour
     public float GetHeight()
     {
         Collider collider = GetComponent<Collider>();
+        
+        if (collider == null)
+            try
+            {
+                collider = transform.GetChild(2).GetComponent<Collider>();
+            }
+            catch
+            {
+                Debug.Log("Kein 2 Child Collider");
+            }
+        
         if (collider != null)
         {
             return collider.bounds.size.y;
         }
-
+        
         Renderer renderer = GetComponent<Renderer>();
+        
+        if (renderer == null)
+            try
+            {
+                renderer = transform.GetChild(2).GetComponent<Renderer>();
+            }
+            catch
+            {
+                Debug.Log("Kein 2 Child Renderer");
+            }
+        
         if (renderer != null)
         {
             return renderer.bounds.size.y;
