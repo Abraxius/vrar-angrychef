@@ -52,6 +52,10 @@ public class CuttingBoard : MonoBehaviour
                 AudioManager.Instance.Play("success");
             }
         }
+        else
+        {
+            timer = 0f; // Reset timer if no ingredients are snapped
+        }
     }
 
     float CalculateChoppTime(float baseTime, int level)
