@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AngryChief.Manager;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -15,7 +16,7 @@ public class Stove : MonoBehaviour
     [SerializeField] private float burnTime = 10f; // Time to change from cooked to burned
     private float timer = 0f;
     private GameObject snappedBurger;
-    private bool canSnapAgain = true;   // Flag, um eine kurze Verzögerung nach dem Herausnehmen zu ermöglichen
+    private bool canSnapAgain = true;   // Flag, um eine kurze Verzï¿½gerung nach dem Herausnehmen zu ermï¿½glichen
     private bool canTake = false;
 
     // Update is called once per frame
@@ -28,11 +29,14 @@ public class Stove : MonoBehaviour
             if (snappedIngredients.Ingredients[0].GetCurrentStateType() == IngredientStateType.Uncooked && timer >= cookTime)
             {
                 snappedIngredients.Ingredients[0].SetState(IngredientStateType.Cooked);
+                AudioManager.Instance.Play("success");
                 // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
             }
             else if (snappedIngredients.Ingredients[0].GetCurrentStateType() == IngredientStateType.Cooked && timer >= burnTime)
             {
                 snappedIngredients.Ingredients[0].SetState(IngredientStateType.Burned);
+                AudioManager.Instance.Stop("fry");
+                AudioManager.Instance.Play("alarm");
                 // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
             }
         }
@@ -49,6 +53,7 @@ public class Stove : MonoBehaviour
                     StartCoroutine(TakeCooldown());
 
                     Debug.Log("Burger in die Pfanne gelegt");
+                    AudioManager.Instance.Play("fry");
                     SnapObject(other.gameObject);
                     snappedBurger = other.gameObject;
                 }
@@ -67,6 +72,8 @@ public class Stove : MonoBehaviour
 
                 TakeObject(other.gameObject);
                 Debug.Log("Burger aus der Pfanne genommen");
+                AudioManager.Instance.Stop("fry");
+                AudioManager.Instance.Stop("alarm");
             }
             else
             {
@@ -126,7 +133,7 @@ public class Stove : MonoBehaviour
         snappedBurger = null;
     }
 
-    // Coroutine für eine kurze Verzögerung nach dem Herausnehmen
+    // Coroutine fï¿½r eine kurze Verzï¿½gerung nach dem Herausnehmen
     IEnumerator SnapCooldown()
     {
         canSnapAgain = false;  // Verhindere, dass sofort wieder gesnapped wird

@@ -149,3 +149,19 @@ MonoBehaviour:
     source: {fileID: 0}
     isMusic: 0
     isSpatialSound: 0
+  - name: success
+    clip: {fileID: 8300000, guid: 168b0cf8b105f46d88631f000590e521, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isMusic: 0
+    isSpatialSound: 0
+  - name: alarm
+    clip: {fileID: 8300000, guid: 23b7a7a84c0434b0da71c385df9ed08f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isMusic: 0
+    isSpatialSound: 0

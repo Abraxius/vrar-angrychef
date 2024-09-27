@@ -30,6 +30,16 @@ namespace AngryChief.Manager
         
         private void Start()
         {
+            // Check for saved volume settings, if not found, set to 100
+            if (!PlayerPrefs.HasKey("musicVolume"))
+            {
+                PlayerPrefs.SetFloat("musicVolume", 70);
+            }
+            if (!PlayerPrefs.HasKey("soundVolume"))
+            {
+                PlayerPrefs.SetFloat("soundVolume", 100);
+            }
+            
             foreach (Sound s in sounds)
             {
                 if (s.isMusic)
@@ -85,6 +95,7 @@ namespace AngryChief.Manager
         {
             Sound s = Array.Find(sounds, sound => sound.name == name);
 
+            Debug.Log("Playing: " + name);
             if (s == null)
             {
                 Debug.LogWarning("Sound: " + name + " nicht gefunden");
@@ -92,6 +103,7 @@ namespace AngryChief.Manager
             }
 
             s.source.Play();
+            
             /*
             if (lastStartedSound != null)
             {

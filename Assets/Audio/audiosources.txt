@@ -14,3 +14,7 @@ Chop Sound : Sound Effect from <a href="https://pixabay.com/?utm_source=link-att
 Pan Sizzling:  Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=74556">Pixabay</a>
 
 Knife Sound: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=84661">Pixabay</a>
+
+Fry Success Sound : Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=98705">Pixabay</a>
+
+Alarm: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6402">Pixabay</a>
