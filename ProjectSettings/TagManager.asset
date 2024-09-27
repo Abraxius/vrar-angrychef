@@ -9,6 +9,7 @@ TagManager:
   - Snappable
   - Bullet
   - Meal
+  - VegetableState
   layers:
   - Default
   - TransparentFX
