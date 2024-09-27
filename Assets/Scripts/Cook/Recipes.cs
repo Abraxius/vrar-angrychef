@@ -137,10 +137,10 @@ public class Recipe : IEquatable<Meal>
             }
         }
 
-        // If no ingredients are added, add one random ingredient
+        // If no ingredients are added, add one juicy burger patty
         if (ingredients.Count == 1)
         {
-            ingredients.Add((IngredientName)random.Next(1, Enum.GetNames(typeof(IngredientName)).Length));
+            ingredients.Add((IngredientName.Burger));
         }
 
         // Add bun bottom to list
