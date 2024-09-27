@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using AngryChief.Manager;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Rendering;
 
 public class CuttingBoard : MonoBehaviour
 {
@@ -11,12 +13,21 @@ public class CuttingBoard : MonoBehaviour
     public Meal snappedIngredients = new Meal { Ingredients = new List<Ingredient>() };
     public bool stackable = false;
     public Transform snapPosition;
-    [SerializeField] private float choppTime = 2f; // Time to change from whole to chopped
-    [SerializeField] private float sliceTime = 4f; // Time to change from chopped to sliced
+    [SerializeField] private float baseChoppTime = 2f; // Time to change from whole to chopped
+    [SerializeField] private float baseSliceTime = 4f; // Time to change from chopped to sliced
     private float timer = 0f;
     private GameObject snappedIngredient;
-    private bool canSnapAgain = true;   // Flag, um eine kurze Verzögerung nach dem Herausnehmen zu ermöglichen
+    private bool canSnapAgain = true;   // Flag, um eine kurze Verzï¿½gerung nach dem Herausnehmen zu ermï¿½glichen
     private bool canTake = false;
+
+    private float choppTime;
+    private float sliceTime;
+
+    private void Start()
+    {
+        choppTime = CalculateChoppTime(baseChoppTime, GameManager.Instance.m_CuttingLevel);
+        sliceTime = CalculateSliceTime(baseSliceTime, GameManager.Instance.m_CuttingLevel);
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,17 +40,45 @@ public class CuttingBoard : MonoBehaviour
             {
                 snappedIngredients.Ingredients[0].SetState(IngredientStateType.Chopped);
                 // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
+                AudioManager.Instance.Stop("knife");
+                AudioManager.Instance.Play("success");
             }
             else if (snappedIngredients.Ingredients[0].GetCurrentStateType() == IngredientStateType.Chopped && timer >= sliceTime)
             {
                 snappedIngredients.Ingredients[0].SetState(IngredientStateType.Slice);
                 // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
+                AudioManager.Instance.Stop("chop");
+                AudioManager.Instance.Stop("knife");
+                AudioManager.Instance.Play("success");
             }
         }
     }
 
+    float CalculateChoppTime(float baseTime, int level)
+    {
+        if (level <= 0)
+        {
+            return baseTime; // Kein Level -> Keine VerkÃ¼rzung der Zeit
+        }
+
+        float reductionFactor = 1 - (level * 0.1f); // 10% Reduktion pro Level
+        return baseTime * Mathf.Clamp(reductionFactor, 0.1f, 1f); // Reduktion bis zu 90%, nicht mehr als 100%
+    }
+
+    float CalculateSliceTime(float baseTime, int level)
+    {
+        if (level <= 0)
+        {
+            return baseTime; // Kein Level -> Keine VerkÃ¼rzung der Zeit
+        }
+
+        float reductionFactor = 1 - (level * 0.1f); // 10% Reduktion pro Level
+        return baseTime * Mathf.Clamp(reductionFactor, 0.1f, 1f); // Reduktion bis zu 90%, nicht mehr als 100%
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        AudioManager.Instance.Play("knife");
         if (canSnapAgain)
         {
             if (other.gameObject.transform.parent != null)
@@ -51,6 +90,7 @@ public class CuttingBoard : MonoBehaviour
                         StartCoroutine(TakeCooldown());
 
                         Debug.Log("Zutat aufs Schneidebrett gelegt");
+                        AudioManager.Instance.Play("chop");
                         SnapObject(other.gameObject.transform.parent.gameObject);
                         snappedIngredient = other.gameObject.transform.parent.gameObject;
                     }
@@ -70,6 +110,7 @@ public class CuttingBoard : MonoBehaviour
 
                 TakeObject(other.gameObject.transform.parent.gameObject);
                 Debug.Log("Zutat vom Schneidebrett genommen");
+                AudioManager.Instance.Stop("chop");
             }
             else
             {
@@ -129,7 +170,7 @@ public class CuttingBoard : MonoBehaviour
         snappedIngredient = null;
     }
 
-    // Coroutine für eine kurze Verzögerung nach dem Herausnehmen
+    // Coroutine fï¿½r eine kurze Verzï¿½gerung nach dem Herausnehmen
     IEnumerator SnapCooldown()
     {
         canSnapAgain = false;  // Verhindere, dass sofort wieder gesnapped wird

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AngryChief.Customer;
+using AngryChief.Manager;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
     }
 
     private void Start()
@@ -99,6 +101,8 @@ public class GameManager : MonoBehaviour
         m_StandardLengthCustomerQueue = m_LengthCustomerQueue;
 
         m_Score = 0;
+        
+        AudioManager.Instance.Play("background_jazz");
         
         StartCoroutine(LoadSceneAsync("GameScene"));
     }

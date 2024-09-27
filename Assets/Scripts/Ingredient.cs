@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.XR.Interaction.Toolkit;
+using System.Collections;
 
 public enum IngredientName
 {
@@ -44,19 +46,22 @@ public class Ingredient : MonoBehaviour
     public bool isSnapped = false;
     [HideInInspector]
     public static Dictionary<IngredientName, IngredientStateType> wantedIngredientStateType = new Dictionary<IngredientName, IngredientStateType>
-{
-    { IngredientName.BunTop, IngredientStateType.Uncooked },
-    { IngredientName.Onion, IngredientStateType.Slice },
-    { IngredientName.Carrot, IngredientStateType.Slice },
-    { IngredientName.Tomato, IngredientStateType.Slice },
-    { IngredientName.Lettuce, IngredientStateType.Slice },
-    { IngredientName.Burger, IngredientStateType.Cooked },
-    { IngredientName.Cheese, IngredientStateType.Slice },
-    { IngredientName.BunBottom, IngredientStateType.Uncooked },
-};
+    {
+        { IngredientName.BunTop, IngredientStateType.Uncooked },
+        { IngredientName.Onion, IngredientStateType.Slice },
+        { IngredientName.Carrot, IngredientStateType.Slice },
+        { IngredientName.Tomato, IngredientStateType.Slice },
+        { IngredientName.Lettuce, IngredientStateType.Slice },
+        { IngredientName.Burger, IngredientStateType.Cooked },
+        { IngredientName.Cheese, IngredientStateType.Slice },
+        { IngredientName.BunBottom, IngredientStateType.Uncooked },
+    };
+
+    XRGrabInteractable inter;
 
     void Start()
     {
+        inter = gameObject.GetComponent<XRGrabInteractable>();
         if (ingredientStates.Count > 0)
         {
             SetState(ingredientStates[0].stateType); // Set initial state to the first state in the list
@@ -85,6 +90,10 @@ public class Ingredient : MonoBehaviour
         {
             currentState.stateObject.SetActive(true);
         }
+
+        inter.colliders.Clear();
+        inter.colliders.Add(currentState.stateObject.gameObject.GetComponent<MeshCollider>());
+        StartCoroutine(ReregisterInteractable());
     }
 
     public IngredientStateType GetCurrentStateType()
@@ -110,5 +119,16 @@ public class Ingredient : MonoBehaviour
 
         // Return default height if no collider or renderer is found
         return 1.0f;
+    }
+
+    private IEnumerator ReregisterInteractable()
+    {
+        yield return new WaitForEndOfFrame();
+        inter.interactionManager.UnregisterInteractable(inter as IXRInteractable);
+
+        yield return new WaitForEndOfFrame();
+        inter.interactionManager.RegisterInteractable(inter as IXRInteractable);
+
+        yield return null;
     }
 }

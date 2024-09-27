@@ -54,7 +54,7 @@ MonoBehaviour:
     isMusic: 0
     isSpatialSound: 0
   - name: background_jazz
-    clip: {fileID: 8300000, guid: eae73bebb6d9e4e6fbb584b72405fdf8, type: 3}
+    clip: {fileID: 8300000, guid: d6ebfd8d520b846a2b90c483960852af, type: 3}
     volume: 1
     pitch: 1
     loop: 1
@@ -127,6 +127,38 @@ MonoBehaviour:
     isSpatialSound: 0
   - name: chop
     clip: {fileID: 8300000, guid: f71539c6830d343299d1981b3dc66f7e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isMusic: 0
+    isSpatialSound: 0
+  - name: fry
+    clip: {fileID: 8300000, guid: a75f082b0890142d3bc806ee6931ae4a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isMusic: 0
+    isSpatialSound: 0
+  - name: knife
+    clip: {fileID: 8300000, guid: aa4266ae47d484c69b2093247c6abfc6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isMusic: 0
+    isSpatialSound: 0
+  - name: success
+    clip: {fileID: 8300000, guid: 168b0cf8b105f46d88631f000590e521, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isMusic: 0
+    isSpatialSound: 0
+  - name: alarm
+    clip: {fileID: 8300000, guid: 23b7a7a84c0434b0da71c385df9ed08f, type: 3}
     volume: 1
     pitch: 1
     loop: 0

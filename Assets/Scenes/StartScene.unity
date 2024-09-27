@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22232,34 +22232,6 @@ PrefabInstance:
     - target: {fileID: 3106871855762856274, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
-      propertyPath: sounds.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
-      propertyPath: sounds.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: eae73bebb6d9e4e6fbb584b72405fdf8, type: 3}
-    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
-      propertyPath: sounds.Array.data[0].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
-      propertyPath: sounds.Array.data[0].name
-      value: mcdonalds
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
-      propertyPath: sounds.Array.data[0].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
-      propertyPath: sounds.Array.data[0].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
-      propertyPath: sounds.Array.data[0].isMusic
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7987628189429400105, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
       propertyPath: m_Name
