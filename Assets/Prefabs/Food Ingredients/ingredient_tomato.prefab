@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 8246721925072955490}
   m_Layer: 0
   m_Name: whole
-  m_TagString: Untagged
+  m_TagString: VegetableState
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1039503550524331539}
   m_Layer: 0
   m_Name: slice
-  m_TagString: Untagged
+  m_TagString: VegetableState
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 5877220572455796628}
   m_Layer: 0
   m_Name: chopped
-  m_TagString: Untagged
+  m_TagString: VegetableState
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

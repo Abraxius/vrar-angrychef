@@ -27,6 +27,14 @@ public class IngredientSnapping : MonoBehaviour
                 AdjustColliderSize();
             }
         }
+        else if (other.gameObject.tag == "VegetableState")
+        {
+            if ((snappedIngredients.Ingredients.Count == 0 && !other.gameObject.transform.parent.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Ingredients.Count >= 1 && stackable == true && !other.gameObject.transform.parent.gameObject.GetComponent<Ingredient>().isSnapped))
+            {
+                SnapObject(other.gameObject.transform.parent.gameObject);
+                AdjustColliderSize();
+            }
+        }
     }
 
     protected void SnapObject(GameObject snappableObject)

@@ -25,7 +25,7 @@ public class Stove : MonoBehaviour
     private void Start()
     {
         cookTime = CalculateCookTime(baseCookTime, GameManager.Instance.m_CookingLevel);
-        burnTime = CalculateBurnTime(baseCookTime, GameManager.Instance.m_CookingLevel);
+        burnTime = CalculateBurnTime(baseBurnTime, GameManager.Instance.m_CookingLevel);
     }
 
     // Update is called once per frame
