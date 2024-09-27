@@ -73,6 +73,33 @@ public class Recipe : IEquatable<Meal>
         //seed random
         Random random = new Random();
 
+        //Get allowed ingredients according upgrades
+        var carrotDisabled = !GameManager.Instance.m_IngredientCarrot;
+        var tomatoDisabled = !GameManager.Instance.m_IngredientTomato;
+        var lettuceDisabled = !GameManager.Instance.m_IngredientLettuce;
+        var onionDisabled = !GameManager.Instance.m_IngredientOnion;
+
+        if (carrotDisabled)
+            maxIngredientCount[IngredientName.Carrot] = 0;
+        else
+            maxIngredientCount[IngredientName.Carrot] = 2;
+
+        if (tomatoDisabled)
+            maxIngredientCount[IngredientName.Tomato] = 0;
+        else
+            maxIngredientCount[IngredientName.Tomato] = 1;
+
+        if (lettuceDisabled)
+            maxIngredientCount[IngredientName.Lettuce] = 0;
+        else
+            maxIngredientCount[IngredientName.Lettuce] = 2;
+
+        if (onionDisabled)
+            maxIngredientCount[IngredientName.Onion] = 0;
+        else
+            maxIngredientCount[IngredientName.Onion] = 2;
+
+
         //Get random number for max total ingredient count of recipe
         var recipeTotalIngredientCount = random.Next(3, maxTotalIngredientCount);
 
@@ -104,7 +131,7 @@ public class Recipe : IEquatable<Meal>
                 }
             }
         }
-        
+
         // If no ingredients are added, add one random ingredient
         if (ingredients.Count == 1)
         {
