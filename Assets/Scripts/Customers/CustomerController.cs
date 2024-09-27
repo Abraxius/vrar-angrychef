@@ -33,7 +33,7 @@ namespace AngryChief.Customer
         Animator m_Animator;
         ShowOrder m_ShowOrder;
 
-        private float m_EatingTime = 10f;
+        private float m_EatingTime = 60f;
         
         private Seat m_CurrentSeat;
         
@@ -93,7 +93,7 @@ namespace AngryChief.Customer
                 
                 m_Bubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f + Vector3.left * 0.5f, transform.rotation);
             
-                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10)); //Upgrade: Wartezeit 
+                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10) - (GameManager.Instance.m_CurrentLevel * 10)); //Upgrade: Wartezeit 
                 
                 m_Bubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
                 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq; 
 
 namespace AngryChief.Customer
 {
@@ -25,6 +26,7 @@ namespace AngryChief.Customer
         
         [SerializeField] GameObject m_CashDeskPosition;
         [SerializeField] GameObject[] m_Customer;
+        private bool m_FirstCustomerDone;
         
         public void StarGame()
         {
@@ -40,13 +42,21 @@ namespace AngryChief.Customer
 
         IEnumerator SpawnCustomer()
         {
-            float waitTime = Random.Range(2f, 5f); //ToDo: muss mit dem level mitskalieren 10-20s????
-
+            float waitTime = 0f;
+            
+            if (m_FirstCustomerDone)
+                waitTime = Random.Range(10f, 30f); 
+            else 
+                waitTime = Random.Range(2f, 5f); 
+            
             // Ausgabe der Wartezeit in der Konsole (optional)
             Debug.Log("Wartezeit: " + waitTime + " Sekunden");
 
             yield return new WaitForSeconds(waitTime);
-
+            
+            //Stellt sicher, dass nicht mehr Kunden als Tische kommen können
+            yield return new WaitUntil(() => m_SeatList.Count(seat => !seat.m_Busy) > 0 && GameManager.Instance.m_CustomersList.Count <= m_SeatList.Count);
+            
             int randomInt = Random.Range(0, m_Customer.Length);
             
             if (randomInt == m_LastSpawnInt) 

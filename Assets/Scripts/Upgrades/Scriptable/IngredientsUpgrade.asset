@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: IngredientsUpgrade
   m_EditorClassIdentifier: 
   m_UpgradeName: IngredientsUpgrade
-  m_InitialCost: 20
+  m_InitialCost: 50
   m_MaxLevel: 4

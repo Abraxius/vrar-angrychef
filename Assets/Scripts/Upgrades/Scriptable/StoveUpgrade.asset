@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StoveUpgrade
   m_EditorClassIdentifier: 
   m_UpgradeName: StoveUpgrade
-  m_InitialCost: 25
+  m_InitialCost: 100
   m_MaxLevel: 1

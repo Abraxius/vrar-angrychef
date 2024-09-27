@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HouseUpgrade
   m_EditorClassIdentifier: 
   m_UpgradeName: HouseUpgrade
-  m_InitialCost: 10
+  m_InitialCost: 200
   m_MaxLevel: 2

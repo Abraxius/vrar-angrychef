@@ -15829,6 +15829,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -44
       objectReference: {fileID: 0}
+    - target: {fileID: 3821091860168798352, guid: 9a5f3e8cfcc2f0f4eb8a8f5627deff32, type: 3}
+      propertyPath: m_text
+      value: Mehr max Leben
+      objectReference: {fileID: 0}
     - target: {fileID: 4403212165593950848, guid: 9a5f3e8cfcc2f0f4eb8a8f5627deff32, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -15848,6 +15852,10 @@ PrefabInstance:
     - target: {fileID: 4403212165593950848, guid: 9a5f3e8cfcc2f0f4eb8a8f5627deff32, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -178
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403212166642576594, guid: 9a5f3e8cfcc2f0f4eb8a8f5627deff32, type: 3}
+      propertyPath: m_text
+      value: Fun Mode freischalten
       objectReference: {fileID: 0}
     - target: {fileID: 4470175759575500640, guid: 9a5f3e8cfcc2f0f4eb8a8f5627deff32, type: 3}
       propertyPath: m_Pivot.x
@@ -15964,6 +15972,10 @@ PrefabInstance:
     - target: {fileID: 4635769453078932017, guid: 9a5f3e8cfcc2f0f4eb8a8f5627deff32, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -111
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635769454178806883, guid: 9a5f3e8cfcc2f0f4eb8a8f5627deff32, type: 3}
+      propertyPath: m_text
+      value: Mehr max Munition
       objectReference: {fileID: 0}
     - target: {fileID: 4638206085124079354, guid: 9a5f3e8cfcc2f0f4eb8a8f5627deff32, type: 3}
       propertyPath: m_SizeDelta.y
@@ -22020,12 +22032,24 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_Life
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_Money
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_Diamands
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_Diamonds
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_Ammunition
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_HouseLevel
@@ -22042,6 +22066,10 @@ PrefabInstance:
     - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_TimeForOrder
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_StartingMoney
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473559165435091835, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_LocalPosition.x
