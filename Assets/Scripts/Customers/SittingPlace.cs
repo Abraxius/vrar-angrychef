@@ -15,8 +15,6 @@ namespace AngryChief.Customer
             m_CustomerSpawnManager = FindObjectOfType<CustomerSpawnPoint>();
             
             m_CustomerSpawnManager.m_SeatList.Add(new Seat(m_PlaceTransform.transform, false));
-            
-            Debug.Log(m_CustomerSpawnManager.m_SeatList[0]);
         }
     }
  

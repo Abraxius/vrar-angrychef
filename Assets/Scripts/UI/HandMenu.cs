@@ -16,7 +16,8 @@ namespace UI
         {
             _gameInput = new GameInput();
             
-            CloseConfirm();
+            m_HandMenu.SetActive(false);
+            m_ConfirmUI.SetActive(false);     
         }
         
         private void OnEnable()

@@ -12,10 +12,12 @@ public class DisableAfterTime : MonoBehaviour
     {
         if (GameManager.Instance.m_CurrentLevel == 0)
         {
+            Debug.Log("UI Timer gestartet");
             StartCoroutine(TimerToClose());
         }
         else
         {
+            Debug.Log("UI geschlossen, weil nicht Level 0");
             gameObject.SetActive(false);
         }
     }
