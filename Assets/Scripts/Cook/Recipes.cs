@@ -119,7 +119,12 @@ public class Recipe : IEquatable<Meal>
                 int maxCount = maxIngredientCount[(IngredientName)i];
 
                 // Get random count of ingredient
-                int count = random.Next(0, maxCount + 1);
+                int count = 0;
+                if (maxCount != 0)
+                {
+                    count = random.Next(0, maxCount + 1);
+                }
+                
 
                 // if total ingredient count is less than max total ingredient count, add ingredient to list
                 if ((ingredients.Count + count) < (recipeTotalIngredientCount - 1))
