@@ -15,6 +15,9 @@ public class CuttingBoard : MonoBehaviour
     public Transform snapPosition;
     [SerializeField] private float baseChoppTime = 2f; // Time to change from whole to chopped
     [SerializeField] private float baseSliceTime = 4f; // Time to change from chopped to sliced
+    [SerializeField] private GameObject m_Smoke;
+    private GameObject tmpObject;
+    
     private float timer = 0f;
     private GameObject snappedIngredient;
     private bool canSnapAgain = true;   // Flag, um eine kurze Verz�gerung nach dem Herausnehmen zu erm�glichen
@@ -50,6 +53,8 @@ public class CuttingBoard : MonoBehaviour
                 AudioManager.Instance.Stop("chop");
                 AudioManager.Instance.Stop("knife");
                 AudioManager.Instance.Play("success");
+                
+                Destroy(tmpObject);
             }
         }
         else
@@ -83,6 +88,7 @@ public class CuttingBoard : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         AudioManager.Instance.Play("knife");
+        
         if (canSnapAgain)
         {
             if (other.gameObject.transform.parent != null)
@@ -109,6 +115,9 @@ public class CuttingBoard : MonoBehaviour
 
                         Debug.Log("Zutat aufs Schneidebrett gelegt");
                         AudioManager.Instance.Play("chop");
+                        
+                        tmpObject = Instantiate(m_Smoke, transform.position, transform.rotation);
+                        
                         SnapObject(other.gameObject.transform.parent.gameObject);
                         snappedIngredient = other.gameObject.transform.parent.gameObject;
                     }
@@ -129,6 +138,9 @@ public class CuttingBoard : MonoBehaviour
                 TakeObject(other.gameObject.transform.parent.gameObject);
                 Debug.Log("Zutat vom Schneidebrett genommen");
                 AudioManager.Instance.Stop("chop");
+                
+                if (tmpObject != null)
+                    Destroy(tmpObject);
             }
             else
             {

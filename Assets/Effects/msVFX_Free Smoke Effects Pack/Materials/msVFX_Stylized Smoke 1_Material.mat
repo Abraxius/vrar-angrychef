@@ -69,7 +69,7 @@ Material:
     - _SrcBlend: 5
     - _ZWrite: 0
     m_Colors:
-    - _TintColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+    - _TintColor: {r: 0.75471693, g: 0.75471693, b: 0.75471693, a: 1}
   m_BuildTextureStacks: []
 --- !u!1002 &2100001
 EditorExtensionImpl:

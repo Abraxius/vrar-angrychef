@@ -34323,14 +34323,6 @@ PrefabInstance:
       value: cuttingboard
       objectReference: {fileID: 0}
     - target: {fileID: 7475184224286219971, guid: e899a1c908c50bb4cbeb315c33ca9ae2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 7475184224286219971, guid: e899a1c908c50bb4cbeb315c33ca9ae2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 7475184224286219971, guid: e899a1c908c50bb4cbeb315c33ca9ae2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.735
       objectReference: {fileID: 0}
