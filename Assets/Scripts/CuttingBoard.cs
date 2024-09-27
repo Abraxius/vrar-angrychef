@@ -4,6 +4,7 @@ using AngryChief.Manager;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Rendering;
 
 public class CuttingBoard : MonoBehaviour
 {
@@ -12,12 +13,21 @@ public class CuttingBoard : MonoBehaviour
     public Meal snappedIngredients = new Meal { Ingredients = new List<Ingredient>() };
     public bool stackable = false;
     public Transform snapPosition;
-    [SerializeField] private float choppTime = 2f; // Time to change from whole to chopped
-    [SerializeField] private float sliceTime = 4f; // Time to change from chopped to sliced
+    [SerializeField] private float baseChoppTime = 2f; // Time to change from whole to chopped
+    [SerializeField] private float baseSliceTime = 4f; // Time to change from chopped to sliced
     private float timer = 0f;
     private GameObject snappedIngredient;
     private bool canSnapAgain = true;   // Flag, um eine kurze Verz�gerung nach dem Herausnehmen zu erm�glichen
     private bool canTake = false;
+
+    private float choppTime;
+    private float sliceTime;
+
+    private void Start()
+    {
+        choppTime = CalculateChoppTime(baseChoppTime, GameManager.Instance.m_CuttingLevel);
+        sliceTime = CalculateSliceTime(baseSliceTime, GameManager.Instance.m_CuttingLevel);
+    }
 
     // Update is called once per frame
     void Update()
@@ -42,6 +52,28 @@ public class CuttingBoard : MonoBehaviour
                 AudioManager.Instance.Play("success");
             }
         }
+    }
+
+    float CalculateChoppTime(float baseTime, int level)
+    {
+        if (level <= 0)
+        {
+            return baseTime; // Kein Level -> Keine Verkürzung der Zeit
+        }
+
+        float reductionFactor = 1 - (level * 0.1f); // 10% Reduktion pro Level
+        return baseTime * Mathf.Clamp(reductionFactor, 0.1f, 1f); // Reduktion bis zu 90%, nicht mehr als 100%
+    }
+
+    float CalculateSliceTime(float baseTime, int level)
+    {
+        if (level <= 0)
+        {
+            return baseTime; // Kein Level -> Keine Verkürzung der Zeit
+        }
+
+        float reductionFactor = 1 - (level * 0.1f); // 10% Reduktion pro Level
+        return baseTime * Mathf.Clamp(reductionFactor, 0.1f, 1f); // Reduktion bis zu 90%, nicht mehr als 100%
     }
 
     private void OnTriggerEnter(Collider other)

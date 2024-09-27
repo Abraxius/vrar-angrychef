@@ -12,12 +12,21 @@ public class Stove : MonoBehaviour
     public Meal snappedIngredients = new Meal { Ingredients = new List<Ingredient>() };
     public bool stackable = false;
     public Transform snapPosition;
-    [SerializeField] private float cookTime = 5f; // Time to change from uncooked to cooked
-    [SerializeField] private float burnTime = 10f; // Time to change from cooked to burned
+    [SerializeField] private float baseCookTime = 5f; // Time to change from uncooked to cooked
+    [SerializeField] private float baseBurnTime = 10f; // Time to change from cooked to burned
     private float timer = 0f;
     private GameObject snappedBurger;
     private bool canSnapAgain = true;   // Flag, um eine kurze Verz�gerung nach dem Herausnehmen zu erm�glichen
     private bool canTake = false;
+
+    private float cookTime;
+    private float burnTime;
+
+    private void Start()
+    {
+        cookTime = CalculateCookTime(baseCookTime, GameManager.Instance.m_CookingLevel);
+        burnTime = CalculateBurnTime(baseCookTime, GameManager.Instance.m_CookingLevel);
+    }
 
     // Update is called once per frame
     void Update()
@@ -40,6 +49,28 @@ public class Stove : MonoBehaviour
                 // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
             }
         }
+    }
+
+    float CalculateCookTime(float baseTime, int level)
+    {
+        if (level <= 0)
+        {
+            return baseTime; // Kein Level -> Keine Verkürzung der Zeit
+        }
+
+        float reductionFactor = 1 - (level * 0.1f); // 10% Reduktion pro Level
+        return baseTime * Mathf.Clamp(reductionFactor, 0.1f, 1f); // Reduktion bis zu 90%, nicht mehr als 100%
+    }
+
+    float CalculateBurnTime(float baseTime, int level)
+    {
+        if (level <= 0)
+        {
+            return baseTime; // Kein Level -> Keine Verlängerung der Zeit
+        }
+
+        float increaseFactor = 1 + (level * 0.1f); // 10% Verlängerung pro Level
+        return baseTime * increaseFactor; // Zeit wird entsprechend verlängert
     }
 
     private void OnTriggerEnter(Collider other)
