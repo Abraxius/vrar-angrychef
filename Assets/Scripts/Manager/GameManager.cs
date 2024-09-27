@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //UpgradesManager.Instance.LoadUpgrades();
+        AudioManager.Instance.Play("background_jazz");
     }
 
     private void OnApplicationQuit()
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
         m_Score = 0;
 
 
-        AudioManager.Instance.Play("background_jazz");
+
         
         if (m_FunLevel)
         {

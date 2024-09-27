@@ -101,7 +101,7 @@ public class Recipe : IEquatable<Meal>
 
 
         //Get random number for max total ingredient count of recipe
-        var recipeTotalIngredientCount = random.Next(3, maxTotalIngredientCount);
+        var recipeTotalIngredientCount = random.Next(3, maxTotalIngredientCount + 1);
 
         //Create a list of ingredients for recipe
         List<IngredientName> ingredients = new List<IngredientName>();
@@ -119,7 +119,7 @@ public class Recipe : IEquatable<Meal>
                 int maxCount = maxIngredientCount[(IngredientName)i];
 
                 // Get random count of ingredient
-                int count = random.Next(0, maxCount);
+                int count = random.Next(0, maxCount + 1);
 
                 // if total ingredient count is less than max total ingredient count, add ingredient to list
                 if ((ingredients.Count + count) < (recipeTotalIngredientCount - 1))
@@ -135,7 +135,7 @@ public class Recipe : IEquatable<Meal>
         // If no ingredients are added, add one random ingredient
         if (ingredients.Count == 1)
         {
-            ingredients.Add((IngredientName)random.Next(1, Enum.GetNames(typeof(IngredientName)).Length - 1));
+            ingredients.Add((IngredientName)random.Next(1, Enum.GetNames(typeof(IngredientName)).Length));
         }
 
         // Add bun bottom to list

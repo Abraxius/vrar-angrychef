@@ -99,7 +99,7 @@ namespace AngryChief.Customer
                 
                 if (GameManager.Instance.m_FunLevel)
                 {
-                    AudioManager.Instance.Play("fun_order_" + m_Random.Next(1,3)); //TODO: Update count of sounds
+                    AudioManager.Instance.Play("fun_order_" + m_Random.Next(1,3 + 1)); //TODO: Update count of sounds
                 }
             }
             else
