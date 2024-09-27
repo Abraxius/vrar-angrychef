@@ -54,7 +54,7 @@ MonoBehaviour:
     isMusic: 0
     isSpatialSound: 0
   - name: background_jazz
-    clip: {fileID: 8300000, guid: eae73bebb6d9e4e6fbb584b72405fdf8, type: 3}
+    clip: {fileID: 8300000, guid: d6ebfd8d520b846a2b90c483960852af, type: 3}
     volume: 1
     pitch: 1
     loop: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f71539c6830d343299d1981b3dc66f7e, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
     isMusic: 0
     isSpatialSound: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a75f082b0890142d3bc806ee6931ae4a, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
     isMusic: 0
     isSpatialSound: 0
