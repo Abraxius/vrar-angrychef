@@ -93,6 +93,20 @@ public class CuttingBoard : MonoBehaviour
                     {
                         StartCoroutine(TakeCooldown());
 
+                        XRGrabInteractable grabInteractable = other.gameObject.transform.parent.gameObject.GetComponent<XRGrabInteractable>();
+
+                        if (grabInteractable != null && grabInteractable.isSelected)
+                        {
+                            // Falls das Objekt gegrabbt ist, detach es
+                            var interactor = grabInteractable.selectingInteractor;
+
+                            if (interactor != null)
+                            {
+                                // Detachen des Objekts
+                                interactor.interactionManager.SelectExit(interactor, grabInteractable);
+                            }
+                        }
+
                         Debug.Log("Zutat aufs Schneidebrett gelegt");
                         AudioManager.Instance.Play("chop");
                         SnapObject(other.gameObject.transform.parent.gameObject);

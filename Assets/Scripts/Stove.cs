@@ -87,6 +87,21 @@ public class Stove : MonoBehaviour
                 {
                     StartCoroutine(TakeCooldown());
 
+                    XRGrabInteractable grabInteractable = other.gameObject.GetComponent<XRGrabInteractable>();
+
+                    if (grabInteractable != null && grabInteractable.isSelected)
+                    {
+                        // Falls das Objekt gegrabbt ist, detach es
+                        var interactor = grabInteractable.selectingInteractor;
+
+                        if (interactor != null)
+                        {
+                            // Detachen des Objekts
+                            interactor.interactionManager.SelectExit(interactor, grabInteractable);
+                        }
+                    }
+
+
                     Debug.Log("Burger in die Pfanne gelegt");
                     AudioManager.Instance.Play("fry");
                     SnapObject(other.gameObject);
