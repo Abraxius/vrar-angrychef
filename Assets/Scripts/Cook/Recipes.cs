@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -145,6 +146,8 @@ public class Recipe : IEquatable<Meal>
 
         // Add bun bottom to list
         ingredients.Add(IngredientName.BunBottom);
+        
+
 
         return new Recipe(ingredients);
     }
@@ -156,6 +159,7 @@ public class Recipe : IEquatable<Meal>
     /// <returns>Boolean value if Recipe objects are the same</returns>
     public bool Equals(Meal meal)
     {
+        
         if (meal == null)
         {
             Debug.Log("Meal is null");
@@ -168,10 +172,11 @@ public class Recipe : IEquatable<Meal>
             return false;
         }
 
-        for (int i = 0; i < this.Ingredients.Count; i++)
+        /*for (int i = 0; i < this.Ingredients.Count; i++)
         {
             Debug.Log("Meal Ingredient: " + this.Ingredients[(this.Ingredients.Count - 1) - i]);
             Debug.Log("Recipe Ingredient: " + meal.Ingredients[i].name);
+            
             if (this.Ingredients[(this.Ingredients.Count - 1) - i] == meal.Ingredients[i].name)
             {
                 Debug.Log("Current Ingredient State: " + meal.Ingredients[i].currentState.stateType);
@@ -183,8 +188,40 @@ public class Recipe : IEquatable<Meal>
                 Debug.Log("Ingredients are right, but Ingredient State is wrong");
             }
         }
-        Debug.Log("Meal order of Ingredient is wrong");
-        return false;
+        Debug.Log("Meal order of Ingredient is wrong");*/
+        
+        
+
+        //NEU
+        var ingredientCopy = new List<IngredientName>(Ingredients);
+
+        ingredientCopy.Reverse();
+        
+        
+        for (int i = 0; i < ingredientCopy.Count; i++)
+        {
+            if (ingredientCopy[i] != meal.Ingredients[i].name)
+            {
+                Debug.Log("Meal and Recipe have different Ingredients");
+                return false;
+            }
+            
+            Debug.Log("Current Ingredient State: " + meal.Ingredients[i].currentState.stateType);
+            Debug.Log("Wanted Ingredient State: " + Ingredient.wantedIngredientStateType[ingredientCopy[i]]);
+            
+            if (meal.Ingredients[i].currentState.stateType != Ingredient.wantedIngredientStateType[ingredientCopy[i]])
+            {
+                Debug.Log("Meal and Recipe have different Ingredients State");
+                return false;
+            }
+        }
+        return true;
+
+
+
+
+
+
     }
 
     #endregion
