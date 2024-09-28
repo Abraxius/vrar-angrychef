@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using Random = System.Random;
+
 
 /// <summary>
 /// Class that represents a recipe with a list of ingredients
@@ -71,8 +70,6 @@ public class Recipe : IEquatable<Meal>
     /// <returns>Recipe object</returns>
     public static Recipe GenerateRecipe()
     {
-        //seed random
-        Random random = new Random();
 
         //Get allowed ingredients according upgrades
         var carrotDisabled = !GameManager.Instance.m_IngredientCarrot;
@@ -102,7 +99,7 @@ public class Recipe : IEquatable<Meal>
 
 
         //Get random number for max total ingredient count of recipe
-        var recipeTotalIngredientCount = random.Next(3, maxTotalIngredientCount + 1);
+        var recipeTotalIngredientCount = UnityEngine.Random.Range(3, maxTotalIngredientCount);
 
         //Create a list of ingredients for recipe
         List<IngredientName> ingredients = new List<IngredientName>();
@@ -123,7 +120,7 @@ public class Recipe : IEquatable<Meal>
                 int count = 0;
                 if (maxCount != 0)
                 {
-                    count = random.Next(0, maxCount + 1);
+                    count = UnityEngine.Random.Range(0, maxCount);
                 }
                 
 
