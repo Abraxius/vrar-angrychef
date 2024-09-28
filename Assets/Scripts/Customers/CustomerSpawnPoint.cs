@@ -27,11 +27,11 @@ namespace AngryChief.Customer
         [SerializeField] GameObject m_CashDeskPosition;
         [SerializeField] GameObject[] m_Customer;
         private bool m_FirstCustomerDone;
-        
+        private bool m_IsBusy;
         public void StarGame()
         {
             m_DailyMaxCustomer = GameManager.Instance.m_DailyMaxCustomer + GameManager.Instance.m_AdvertismentLevel; //Upgrade: Max Besucher
-
+            
             StartCoroutine(SpawnCustomer());
         }
 
@@ -42,12 +42,20 @@ namespace AngryChief.Customer
 
         IEnumerator SpawnCustomer()
         {
+            if (m_IsBusy)
+                yield break;
+            
+            m_IsBusy = true;
+            
             float waitTime = 0f;
             
             if (m_FirstCustomerDone)
-                waitTime = Random.Range(10f, 30f); 
-            else 
+                waitTime = Random.Range(10f, 30f);
+            else
+            {
                 waitTime = Random.Range(2f, 5f); 
+                m_FirstCustomerDone = true;
+            }
             
             // Ausgabe der Wartezeit in der Konsole (optional)
             Debug.Log("Wartezeit: " + waitTime + " Sekunden");
@@ -90,6 +98,8 @@ namespace AngryChief.Customer
             GameManager.Instance.m_CurrentWaitingCustomer += 1;
             GameManager.Instance.m_AllGuestsVisitedToday += 1;
 
+            m_IsBusy = false;
+            
             CoroutineForSpawn();
         }
 

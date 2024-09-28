@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
     public int m_MaxAmmo = 1;
     public int m_Ammunition;
 
-    [HideInInspector] public int m_Score;
+    [HideInInspector] public float m_Score;
     [HideInInspector] public int m_ScoreDiamonds;
-    public int m_Money;
+    public float m_Money;
     [FormerlySerializedAs("m_Diamands")] public int m_Diamonds;
     public int m_StartingMoney = 500;
 
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     public bool m_IngredientTomato;
     public bool m_IngredientLettuce;
     public bool m_IngredientOnion;
-    [HideInInspector] public int m_IngredientsLevel;
+    [HideInInspector] public float m_IngredientsLevel;
     
     public bool m_CuttingTable;
     public int m_CuttingLevel;
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     public int m_CookingLevel;
     public int m_WaitingTimeLevel; //Kunden warten länger
     public int m_AdvertismentLevel; //More Customers
-    public int m_QualityLevel; //More moneyprices for eat
+    public float m_QualityLevel; //More moneyprices for eat
     
     public float m_TimeForOrder = 60f;
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
@@ -146,7 +146,8 @@ public class GameManager : MonoBehaviour
     public void ContinueGame(int level)
     {
         //ToDo: Verwende Upgrades
-        
+
+        m_Ammunition = m_MaxAmmo;
         StartCoroutine(LoadSceneAsync("GameScene"));    
     }
 
@@ -185,7 +186,7 @@ public class GameManager : MonoBehaviour
         
         m_Money = m_StartingMoney;
         
-        m_ScoreDiamonds = m_Score / 100;
+        m_ScoreDiamonds = (int)(m_Score / 100);
         m_Diamonds += m_ScoreDiamonds;
 
         ChangeScene("EndScene");

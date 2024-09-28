@@ -22072,11 +22072,23 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_QualityLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_TimeForOrder
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_StartingMoney
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_IngredientCarrot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_IngredientLettuce
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8473559165435091835, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
@@ -22171,6 +22183,14 @@ PrefabInstance:
     - target: {fileID: 3106871855762856274, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
+      propertyPath: sounds.Array.data[0].isMusic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589653902325310538, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
+      propertyPath: sounds.Array.data[1].isMusic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7987628189429400105, guid: 766c6448492284f4bbdfeefe1a1dcb74, type: 3}
       propertyPath: m_Name

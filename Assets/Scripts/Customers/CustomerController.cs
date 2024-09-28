@@ -93,7 +93,7 @@ namespace AngryChief.Customer
                 
                 m_Bubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f + Vector3.left * 0.5f, transform.rotation);
             
-                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10) - (GameManager.Instance.m_CurrentLevel * 10)); //Upgrade: Wartezeit 
+                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10) - (GameManager.Instance.m_CurrentLevel * 20)); //Upgrade: Wartezeit 
                 
                 m_Bubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
                 
@@ -251,11 +251,14 @@ namespace AngryChief.Customer
                 }
             }
             
-            var tmpMoney = GameManager.Instance.m_CurrentPrices +
+            float tmpMoney = GameManager.Instance.m_CurrentPrices +
                             (GameManager.Instance.m_CurrentPrices * 
                             (GameManager.Instance.m_IngredientsLevel / 100 * 30) +
                             (GameManager.Instance.m_CurrentPrices * (GameManager.Instance.m_QualityLevel / 100 * 10))); //Upgrade: Mehr Geld
             
+            Debug.Log("tmpMoney " + tmpMoney);
+            Debug.Log("IngredientLevel " + GameManager.Instance.m_IngredientsLevel);
+            Debug.Log("QualityLevel " + GameManager.Instance.m_QualityLevel);
             GameManager.Instance.m_Money += tmpMoney; 
             GameManager.Instance.m_Score += tmpMoney;
             

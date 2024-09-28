@@ -17,7 +17,7 @@ public class ButtonHandler : MonoBehaviour
 
     public void Upgrade(int upgradenr)
     {
-        int money = GameManager.Instance.m_Money;
+        int money = (int)GameManager.Instance.m_Money;
         int diamands = GameManager.Instance.m_Diamonds;
     }
 
