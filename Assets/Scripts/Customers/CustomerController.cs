@@ -33,7 +33,7 @@ namespace AngryChief.Customer
         Animator m_Animator;
         ShowOrder m_ShowOrder;
 
-        private float m_EatingTime = 120f;
+        private float m_EatingTime = 45f;
         
         private Seat m_CurrentSeat;
         
