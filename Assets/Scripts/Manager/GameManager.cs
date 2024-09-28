@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
     public int m_AllGuestsVisitedToday;
     
     public List<CustomerController> m_CustomersList = new List<CustomerController>();
-
+    [HideInInspector] public int m_CurrentVisitorsInRestaurant;
+    
     public bool m_FunLevelBuyed; //Ist Fun Level verfügbar? Also gekauft?
     public bool m_FunLevel = false;
     
@@ -101,6 +102,12 @@ public class GameManager : MonoBehaviour
         m_StandardDailyMaxCustomer = m_DailyMaxCustomer;
         m_StandardLengthCustomerQueue = m_LengthCustomerQueue;
 
+        m_Ammunition = m_MaxAmmo;
+        
+        Instance.m_CustomersList.Clear();
+        m_CurrentWaitingCustomer = 0;
+        m_CurrentVisitorsInRestaurant = 0;
+        
         m_Score = 0;
         
         if (m_FunLevel)
@@ -156,7 +163,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Day successed!");
         m_AllGuestsVisitedToday = 0;
         m_CurrentLevel += 1;
-        m_DailyMaxCustomer += 3; 
+        m_DailyMaxCustomer += 3;
+        m_CurrentVisitorsInRestaurant = 0;
         m_CustomersList.Clear();
         
         StartCoroutine(LoadSceneAsync("HassGameScene"));

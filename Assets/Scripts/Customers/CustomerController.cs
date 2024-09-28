@@ -40,7 +40,7 @@ namespace AngryChief.Customer
         private float m_Timer;
         private float m_TargetTime;
         private bool m_WorkOnOrder;
-        private GameObject m_Bubble;
+        [SerializeField] GameObject m_Bubble;
         
         public bool m_Destroy = false; //Testobject
         private void Awake()
@@ -55,7 +55,15 @@ namespace AngryChief.Customer
         void Start()
         {
             m_Agent = GetComponent<NavMeshAgent>();
-            
+
+            GameManager.Instance.m_CurrentVisitorsInRestaurant += 1;
+
+            if (m_Bubble != null)
+            {
+                Destroy(m_Bubble);
+                m_Bubble = null;
+            }
+
             StartCoroutine(WalkToCashDesk()); //Nur zum testen
         }
 
@@ -90,12 +98,12 @@ namespace AngryChief.Customer
                 m_ShowOrder.GenerateOrder();
 
                 m_WorkOnOrder = true;
-                
+
                 m_Bubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f + Vector3.left * 0.5f, transform.rotation);
             
                 m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10) - (GameManager.Instance.m_CurrentLevel * 20)); //Upgrade: Wartezeit 
                 
-                m_Bubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+                m_Bubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);   
                 
                 if (GameManager.Instance.m_FunLevel)
                 {
@@ -146,6 +154,10 @@ namespace AngryChief.Customer
             m_Animator.SetTrigger("SitDown");
             transform.rotation = m_Target.rotation;
 
+            //Sicherheitsabfrage das die alte Bubble weg ist!
+            if (m_Bubble != null)
+                Destroy(m_Bubble);
+            
             GameObject tmpBurger = GameObject.Instantiate(m_BurgerPrefab, transform.position + Vector3.forward * 0.7f + Vector3.up, transform.rotation);
             
             GameObject tmpBubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f, transform.rotation);
@@ -189,7 +201,9 @@ namespace AngryChief.Customer
                 yield return null;
             }
 
-            m_Animator.SetBool("Walking", false);       
+            m_Animator.SetBool("Walking", false);
+
+            GameManager.Instance.m_CurrentVisitorsInRestaurant -= 1;
             
             Destroy(gameObject);
         }
@@ -228,6 +242,7 @@ namespace AngryChief.Customer
 
             m_Animator.SetBool("Walking", false);       
             
+            GameManager.Instance.m_CurrentVisitorsInRestaurant -= 1;
             Destroy(gameObject);
         }
         
@@ -339,6 +354,7 @@ namespace AngryChief.Customer
             
             m_CustomerSpawnManager.CoroutineForSpawn();
             
+            GameManager.Instance.m_CurrentVisitorsInRestaurant -= 1;
             Destroy(gameObject);
         }
         
