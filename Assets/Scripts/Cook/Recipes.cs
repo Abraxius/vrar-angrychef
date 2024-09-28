@@ -195,13 +195,16 @@ public class Recipe : IEquatable<Meal>
         //NEU
         var ingredientCopy = new List<IngredientName>(Ingredients);
 
-        ingredientCopy.Reverse();
+        //ingredientCopy.Reverse();
         
         
         for (int i = 0; i < ingredientCopy.Count; i++)
         {
             if (ingredientCopy[i] != meal.Ingredients[i].name)
             {
+                Debug.Log("Current Ingredient: " + meal.Ingredients[i].name);
+                Debug.Log("Wanted Ingredient: " + ingredientCopy[i]);
+                
                 Debug.Log("Meal and Recipe have different Ingredients");
                 return false;
             }

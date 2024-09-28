@@ -12,7 +12,6 @@ public class CheckIsOnGround : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground")) // Stelle sicher, dass der Boden das Tag "Ground" hat
         {
-            Debug.Log("Liegt am Boden");
             isOnGround = true; // Teller berührt den Boden
         }
     }
@@ -21,7 +20,6 @@ public class CheckIsOnGround : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Weg vom Boden");
             isOnGround = false; // Teller verlässt den Boden
         }
     }
