@@ -33,7 +33,7 @@ namespace AngryChief.Customer
         Animator m_Animator;
         ShowOrder m_ShowOrder;
 
-        private float m_EatingTime = 60f;
+        private float m_EatingTime = 120f;
         
         private Seat m_CurrentSeat;
         
@@ -279,6 +279,9 @@ namespace AngryChief.Customer
         {
             m_ShowOrder.ClearOrder();
             
+            Destroy(m_Bubble);
+            m_WorkOnOrder = false;
+            
             GameManager.Instance.m_Life -= 1;
 
             if (GameManager.Instance.m_Life <= 0)
@@ -294,7 +297,12 @@ namespace AngryChief.Customer
                 if (!CheckWaveIsFinished())
                     NextCustomer();
                 else
+                {
+                    GameManager.Instance.m_CustomersList.Remove(this);
+                    GameManager.Instance.m_CurrentWaitingCustomer -= 1;
+                
                     GameManager.Instance.DayEnd();
+                }
             
                 m_CustomerSpawnManager.CoroutineForSpawn();                
             }

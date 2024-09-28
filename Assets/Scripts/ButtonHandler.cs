@@ -29,19 +29,19 @@ public class ButtonHandler : MonoBehaviour
         {
             if (GameManager.Instance.m_HouseLevel == 0 )
             {
-                costText.text = "Max Tables for restaurant size reached";
+                costText.text = "Max Tischanzahl für die Restaurantgröße erreicht";
                 return;
             }
             if (GameManager.Instance.m_HouseLevel == 1 && GameManager.Instance.m_TableLevel >= 3)
             {
-                costText.text = "Max Tables for restaurant size reached";
+                costText.text = "Max Tischanzahl für die Restaurantgröße erreicht";
                 return;
             }
         }
 
         if (upgradeName == "StockUpgrade" && GameManager.Instance.m_Life >= GameManager.Instance.m_MaxLives)
         {
-            costText.text = "Max lives reached";
+            costText.text = "Leben sind voll";
             return;
         }
 
@@ -53,7 +53,7 @@ public class ButtonHandler : MonoBehaviour
         }
         else
         {
-            costText.text = "Max level reached";
+            costText.text = "Max Level erreicht";
         }
         
     }
@@ -66,13 +66,13 @@ public class ButtonHandler : MonoBehaviour
         {
             if (GameManager.Instance.m_HouseLevel == 0)
             {
-                Debug.Log("Max Tables for restaurant size reached");
+                Debug.Log("Max Tischanzahl für die Restaurantgröße erreicht");
                 return;
             }
             if (GameManager.Instance.m_HouseLevel == 1 && GameManager.Instance.m_TableLevel >= 3)
             {
                 Debug.Log("Max Tables for restaurant size reached");
-                costText.text = "Max tables reached";
+                costText.text = "Max Tischanzahl für die Restaurantgröße erreicht";
                 return;
             }
         }

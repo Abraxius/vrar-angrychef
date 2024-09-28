@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StockUpgrade
   m_EditorClassIdentifier: 
   m_UpgradeName: StockUpgrade
-  m_InitialCost: 10
+  m_InitialCost: 25
   m_MaxLevel: -1

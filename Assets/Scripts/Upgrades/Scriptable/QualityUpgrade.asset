@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: QualityUpgrade
   m_EditorClassIdentifier: 
   m_UpgradeName: QualityUpgrade
-  m_InitialCost: 30
+  m_InitialCost: 10
   m_MaxLevel: 10
