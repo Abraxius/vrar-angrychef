@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1951436572518077313}
   - component: {fileID: 6129396957828927499}
   - component: {fileID: 6539750884579517765}
+  - component: {fileID: 8323000742654095917}
   m_Layer: 0
   m_Name: plate
   m_TagString: Meal
@@ -312,6 +313,20 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &8323000742654095917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2296316328828460816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5b36ef87b62244bae43c1f17ee8ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHeldByController: 0
+  isOnGround: 0
 --- !u!1 &6934925053949450524
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +397,7 @@ MonoBehaviour:
   snapped: 0
   stackable: 1
   snapPosition: {fileID: 2382021220210002333}
+  isPlate: 1
 --- !u!1 &7766557824977051508
 GameObject:
   m_ObjectHideFlags: 0

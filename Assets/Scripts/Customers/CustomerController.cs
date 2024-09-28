@@ -279,7 +279,9 @@ namespace AngryChief.Customer
 
         //function should be called if the order was false
         public void LoseOrder()
-        {
+        { 
+            Debug.Log("Bestellung falsch!!!!!");
+            
             m_ShowOrder.ClearOrder();
             
             Destroy(m_Bubble);

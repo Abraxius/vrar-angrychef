@@ -50,7 +50,7 @@ namespace AngryChief.Customer
             float waitTime = 0f;
             
             if (m_FirstCustomerDone)
-                waitTime = Random.Range(10f, 30f);
+                waitTime = Random.Range(10f, 30f - GameManager.Instance.m_CurrentLevel * 2f);
             else
             {
                 waitTime = Random.Range(2f, 5f); 

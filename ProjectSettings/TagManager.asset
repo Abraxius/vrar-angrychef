@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Meal
   - VegetableState
+  - Ground
   layers:
   - Default
   - TransparentFX
