@@ -105,39 +105,33 @@ public class UpgradesManager : MonoBehaviour
         return 0;
 
     }
-    /*
 
     public void SaveUpgrades()
     {
-        List<UpgradeData> upgradeDataList = new List<UpgradeData>();
+        BaseUpgrade ammo = FindObjectByName("AmmoUpgrade");
+        BaseUpgrade mxhp = FindObjectByName("MaxHpUpgrade");
+        BaseUpgrade fumode = FindObjectByName("FunModeUpgrade");
 
-        foreach (var upgrade in m_UpgradeList)
-        {
-            upgradeDataList.Add(new UpgradeData(upgrade.Name, upgrade.m_Level));
-        }
-
-        string json = JsonUtility.ToJson(new Serialization<UpgradeData>(upgradeDataList));
-        PlayerPrefs.SetString("Upgrades", json);
+        PlayerPrefs.SetInt("AmmoLvl", ammo.m_Level);
+        PlayerPrefs.SetInt("HpLvl", mxhp.m_Level);
+        PlayerPrefs.SetInt("FunLvl", fumode.m_Level);
         PlayerPrefs.Save();
     }
 
     public void LoadUpgrades()
     {
-        if (PlayerPrefs.HasKey("Upgrades"))
-        {
-            string json = PlayerPrefs.GetString("Upgrades");
-            List<UpgradeData> upgradeDataList = JsonUtility.FromJson<Serialization<UpgradeData>>(json).ToList();
+        int ammolvl;
+        int mxhp;
+        int funmode;
 
-            foreach (var data in upgradeDataList)
-            {
-                BaseUpgrade tmp = FindObjectByName(data.Name);
-                if (tmp != null)
-                {   
-                    tmp.SetLevel(data.Level);
-                }
-            }
-        }
-    }*/
+        ammolvl = PlayerPrefs.GetInt("AmmoUpgrade", 0);
+        mxhp = PlayerPrefs.GetInt("MaxHpUpgrade", 0);
+        funmode = PlayerPrefs.GetInt("FunModeUpgrade", 0);
+
+        m_UpgradeList[1].SetLevel(ammolvl);
+        m_UpgradeList[8].SetLevel(mxhp);
+        m_UpgradeList[5].SetLevel(funmode);
+    }
 
     public void Restart()
     {
