@@ -10,32 +10,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-
+    [Header("Upgrades")]
     public int m_Life;
     public int m_MaxLives;
     public int m_MaxAmmo = 1;
     public int m_Ammunition;
 
-    [HideInInspector] public float m_Score;
-    [HideInInspector] public int m_ScoreDiamonds;
-    public float m_Money;
-    [FormerlySerializedAs("m_Diamands")] public int m_Diamonds;
-    public int m_StartingMoney = 500;
-
-    public int m_CurrentLevel;
-
-    private int m_StandardDailyMaxCustomer;
-    private int m_StandardLengthCustomerQueue;
-    
-    public int m_DailyMaxCustomer = 4;
-    public int m_LengthCustomerQueue = 3;
-
-    public int m_CurrentWaitingCustomer;
-    public int m_AllGuestsVisitedToday;
-    
-    public List<CustomerController> m_CustomersList = new List<CustomerController>();
-    [HideInInspector] public int m_CurrentVisitorsInRestaurant;
-    
     public bool m_FunLevelBuyed; //Ist Fun Level verfügbar? Also gekauft?
     public bool m_FunLevel = false;
     
@@ -61,7 +41,35 @@ public class GameManager : MonoBehaviour
     public int m_AdvertismentLevel; //More Customers
     public float m_QualityLevel; //More moneyprices for eat
     
+
+
+    [Header("Money & Score")]
+    public float m_Money;
+    [FormerlySerializedAs("m_Diamands")] public int m_Diamonds;
+    public int m_StartingMoney = 500;
+    
+    [HideInInspector] public float m_Score;
+    [HideInInspector] public int m_ScoreDiamonds;
+    
+    [Header("Game Core Variables")]
+    public int m_CurrentLevel;
+
+    private int m_StandardDailyMaxCustomer;
+    private int m_StandardLengthCustomerQueue;
+    
+    public int m_DailyMaxCustomer = 4;
+    public int m_LengthCustomerQueue = 3;
+
+    public int m_CurrentWaitingCustomer;
+    public int m_AllGuestsVisitedToday;
+    
+    public List<CustomerController> m_CustomersList = new List<CustomerController>();
+    [HideInInspector] public int m_CurrentVisitorsInRestaurant;
+    
     public float m_TimeForOrder = 60f;
+
+    public float m_MinWaitingTimeForNextCustomer = 10f;
+    public float m_MaxWaitingTimeForNextCustomer = 30f;
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
     private bool isSceneLoaded = false;
 

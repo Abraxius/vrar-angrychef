@@ -51,7 +51,7 @@ namespace AngryChief.Customer
             
             float waitTime = 0f;
 
-            float tmpValue = 30f;
+            float tmpValue = GameManager.Instance.m_MaxWaitingTimeForNextCustomer;
 
             tmpValue -= GameManager.Instance.m_CurrentLevel * 2f;
             
@@ -59,7 +59,7 @@ namespace AngryChief.Customer
                 tmpValue = 10;
             
             if (m_FirstCustomerDone)
-                waitTime = Random.Range(10f, tmpValue);
+                waitTime = Random.Range(GameManager.Instance.m_MinWaitingTimeForNextCustomer, tmpValue);
             else
             {
                 waitTime = Random.Range(2f, 5f); 

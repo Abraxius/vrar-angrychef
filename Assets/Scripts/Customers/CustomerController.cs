@@ -99,6 +99,12 @@ namespace AngryChief.Customer
 
                 m_WorkOnOrder = true;
 
+                // Überprüfe, ob m_Bubble bereits existiert und zerstöre sie, bevor eine neue erstellt wird
+                if (m_Bubble != null)
+                {
+                    Destroy(m_Bubble);  // Destroys the old bubble, if it exists
+                }
+                
                 m_Bubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f + Vector3.left * 0.5f, transform.rotation);
             
                 m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10) - (GameManager.Instance.m_CurrentLevel * 20)); //Upgrade: Wartezeit 
