@@ -10,30 +10,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-
+    [Header("Upgrades")]
     public int m_Life;
     public int m_MaxLives;
     public int m_MaxAmmo = 1;
     public int m_Ammunition;
-
-    [HideInInspector] public int m_Score;
-    [HideInInspector] public int m_ScoreDiamonds;
-    public int m_Money;
-    [FormerlySerializedAs("m_Diamands")] public int m_Diamonds;
-    public int m_StartingMoney = 500;
-
-    public int m_CurrentLevel;
-
-    private int m_StandardDailyMaxCustomer;
-    private int m_StandardLengthCustomerQueue;
-    
-    public int m_DailyMaxCustomer = 4;
-    public int m_LengthCustomerQueue = 3;
-
-    public int m_CurrentWaitingCustomer;
-    public int m_AllGuestsVisitedToday;
-    
-    public List<CustomerController> m_CustomersList = new List<CustomerController>();
 
     public bool m_FunLevelBuyed; //Ist Fun Level verfügbar? Also gekauft?
     public bool m_FunLevel = false;
@@ -50,7 +31,7 @@ public class GameManager : MonoBehaviour
     public bool m_IngredientTomato;
     public bool m_IngredientLettuce;
     public bool m_IngredientOnion;
-    [HideInInspector] public int m_IngredientsLevel;
+    [HideInInspector] public float m_IngredientsLevel;
     
     public bool m_CuttingTable;
     public int m_CuttingLevel;
@@ -58,9 +39,37 @@ public class GameManager : MonoBehaviour
     public int m_CookingLevel;
     public int m_WaitingTimeLevel; //Kunden warten länger
     public int m_AdvertismentLevel; //More Customers
-    public int m_QualityLevel; //More moneyprices for eat
+    public float m_QualityLevel; //More moneyprices for eat
+    
+
+
+    [Header("Money & Score")]
+    public float m_Money;
+    [FormerlySerializedAs("m_Diamands")] public int m_Diamonds;
+    public int m_StartingMoney = 500;
+    
+    [HideInInspector] public float m_Score;
+    [HideInInspector] public int m_ScoreDiamonds;
+    
+    [Header("Game Core Variables")]
+    public int m_CurrentLevel;
+
+    private int m_StandardDailyMaxCustomer;
+    private int m_StandardLengthCustomerQueue;
+    
+    public int m_DailyMaxCustomer = 4;
+    public int m_LengthCustomerQueue = 3;
+
+    public int m_CurrentWaitingCustomer;
+    public int m_AllGuestsVisitedToday;
+    
+    public List<CustomerController> m_CustomersList = new List<CustomerController>();
+    [HideInInspector] public int m_CurrentVisitorsInRestaurant;
     
     public float m_TimeForOrder = 60f;
+
+    public float m_MinWaitingTimeForNextCustomer = 10f;
+    public float m_MaxWaitingTimeForNextCustomer = 30f;
     // Dieser bool-Wert gibt an, ob die Szene vollständig geladen ist
     private bool isSceneLoaded = false;
 
@@ -81,6 +90,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //UpgradesManager.Instance.LoadUpgrades();
+        AudioManager.Instance.Play("background_jazz");
     }
 
     private void OnApplicationQuit()
@@ -100,9 +110,19 @@ public class GameManager : MonoBehaviour
         m_StandardDailyMaxCustomer = m_DailyMaxCustomer;
         m_StandardLengthCustomerQueue = m_LengthCustomerQueue;
 
+        m_Ammunition = m_MaxAmmo;
+        
+        Instance.m_CustomersList.Clear();
+        m_CurrentWaitingCustomer = 0;
+        m_CurrentVisitorsInRestaurant = 0;
+        
         m_Score = 0;
         
-        AudioManager.Instance.Play("background_jazz");
+        if (m_FunLevel)
+        {
+            AudioManager.Instance.Stop("background_jazz");
+            AudioManager.Instance.Play("background_mcdonalds");
+        }
         
         StartCoroutine(LoadSceneAsync("GameScene"));
     }
@@ -141,7 +161,8 @@ public class GameManager : MonoBehaviour
     public void ContinueGame(int level)
     {
         //ToDo: Verwende Upgrades
-        
+
+        m_Ammunition = m_MaxAmmo;
         StartCoroutine(LoadSceneAsync("GameScene"));    
     }
 
@@ -150,7 +171,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Day successed!");
         m_AllGuestsVisitedToday = 0;
         m_CurrentLevel += 1;
-        m_DailyMaxCustomer += 3; 
+        m_DailyMaxCustomer += 3;
+        m_CurrentVisitorsInRestaurant = 0;
         m_CustomersList.Clear();
         
         StartCoroutine(LoadSceneAsync("HassGameScene"));
@@ -180,7 +202,7 @@ public class GameManager : MonoBehaviour
         
         m_Money = m_StartingMoney;
         
-        m_ScoreDiamonds = m_Score / 100;
+        m_ScoreDiamonds = (int)(m_Score / 100);
         m_Diamonds += m_ScoreDiamonds;
 
         ChangeScene("EndScene");

@@ -33,14 +33,14 @@ namespace AngryChief.Customer
         Animator m_Animator;
         ShowOrder m_ShowOrder;
 
-        private float m_EatingTime = 10f;
+        private float m_EatingTime = 45f;
         
         private Seat m_CurrentSeat;
         
         private float m_Timer;
         private float m_TargetTime;
         private bool m_WorkOnOrder;
-        private GameObject m_Bubble;
+        [SerializeField] GameObject m_Bubble;
         
         public bool m_Destroy = false; //Testobject
         private void Awake()
@@ -55,7 +55,15 @@ namespace AngryChief.Customer
         void Start()
         {
             m_Agent = GetComponent<NavMeshAgent>();
-            
+
+            GameManager.Instance.m_CurrentVisitorsInRestaurant += 1;
+
+            if (m_Bubble != null)
+            {
+                Destroy(m_Bubble);
+                m_Bubble = null;
+            }
+
             StartCoroutine(WalkToCashDesk()); //Nur zum testen
         }
 
@@ -90,16 +98,22 @@ namespace AngryChief.Customer
                 m_ShowOrder.GenerateOrder();
 
                 m_WorkOnOrder = true;
+
+                // Überprüfe, ob m_Bubble bereits existiert und zerstöre sie, bevor eine neue erstellt wird
+                if (m_Bubble != null)
+                {
+                    Destroy(m_Bubble);  // Destroys the old bubble, if it exists
+                }
                 
                 m_Bubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f + Vector3.left * 0.5f, transform.rotation);
             
-                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10)); //Upgrade: Wartezeit 
+                m_Bubble.GetComponentInChildren<TimeClock>().SetTime(GameManager.Instance.m_TimeForOrder + (GameManager.Instance.m_WaitingTimeLevel * 10) - (GameManager.Instance.m_CurrentLevel * 20)); //Upgrade: Wartezeit 
                 
-                m_Bubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+                m_Bubble.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);   
                 
                 if (GameManager.Instance.m_FunLevel)
                 {
-                    AudioManager.Instance.Play("fun_order_" + m_Random.Next(1,3)); //TODO: Update count of sounds
+                    AudioManager.Instance.Play("fun_order_" + m_Random.Next(1,3 + 1)); //TODO: Update count of sounds
                 }
             }
             else
@@ -146,6 +160,10 @@ namespace AngryChief.Customer
             m_Animator.SetTrigger("SitDown");
             transform.rotation = m_Target.rotation;
 
+            //Sicherheitsabfrage das die alte Bubble weg ist!
+            if (m_Bubble != null)
+                Destroy(m_Bubble);
+            
             GameObject tmpBurger = GameObject.Instantiate(m_BurgerPrefab, transform.position + Vector3.forward * 0.7f + Vector3.up, transform.rotation);
             
             GameObject tmpBubble = GameObject.Instantiate(m_WaitingBubblePrefab, transform.position + Vector3.forward * 0.7f + Vector3.up * 1.8f, transform.rotation);
@@ -189,7 +207,9 @@ namespace AngryChief.Customer
                 yield return null;
             }
 
-            m_Animator.SetBool("Walking", false);       
+            m_Animator.SetBool("Walking", false);
+
+            GameManager.Instance.m_CurrentVisitorsInRestaurant -= 1;
             
             Destroy(gameObject);
         }
@@ -228,6 +248,7 @@ namespace AngryChief.Customer
 
             m_Animator.SetBool("Walking", false);       
             
+            GameManager.Instance.m_CurrentVisitorsInRestaurant -= 1;
             Destroy(gameObject);
         }
         
@@ -251,11 +272,14 @@ namespace AngryChief.Customer
                 }
             }
             
-            var tmpMoney = GameManager.Instance.m_CurrentPrices +
+            float tmpMoney = GameManager.Instance.m_CurrentPrices +
                             (GameManager.Instance.m_CurrentPrices * 
                             (GameManager.Instance.m_IngredientsLevel / 100 * 30) +
                             (GameManager.Instance.m_CurrentPrices * (GameManager.Instance.m_QualityLevel / 100 * 10))); //Upgrade: Mehr Geld
             
+            Debug.Log("tmpMoney " + tmpMoney);
+            Debug.Log("IngredientLevel " + GameManager.Instance.m_IngredientsLevel);
+            Debug.Log("QualityLevel " + GameManager.Instance.m_QualityLevel);
             GameManager.Instance.m_Money += tmpMoney; 
             GameManager.Instance.m_Score += tmpMoney;
             
@@ -264,15 +288,25 @@ namespace AngryChief.Customer
             if (!CheckWaveIsFinished())
                 NextCustomer();
             else
+            {
+                GameManager.Instance.m_CustomersList.Remove(this);
+                GameManager.Instance.m_CurrentWaitingCustomer -= 1;
+                
                 GameManager.Instance.DayEnd();
+            }
             
             m_CustomerSpawnManager.CoroutineForSpawn();
         }
 
         //function should be called if the order was false
         public void LoseOrder()
-        {
+        { 
+            Debug.Log("Bestellung falsch!!!!!");
+            
             m_ShowOrder.ClearOrder();
+            
+            Destroy(m_Bubble);
+            m_WorkOnOrder = false;
             
             GameManager.Instance.m_Life -= 1;
 
@@ -289,7 +323,12 @@ namespace AngryChief.Customer
                 if (!CheckWaveIsFinished())
                     NextCustomer();
                 else
+                {
+                    GameManager.Instance.m_CustomersList.Remove(this);
+                    GameManager.Instance.m_CurrentWaitingCustomer -= 1;
+                
                     GameManager.Instance.DayEnd();
+                }
             
                 m_CustomerSpawnManager.CoroutineForSpawn();                
             }
@@ -321,6 +360,7 @@ namespace AngryChief.Customer
             
             m_CustomerSpawnManager.CoroutineForSpawn();
             
+            GameManager.Instance.m_CurrentVisitorsInRestaurant -= 1;
             Destroy(gameObject);
         }
         

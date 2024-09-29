@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PatienceUpgrade
   m_EditorClassIdentifier: 
   m_UpgradeName: PatienceUpgrade
-  m_InitialCost: 15
+  m_InitialCost: 25
   m_MaxLevel: 5

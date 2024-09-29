@@ -20,8 +20,15 @@ namespace AngryChief.Cook
         
         [HideInInspector] public Recipe currentOrder;
 
+        private bool m_Busy;
+        
         public void GenerateOrder()
         {
+            if (m_Busy)
+                return;
+
+            m_Busy = true;
+            
             currentOrder = Recipe.GenerateRecipe();
             var row = new Vector3(0, 0, 0);
             
@@ -75,6 +82,8 @@ namespace AngryChief.Cook
 
         public void ClearOrder()
         {
+            m_Busy = false;
+            
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);

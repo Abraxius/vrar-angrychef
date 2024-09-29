@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AdsUpgrade
   m_EditorClassIdentifier: 
   m_UpgradeName: AdsUpgrade
-  m_InitialCost: 10
+  m_InitialCost: 20
   m_MaxLevel: 10

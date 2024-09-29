@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -16,10 +17,19 @@ public class IngredientSnapping : MonoBehaviour
     public Meal snappedIngredients = new Meal { Ingredients = new List<Ingredient>() };
     public bool stackable = false;
     public Transform snapPosition;
+    
+    [SerializeField] private bool isPlate;
+
+    private CheckIsOnGround m_GroundCheck;
+    
+    private void Start()
+    {
+        m_GroundCheck = GetComponentInParent<CheckIsOnGround>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Snappable")
+        if (other.gameObject.tag == "Snappable" && (m_GroundCheck?.IsPlateOnGroundAndNotHeld() ?? true))
         {
             if ((snappedIngredients.Ingredients.Count == 0 && !other.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Ingredients.Count >= 1 && stackable == true && !other.gameObject.GetComponent<Ingredient>().isSnapped))
             {
@@ -27,7 +37,7 @@ public class IngredientSnapping : MonoBehaviour
                 AdjustColliderSize();
             }
         }
-        else if (other.gameObject.tag == "VegetableState")
+        else if (other.gameObject.tag == "VegetableState" && (m_GroundCheck?.IsPlateOnGroundAndNotHeld() ?? true))
         {
             if ((snappedIngredients.Ingredients.Count == 0 && !other.gameObject.transform.parent.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Ingredients.Count >= 1 && stackable == true && !other.gameObject.transform.parent.gameObject.GetComponent<Ingredient>().isSnapped))
             {
@@ -39,6 +49,18 @@ public class IngredientSnapping : MonoBehaviour
 
     protected void SnapObject(GameObject snappableObject)
     {
+        Rigidbody rb = snappableObject.GetComponent<Rigidbody>();
+            
+        // Setzt die lineare Geschwindigkeit auf 0
+        rb.velocity = Vector3.zero;
+
+        // Setzt die Drehgeschwindigkeit auf 0
+        rb.angularVelocity = Vector3.zero;
+        
+        Destroy(snappableObject.GetComponent<XRGrabInteractable>());
+        Destroy(snappableObject.GetComponent<XRGeneralGrabTransformer>());
+        Destroy(rb);
+        
         print("Snapped");
         snapped = true;
         Ingredient ingredient = snappableObject.GetComponent<Ingredient>();
@@ -46,10 +68,6 @@ public class IngredientSnapping : MonoBehaviour
 
         snappedIngredients.Ingredients.Add(ingredient);
         
-        Destroy(snappableObject.GetComponent<XRGrabInteractable>());
-        Destroy(snappableObject.GetComponent<XRGeneralGrabTransformer>());
-        Destroy(snappableObject.GetComponent<Rigidbody>());
-
         snappableObject.transform.SetParent(gameObject.transform);
         
         // Set position and rotation of snapped object

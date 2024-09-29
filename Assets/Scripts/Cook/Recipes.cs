@@ -1,8 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using Random = System.Random;
+using Utils;
+
 
 /// <summary>
 /// Class that represents a recipe with a list of ingredients
@@ -70,11 +71,37 @@ public class Recipe : IEquatable<Meal>
     /// <returns>Recipe object</returns>
     public static Recipe GenerateRecipe()
     {
-        //seed random
-        Random random = new Random();
+
+        //Get allowed ingredients according upgrades
+        var carrotDisabled = !GameManager.Instance.m_IngredientCarrot;
+        var tomatoDisabled = !GameManager.Instance.m_IngredientTomato;
+        var lettuceDisabled = !GameManager.Instance.m_IngredientLettuce;
+        var onionDisabled = !GameManager.Instance.m_IngredientOnion;
+
+        if (carrotDisabled)
+            maxIngredientCount[IngredientName.Carrot] = 0;
+        else
+            maxIngredientCount[IngredientName.Carrot] = 2;
+
+        if (tomatoDisabled)
+            maxIngredientCount[IngredientName.Tomato] = 0;
+        else
+            maxIngredientCount[IngredientName.Tomato] = 1;
+
+        if (lettuceDisabled)
+            maxIngredientCount[IngredientName.Lettuce] = 0;
+        else
+            maxIngredientCount[IngredientName.Lettuce] = 2;
+
+        if (onionDisabled)
+            maxIngredientCount[IngredientName.Onion] = 0;
+        else
+            maxIngredientCount[IngredientName.Onion] = 2;
+
 
         //Get random number for max total ingredient count of recipe
-        var recipeTotalIngredientCount = random.Next(3, maxTotalIngredientCount);
+        //var recipeTotalIngredientCount = UnityEngine.Random.Range(3, maxTotalIngredientCount);
+        var recipeTotalIngredientCount = RandomUtils.RandomNumber(3, maxTotalIngredientCount);
 
         //Create a list of ingredients for recipe
         List<IngredientName> ingredients = new List<IngredientName>();
@@ -92,7 +119,13 @@ public class Recipe : IEquatable<Meal>
                 int maxCount = maxIngredientCount[(IngredientName)i];
 
                 // Get random count of ingredient
-                int count = random.Next(0, maxCount);
+                int count = 0;
+                if (maxCount != 0)
+                {
+                    //count = UnityEngine.Random.Range(0, maxCount);
+                    count = RandomUtils.RandomNumber(0, maxCount);
+                }
+                
 
                 // if total ingredient count is less than max total ingredient count, add ingredient to list
                 if ((ingredients.Count + count) < (recipeTotalIngredientCount - 1))
@@ -104,15 +137,17 @@ public class Recipe : IEquatable<Meal>
                 }
             }
         }
-        
-        // If no ingredients are added, add one random ingredient
+
+        // If no ingredients are added, add one juicy burger patty
         if (ingredients.Count == 1)
         {
-            ingredients.Add((IngredientName)random.Next(1, Enum.GetNames(typeof(IngredientName)).Length - 1));
+            ingredients.Add((IngredientName.Burger));
         }
 
         // Add bun bottom to list
         ingredients.Add(IngredientName.BunBottom);
+        
+
 
         return new Recipe(ingredients);
     }
@@ -124,6 +159,7 @@ public class Recipe : IEquatable<Meal>
     /// <returns>Boolean value if Recipe objects are the same</returns>
     public bool Equals(Meal meal)
     {
+        
         if (meal == null)
         {
             Debug.Log("Meal is null");
@@ -136,10 +172,11 @@ public class Recipe : IEquatable<Meal>
             return false;
         }
 
-        for (int i = 0; i < this.Ingredients.Count; i++)
+        /*for (int i = 0; i < this.Ingredients.Count; i++)
         {
             Debug.Log("Meal Ingredient: " + this.Ingredients[(this.Ingredients.Count - 1) - i]);
             Debug.Log("Recipe Ingredient: " + meal.Ingredients[i].name);
+            
             if (this.Ingredients[(this.Ingredients.Count - 1) - i] == meal.Ingredients[i].name)
             {
                 Debug.Log("Current Ingredient State: " + meal.Ingredients[i].currentState.stateType);
@@ -151,8 +188,39 @@ public class Recipe : IEquatable<Meal>
                 Debug.Log("Ingredients are right, but Ingredient State is wrong");
             }
         }
-        Debug.Log("Meal order of Ingredient is wrong");
-        return false;
+        Debug.Log("Meal order of Ingredient is wrong");*/
+        
+        
+
+        //NEU
+        var ingredientCopy = new List<IngredientName>(Ingredients);
+        
+        for (int i = 0; i < ingredientCopy.Count; i++)
+        {
+            if (ingredientCopy[i] != meal.Ingredients[i].name)
+            {
+                Debug.Log("Current Ingredient: " + meal.Ingredients[i].name);
+                Debug.Log("Wanted Ingredient: " + ingredientCopy[i]);
+                Debug.Log("Meal and Recipe have different Ingredients");
+                return false;
+            }
+            
+            Debug.Log("Current Ingredient State: " + meal.Ingredients[i].currentState.stateType);
+            Debug.Log("Wanted Ingredient State: " + Ingredient.wantedIngredientStateType[ingredientCopy[i]]);
+            
+            if (meal.Ingredients[i].currentState.stateType != Ingredient.wantedIngredientStateType[ingredientCopy[i]])
+            {
+                Debug.Log("Meal and Recipe have different Ingredients State");
+                return false;
+            }
+        }
+        return true;
+
+
+
+
+
+
     }
 
     #endregion

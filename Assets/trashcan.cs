@@ -10,5 +10,9 @@ public class trashcan : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.transform.parent.gameObject.tag == "Snappable")
+        {
+            Destroy(other.gameObject.transform.parent.gameObject);
+        }
     }
 }

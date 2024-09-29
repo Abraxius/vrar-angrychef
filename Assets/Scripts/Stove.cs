@@ -49,6 +49,10 @@ public class Stove : MonoBehaviour
                 // print(snappedIngredients.Ingredients[0].GetCurrentStateType());
             }
         }
+        else
+        {
+            timer = 0f; // Reset timer if no ingredients are snapped
+        }
     }
 
     float CalculateCookTime(float baseTime, int level)
@@ -82,6 +86,21 @@ public class Stove : MonoBehaviour
                 if (other.gameObject.GetComponent<Ingredient>().fryable && ((snappedIngredients.Ingredients.Count == 0 && !other.gameObject.GetComponent<Ingredient>().isSnapped) || (snappedIngredients.Ingredients.Count >= 1 && stackable == true && !other.gameObject.GetComponent<Ingredient>().isSnapped)))
                 {
                     StartCoroutine(TakeCooldown());
+
+                    XRGrabInteractable grabInteractable = other.gameObject.GetComponent<XRGrabInteractable>();
+
+                    if (grabInteractable != null && grabInteractable.isSelected)
+                    {
+                        // Falls das Objekt gegrabbt ist, detach es
+                        var interactor = grabInteractable.selectingInteractor;
+
+                        if (interactor != null)
+                        {
+                            // Detachen des Objekts
+                            interactor.interactionManager.SelectExit(interactor, grabInteractable);
+                        }
+                    }
+
 
                     Debug.Log("Burger in die Pfanne gelegt");
                     AudioManager.Instance.Play("fry");
