@@ -24,7 +24,7 @@ public class Stove : MonoBehaviour
 
     private float cookTime;
     private float burnTime;
-
+    
     private void Start()
     {
         cookTime = CalculateCookTime(baseCookTime, GameManager.Instance.m_CookingLevel);
@@ -108,8 +108,10 @@ public class Stove : MonoBehaviour
                     Debug.Log("Burger in die Pfanne gelegt");
                     AudioManager.Instance.Play("fry");
 
-                    tmpObject = Instantiate(m_Smoke, transform.position, transform.rotation);
 
+                    tmpObject = Instantiate(m_Smoke, transform.position + Vector3.up, m_Smoke.transform.rotation);
+
+                    
                     SnapObject(other.gameObject);
                     snappedBurger = other.gameObject;
                 }

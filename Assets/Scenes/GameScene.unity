@@ -26323,6 +26323,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: stove_pan
       objectReference: {fileID: 0}
+    - target: {fileID: 8496833354004419664, guid: bbf88f6adf820d94aa00de3b139d2a06, type: 3}
+      propertyPath: m_Smoke
+      value: 
+      objectReference: {fileID: 5797428246745224015, guid: 24fa55c4f1386e04ea2800527f88c4e1, type: 3}
+    - target: {fileID: 8496833354004419664, guid: bbf88f6adf820d94aa00de3b139d2a06, type: 3}
+      propertyPath: multiSolve
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27886,6 +27894,14 @@ PrefabInstance:
     - target: {fileID: 4169163784518449068, guid: bbf88f6adf820d94aa00de3b139d2a06, type: 3}
       propertyPath: m_Name
       value: stove_pan (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8496833354004419664, guid: bbf88f6adf820d94aa00de3b139d2a06, type: 3}
+      propertyPath: m_Smoke
+      value: 
+      objectReference: {fileID: 5797428246745224015, guid: 24fa55c4f1386e04ea2800527f88c4e1, type: 3}
+    - target: {fileID: 8496833354004419664, guid: bbf88f6adf820d94aa00de3b139d2a06, type: 3}
+      propertyPath: multiSolve
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
