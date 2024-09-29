@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using static Unity.Burst.Intrinsics.X86.Avx;
+using UnityEngine.UI;
 
 public class ButtonHandler : MonoBehaviour
 {
-    public TextMeshProUGUI costText;
+    public Text costText;
     public string upgradeName;
 
     // Start is called before the first frame update
