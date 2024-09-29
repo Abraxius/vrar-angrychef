@@ -133,8 +133,9 @@ MonoBehaviour:
   snapped: 0
   stackable: 0
   snapPosition: {fileID: 5306958324854755305}
-  cookTime: 5
-  burnTime: 10
+  baseCookTime: 5
+  baseBurnTime: 10
+  m_Smoke: {fileID: 5797428246745224015, guid: 24fa55c4f1386e04ea2800527f88c4e1, type: 3}
 --- !u!65 &8983005662087989855
 BoxCollider:
   m_ObjectHideFlags: 0

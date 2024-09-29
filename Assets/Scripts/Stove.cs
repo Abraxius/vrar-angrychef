@@ -14,6 +14,9 @@ public class Stove : MonoBehaviour
     public Transform snapPosition;
     [SerializeField] private float baseCookTime = 5f; // Time to change from uncooked to cooked
     [SerializeField] private float baseBurnTime = 10f; // Time to change from cooked to burned
+    [SerializeField] private GameObject m_Smoke;
+    private GameObject tmpObject;
+
     private float timer = 0f;
     private GameObject snappedBurger;
     private bool canSnapAgain = true;   // Flag, um eine kurze Verz�gerung nach dem Herausnehmen zu erm�glichen
@@ -104,6 +107,9 @@ public class Stove : MonoBehaviour
 
                     Debug.Log("Burger in die Pfanne gelegt");
                     AudioManager.Instance.Play("fry");
+
+                    tmpObject = Instantiate(m_Smoke, transform.position, transform.rotation);
+
                     SnapObject(other.gameObject);
                     snappedBurger = other.gameObject;
                 }
@@ -124,6 +130,9 @@ public class Stove : MonoBehaviour
                 Debug.Log("Burger aus der Pfanne genommen");
                 AudioManager.Instance.Stop("fry");
                 AudioManager.Instance.Stop("alarm");
+
+                if (tmpObject != null)
+                    Destroy(tmpObject);
             }
             else
             {
