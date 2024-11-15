@@ -75,6 +75,17 @@ public class DebugManager : MonoBehaviour
                 
                 Debug.Log("Simsalabim, wie von Zauberhand erscheint das richtige Rezept!");
             }
+            if (_gameInput.Player.SpawnIngredients.triggered)
+            {
+                IngredientSpawner[] ingredients = FindObjectsOfType<IngredientSpawner>();
+                foreach (var ing in ingredients)
+                {
+                    ing.SpawnIngredient();
+
+                }
+                
+                Debug.Log("Spawn all jum num jam");
+            }
         }
     }
 }

@@ -3404,7 +3404,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "E = Schie\xDFen\nP = Zum EndScreen wechseln\nM = Motherlode = 100 Dollar\nN
-    = Mama = 100 Diamonds\nU = Tadaa das richtige Essen ist da!"
+    = Mama = 100 Diamonds\nU = Tadaa das richtige Essen ist da!\nF = Spawn alle freigeschalteten
+    Zutaten"
 --- !u!222 &230932114
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22913,12 +22914,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_IngredientOnion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_IngredientCarrot
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
+      propertyPath: m_IngredientTomato
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7982926494792229663, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_IngredientLettuce
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8473559165435091835, guid: 0cb26d02494b1e748a54cccc50a71d79, type: 3}
       propertyPath: m_LocalPosition.x

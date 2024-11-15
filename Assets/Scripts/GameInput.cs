@@ -89,6 +89,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpawnIngredients"",
+                    ""type"": ""Button"",
+                    ""id"": ""35673b38-4a24-40f7-a1ef-1883894ee380"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -168,6 +177,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""SpawnEat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67df64fa-17a9-4dd9-9099-3d476375ce4e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnIngredients"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -183,6 +203,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Player_CheatSystem = m_Player.FindAction("CheatSystem", throwIfNotFound: true);
         m_Player_HandMenuOpen = m_Player.FindAction("HandMenuOpen", throwIfNotFound: true);
         m_Player_SpawnEat = m_Player.FindAction("SpawnEat", throwIfNotFound: true);
+        m_Player_SpawnIngredients = m_Player.FindAction("SpawnIngredients", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CheatSystem;
     private readonly InputAction m_Player_HandMenuOpen;
     private readonly InputAction m_Player_SpawnEat;
+    private readonly InputAction m_Player_SpawnIngredients;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -262,6 +284,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @CheatSystem => m_Wrapper.m_Player_CheatSystem;
         public InputAction @HandMenuOpen => m_Wrapper.m_Player_HandMenuOpen;
         public InputAction @SpawnEat => m_Wrapper.m_Player_SpawnEat;
+        public InputAction @SpawnIngredients => m_Wrapper.m_Player_SpawnIngredients;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -292,6 +315,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @SpawnEat.started += instance.OnSpawnEat;
             @SpawnEat.performed += instance.OnSpawnEat;
             @SpawnEat.canceled += instance.OnSpawnEat;
+            @SpawnIngredients.started += instance.OnSpawnIngredients;
+            @SpawnIngredients.performed += instance.OnSpawnIngredients;
+            @SpawnIngredients.canceled += instance.OnSpawnIngredients;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -317,6 +343,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @SpawnEat.started -= instance.OnSpawnEat;
             @SpawnEat.performed -= instance.OnSpawnEat;
             @SpawnEat.canceled -= instance.OnSpawnEat;
+            @SpawnIngredients.started -= instance.OnSpawnIngredients;
+            @SpawnIngredients.performed -= instance.OnSpawnIngredients;
+            @SpawnIngredients.canceled -= instance.OnSpawnIngredients;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -343,5 +372,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnCheatSystem(InputAction.CallbackContext context);
         void OnHandMenuOpen(InputAction.CallbackContext context);
         void OnSpawnEat(InputAction.CallbackContext context);
+        void OnSpawnIngredients(InputAction.CallbackContext context);
     }
 }
