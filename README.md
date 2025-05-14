@@ -31,8 +31,8 @@ GitHub collaborators listed in the repository
 
 ## 📦 Play the Game
 
-> 👉 [Download latest .apk release](https://github.com/DEIN_USERNAME/REPO/releases) *(for Oculus Quest 2 or similar)*  
-> 🎥 [Watch the gameplay video](https://youtu.be/DEIN_VIDEO_LINK) *(YouTube/Vimeo/Drive...)*
+> 👉 [Download latest .apk release](https://github.com/Abraxius/vrar-angrychef/releases/tag/v1.0) *(for Oculus Quest 3 or similar)*  
+> 🎥 [Watch the gameplay video](https://drive.google.com/file/d/19nBEh2XHmxicYNA9DeAuSF9XG3I70g8F/view?usp=sharing) 
 
 ## 📸 Screenshots
 
