@@ -19,7 +19,7 @@ Each round is a full day in your virtual burger restaurant. Satisfy your custome
 
 ## 🛠️ Tech Stack
 
-- **Unity 2022.3.24f1 (URP)**
+- **Unity 2022.3.24f1**
 - **Oculus Integration SDK**
 - **C#**
 - Free low poly assets (see credits below)
