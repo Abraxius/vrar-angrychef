@@ -36,12 +36,8 @@ GitHub collaborators listed in the repository
 
 ## 📸 Screenshots
 
-![AngryChef](https://github.com/user-attachments/assets/06e57f1f-a986-4622-8deb-61f43e64c008)
-![Angry1](https://github.com/user-attachments/assets/24b1a3e4-0a76-458f-98c6-ee03fad6d233)
-![Angry2](https://github.com/user-attachments/assets/e536caaf-f9a6-4a76-9041-06b2718ade55)
-![Angry3](https://github.com/user-attachments/assets/03076d6f-d578-4be3-b370-62f7baa4bd44)
-![Angry4](https://github.com/user-attachments/assets/ccdc629a-8f16-49d2-b931-087ef30b8a98)
-![Angry5](https://github.com/user-attachments/assets/72f6c9fe-d3f9-4073-851c-c6d8a5f76598)
+![AngryChef_Collage_Top](https://github.com/user-attachments/assets/4d9c942e-fd5c-4b0a-a739-150bb468e867)
+![AngryChef_Collage_Bottom](https://github.com/user-attachments/assets/4b844c46-a5ab-4684-a578-5a71743f2264)
 
 ## 🧾 Asset Credits
 
